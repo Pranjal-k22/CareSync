@@ -38,7 +38,7 @@ Deploy the Mosquitto MQTT Broker using Docker Compose or native daemon:
 docker-compose up -d mosquitto
 
 # Verify MQTT listener port 1883
-mosquitto_sub -h 127.0.0.1 -p 1883 -u ingest_service_dev -P ingest_password_789! -t "healconnect/#" -v
+mosquitto_sub -h 127.0.0.1 -p 1883 -u ingest_service_dev -P ingest_password_789! -t "caresync/#" -v
 ```
 
 ### B. FastAPI Backend & Ingestion Service

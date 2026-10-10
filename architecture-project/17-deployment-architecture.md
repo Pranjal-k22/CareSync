@@ -21,7 +21,7 @@ flowchart TD
 
         subgraph Storage_Volumes["Persistent Storage Volumes"]
             MosquittoVol["mosquitto_data Volume"]
-            DBVol["healconnect_db Volume"]
+            DBVol["caresync_db Volume"]
         end
     end
 

@@ -105,7 +105,7 @@ CareSync is structured into a multi-layer decoupled architecture spanning IoT Ed
 graph TD
     ESP["ESP8266 Edge Firmware (C++)"] -->|Sensors: MAX30102 / DHT22| Sensors
     Sensors -->|Pub: JSON over MQTT Port 1883| Broker["Mosquitto Broker"]
-    Broker -->|Sub: healconnect/+/+/vitals| Ingestion["MQTT Ingestion Service (paho-mqtt)"]
+    Broker -->|Sub: caresync/+/+/vitals| Ingestion["MQTT Ingestion Service (paho-mqtt)"]
     Ingestion -->|1. Store Raw Vitals| DB[("SQLite / Supabase Database")]
     Ingestion -->|2. Predict Deterioration| ML["RandomForest Model (risk_model.joblib)"]
     ML -->|3. SHAP Explanation| SHAP["SHAP TreeExplainer Service"]
@@ -117,8 +117,8 @@ graph TD
 
 | System Layer | Technology / Implementation | Source File Reference | Status |
 | :--- | :--- | :--- | :--- |
-| **IoT Layer** | ESP8266 NodeMCU v1.0 Microcontroller | `HealthConnect_Kit_ESP8266_Code.ino` | Firmware Implemented (`Hardware Unverified`) |
-| **Sensors** | MAX30102 (HR/SpO2 I2C), DHT22/DS18B20 (Temp) | `HealthConnect_Kit_ESP8266_Code.ino` | Firmware Implemented (`Hardware Unverified`) |
+| **IoT Layer** | ESP8266 NodeMCU v1.0 Microcontroller | `CareSync_Kit_ESP8266_Code.ino` | Firmware Implemented (`Hardware Unverified`) |
+| **Sensors** | MAX30102 (HR/SpO2 I2C), DHT22/DS18B20 (Temp) | `CareSync_Kit_ESP8266_Code.ino` | Firmware Implemented (`Hardware Unverified`) |
 | **ECG Waveform** | Simulated Lead-II ECG Waveform | `components/LiveMonitor/` | **SIMULATED** |
 | **MQTT Broker** | Eclipse Mosquitto (Ports 1883/8883) | `mosquitto/config/mosquitto.conf` | Implemented & Configured |
 | **Ingestion Engine** | Python `paho-mqtt` Client & Service | `backend/app/services/` | Implemented & Tested |
@@ -143,7 +143,7 @@ graph TD
 [ESP8266 Edge Microcontroller]
          ↓ (JSON Payload over MQTT Port 1883, QoS 1)
 [Eclipse Mosquitto MQTT Broker]
-         ↓ (Topic: healconnect/{hospital}/{device}/vitals)
+         ↓ (Topic: caresync/{hospital}/{device}/vitals)
 [Python MQTT Ingestion Worker (paho-mqtt)]
     ┌────┴─────────────────────────────┐
     ↓                                  ↓
@@ -227,7 +227,7 @@ graph TD
     end
 
     SubGraph3["3. MQTT Communication Layer"]
-        ESP -->|Pub: healconnect/+/+/vitals| Mosquitto["Mosquitto MQTT Broker (Port 1883/8883)"]
+        ESP -->|Pub: caresync/+/+/vitals| Mosquitto["Mosquitto MQTT Broker (Port 1883/8883)"]
     end
 
     SubGraph4["4. Ingestion Layer"]
@@ -266,11 +266,11 @@ graph TD
 
 ### 1. IoT Sensor & Edge Firmware Module
 * **Purpose:** Interfaces with MAX30102 and DHT22 sensors, samples physiological data, formats JSON payloads, and handles Wi-Fi/MQTT reconnections.
-* **Source File:** `HealthConnect_Kit_ESP8266_Code/HealthConnect_Kit_ESP8266_Code.ino`
+* **Source File:** `CareSync_Kit_ESP8266_Code/CareSync_Kit_ESP8266_Code.ino`
 * **Status:** Implemented (`Hardware Unverified`).
 
 ### 2. MQTT Broker & Communication Module
-* **Purpose:** Provides centralized publish/subscribe messaging topic routing (`healconnect/{hospital}/{device}/vitals`) with authentication and ACL access control.
+* **Purpose:** Provides centralized publish/subscribe messaging topic routing (`caresync/{hospital}/{device}/vitals`) with authentication and ACL access control.
 * **Source Files:** `mosquitto/config/mosquitto.conf`, `mosquitto/config/acl_file`
 * **Status:** Implemented & Verified.
 

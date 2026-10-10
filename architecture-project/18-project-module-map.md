@@ -23,7 +23,7 @@ mindmap
       ml/datasets/
       backend/models/risk_model.joblib
     IoT Edge Firmware
-      HealthConnect_Kit_ESP8266_Code.ino
+      CareSync_Kit_ESP8266_Code.ino
     Messaging Broker
       mosquitto/config/mosquitto.conf
     Experimental Sandbox

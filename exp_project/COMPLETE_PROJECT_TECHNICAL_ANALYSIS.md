@@ -28,7 +28,7 @@ graph TD
 
 ## 2. Layer-by-Layer Technical Inventory
 
-### A. IoT Edge & Firmware (`HealthConnect_Kit_ESP8266_Code/`)
+### A. IoT Edge & Firmware (`CareSync_Kit_ESP8266_Code/`)
 * **Hardware:** ESP8266 NodeMCU v1.0.
 * **Sensors:** MAX30102 (I2C Pulse Oximeter) & DHT22/DS18B20 (Digital Temperature).
 * **Network Protocol:** Wi-Fi (`ESP8266WiFi.h`) & MQTT (`PubSubClient.h`).
@@ -36,7 +36,7 @@ graph TD
 
 ### B. Ingestion & Messaging Broker (`mosquitto/` & `backend/app/services/`)
 * **Broker:** Eclipse Mosquitto (Ports 1883 / 8883 TLS).
-* **Ingestion Worker:** Python `paho-mqtt` background thread parsing topic structure `healconnect/{hospital}/{device}/vitals`.
+* **Ingestion Worker:** Python `paho-mqtt` background thread parsing topic structure `caresync/{hospital}/{device}/vitals`.
 
 ### C. Backend Engine & REST APIs (`backend/`)
 * **Framework:** FastAPI `0.115.8`.

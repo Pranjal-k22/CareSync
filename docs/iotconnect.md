@@ -19,6 +19,9 @@
 | **Stage 10**| **VERIFIED PASS** | Final Release Validation & Deployment Readiness (SOFTWARE & HARDWARE RELEASE CANDIDATE) |
 | **Stage 11**| **VERIFIED PASS** | Independent Verification & Live Physical Hardware Audit (COM7 Verified) |
 
+> ⚠️ **IMPORTANT RESTART & RE-FLASH NOTICE**:  
+> Following the rename to `caresync`, the Mosquitto MQTT broker **must be restarted** (`docker-compose restart broker` or `systemctl restart mosquitto`) so the updated ACL policies in `mosquitto/config/mosquitto.acl` (`caresync/#`) take effect. Microcontrollers must be re-flashed with the updated C++ firmware in `CareSync_Kit_ESP8266_Code/` to publish telemetry under the new `caresync/{hospital_id}/{device_id}/vitals` topic prefix.
+
 ---
 
 ## STAGE 0: Existing System Audit & Verification Report
@@ -28,11 +31,11 @@
 ```text
 +-----------------------------------------------------------------------------------+
 |                                EDGE IoT HARDWARE                                  |
-|  HealthConnect_Kit_ESP8266_Code/                                                  |
+|  CareSync_Kit_ESP8266_Code/                                                  |
 |  - Microcontroller: ESP8266 NodeMCU                                               |
 |  - Sensors: MAX30102 (Pulse/SpO2), DHT22 (Room Temp/Humid), DS18B20 (Body Temp)    |
 |  - Firmware Transports:                                                           |
-|    1) HealthConnect_Kit_Arduino_Code.ino -> Blynk Cloud (Blynk.virtualWrite V0-V4)  |
+|    1) HealthConnect_Kit_ESP8266_Code.ino -> Blynk Cloud (Blynk.virtualWrite V0-V4)  |
 |    2) Network.cpp -> Firebase/Firestore REST API (devices/0001 patch/create)      |
 |  * GAP IDENTIFIED: ESP8266 firmware DOES NOT currently implement WebSocket client *|
 +-----------------------------------------------------------------------------------+
@@ -43,7 +46,7 @@
 ## STAGE 1: MQTT Architecture & Technical Specification
 
 ```text
-ESP8266 NodeMCU Firmware (HealthConnect_Kit_ESP8266_Code/)
+ESP8266 NodeMCU Firmware (CareSync_Kit_ESP8266_Code/)
 ├── MAX30102 Pulse Oximeter (I2C: D2, D1)
 ├── DHT22 Temp/Humidity (Pin: D5)
 └── DS18B20 Body Temp (OneWire Pin: D6)
@@ -85,16 +88,16 @@ CareSync/
 
 | Topic | Publisher | Subscriber | QoS | Retain | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `healconnect/{hospital_id}/{device_id}/vitals` | ESP8266 Device | Ingestion Service | 1 | `false` | **ACTIVE** |
-| `healconnect/{hospital_id}/{device_id}/status` | ESP8266 Device | Ingestion & Monitoring | 1 | `true` | **ACTIVE (LWT)** |
-| `healconnect/{hospital_id}/{device_id}/alerts` | ESP8266 / Ingestion | Ingestion & Alert Dispatch | 1 | `false` | **ACTIVE** |
-| `healconnect/{hospital_id}/{device_id}/ecg` | ESP8266 (Future) | Telemetry Broadcaster | 0 | `false` | **DEFERRED** |
+| `caresync/{hospital_id}/{device_id}/vitals` | ESP8266 Device | Ingestion Service | 1 | `false` | **ACTIVE** |
+| `caresync/{hospital_id}/{device_id}/status` | ESP8266 Device | Ingestion & Monitoring | 1 | `true` | **ACTIVE (LWT)** |
+| `caresync/{hospital_id}/{device_id}/alerts` | ESP8266 / Ingestion | Ingestion & Alert Dispatch | 1 | `false` | **ACTIVE** |
+| `caresync/{hospital_id}/{device_id}/ecg` | ESP8266 (Future) | Telemetry Broadcaster | 0 | `false` | **DEFERRED** |
 
 ---
 
 ## STAGE 4: ESP8266 MQTT Firmware Implementation
 
-- Modular non-blocking firmware refactoring completed in `HealthConnect_Kit_ESP8266_Code/`.
+- Modular non-blocking firmware refactoring completed in `CareSync_Kit_ESP8266_Code/`.
 - Blocking `delay(2000)` removed and replaced with `millis()` timer scheduling.
 - `PubSubClient` integration with 512-byte buffer and non-blocking exponential backoff.
 - Stage 3 JSON vitals, status, LWT, and alerts payload support implemented.
@@ -108,9 +111,9 @@ CareSync/
 ```text
 MQTT Broker (Eclipse Mosquitto - TCP Port 1883)
        │
-       ├── healconnect/+/+/vitals
-       ├── healconnect/+/+/status
-       └── healconnect/+/+/alerts
+       ├── caresync/+/+/vitals
+       ├── caresync/+/+/status
+       └── caresync/+/+/alerts
                │
                ▼
 MQTT Ingestion Service (`backend/app/services/mqtt_ingestion_service.py`)
@@ -363,7 +366,7 @@ All failure scenarios, isolation boundaries, error recovery behaviors, and secur
 | **Invalid Payload** | Reject malformed JSON, out-of-range vitals without crashing | Strict validation catches invalid types/ranges cleanly | **VERIFIED PASS** |
 | **Prediction Failure** | ML exception caught; vitals persistence & ingestion survive | Try/except block logs model error without stopping telemetry pipeline | **VERIFIED PASS** |
 | **Alert Failure** | Alert persistence failure caught; telemetry pipeline survives | Alert exceptions logged cleanly; vitals saved normally | **VERIFIED PASS** |
-| **Multi-Device** | Multi-device stream isolation enforced | Topic segmentation `healconnect/{hospital}/{device}/vitals` isolates streams | **VERIFIED PASS** |
+| **Multi-Device** | Multi-device stream isolation enforced | Topic segmentation `caresync/{hospital}/{device}/vitals` isolates streams | **VERIFIED PASS** |
 | **Multi-Hospital** | Hospital multi-tenant boundary enforced | `ALLOWED_HOSPITALS` check & server-side filter isolate hospital contexts | **VERIFIED PASS** |
 | **Multi-Patient** | Patient identity isolation enforced | `patient_id` validated & filtered server-side per SSE connection | **VERIFIED PASS** |
 | **ACL Violation** | Unauthorized publish/subscribe denied | Mosquitto ACL prevents unauthorized topic publish/subscribe | **VERIFIED PASS** |
@@ -422,30 +425,30 @@ All failure scenarios, isolation boundaries, error recovery behaviors, and secur
 
 ### 1. Decommissioning Strategy Overview
 Because physical ESP8266 hardware is currently unavailable (`PHYSICAL ESP8266: NOT VERIFIED`), permanent code deletion of Blynk and Firebase/Firestore transport files is strictly forbidden. Instead, Stage 9B establishes:
-- **Primary Transport**: MQTT (`healconnect/{hospital_id}/{device_id}/vitals` and `status`)
+- **Primary Transport**: MQTT (`caresync/{hospital_id}/{device_id}/vitals` and `status`)
 - **Legacy Fallback Transports**: Blynk Cloud (`sendToBlynk()`) and Firebase Firestore (`devices/0001` patch document) guarded by compiler flags `#define LEGACY_BLYNK_ENABLED 1` and `#define LEGACY_FIREBASE_ENABLED 1`.
 
 ### 2. Legacy Telemetry Migration Mapping Matrix
 
 | Legacy Field / Location | Protocol / Transport | New MQTT Field | New MQTT Topic / Path | Migration Status |
 | :--- | :--- | :--- | :--- | :--- |
-| `BPM` (Pin V0) | Blynk `virtualWrite(V0)` | `vitals.heart_rate` | `healconnect/{hosp}/{dev}/vitals` | **MQTT REPLACED (PRIMARY)** |
-| `SpO2` (Pin V1) | Blynk `virtualWrite(V1)` | `vitals.spo2` | `healconnect/{hosp}/{dev}/vitals` | **MQTT REPLACED (PRIMARY)** |
-| `bodyTemp` (Pin V2) | Blynk `virtualWrite(V2)` | `vitals.body_temp` | `healconnect/{hosp}/{dev}/vitals` | **MQTT REPLACED (PRIMARY)** |
-| `roomTemp` (Pin V3) | Blynk `virtualWrite(V3)` | `vitals.room_temp` | `healconnect/{hosp}/{dev}/vitals` | **MQTT REPLACED (PRIMARY)** |
-| `humidity` (Pin V4) | Blynk `virtualWrite(V4)` | `vitals.humidity` | `healconnect/{hosp}/{dev}/vitals` | **MQTT REPLACED (PRIMARY)** |
-| `beatsPerMinute` / `beatAvg` | Firebase Firestore `devices/0001` | `vitals.heart_rate` | `healconnect/{hosp}/{dev}/vitals` | **MQTT REPLACED (PRIMARY)** |
-| `oxygen` | Firebase Firestore `devices/0001` | `vitals.spo2` | `healconnect/{hosp}/{dev}/vitals` | **MQTT REPLACED (PRIMARY)** |
-| `temp` | Firebase Firestore `devices/0001` | `vitals.body_temp` | `healconnect/{hosp}/{dev}/vitals` | **MQTT REPLACED (PRIMARY)** |
-| `finger` | Firebase Firestore `devices/0001` | `vitals.finger_detected` | `healconnect/{hosp}/{dev}/vitals` | **MQTT REPLACED (PRIMARY)** |
-| `status` | Firebase Firestore `devices/0001` | `status` | `healconnect/{hosp}/{dev}/status` | **MQTT REPLACED (PRIMARY)** |
+| `BPM` (Pin V0) | Blynk `virtualWrite(V0)` | `vitals.heart_rate` | `caresync/{hosp}/{dev}/vitals` | **MQTT REPLACED (PRIMARY)** |
+| `SpO2` (Pin V1) | Blynk `virtualWrite(V1)` | `vitals.spo2` | `caresync/{hosp}/{dev}/vitals` | **MQTT REPLACED (PRIMARY)** |
+| `bodyTemp` (Pin V2) | Blynk `virtualWrite(V2)` | `vitals.body_temp` | `caresync/{hosp}/{dev}/vitals` | **MQTT REPLACED (PRIMARY)** |
+| `roomTemp` (Pin V3) | Blynk `virtualWrite(V3)` | `vitals.room_temp` | `caresync/{hosp}/{dev}/vitals` | **MQTT REPLACED (PRIMARY)** |
+| `humidity` (Pin V4) | Blynk `virtualWrite(V4)` | `vitals.humidity` | `caresync/{hosp}/{dev}/vitals` | **MQTT REPLACED (PRIMARY)** |
+| `beatsPerMinute` / `beatAvg` | Firebase Firestore `devices/0001` | `vitals.heart_rate` | `caresync/{hosp}/{dev}/vitals` | **MQTT REPLACED (PRIMARY)** |
+| `oxygen` | Firebase Firestore `devices/0001` | `vitals.spo2` | `caresync/{hosp}/{dev}/vitals` | **MQTT REPLACED (PRIMARY)** |
+| `temp` | Firebase Firestore `devices/0001` | `vitals.body_temp` | `caresync/{hosp}/{dev}/vitals` | **MQTT REPLACED (PRIMARY)** |
+| `finger` | Firebase Firestore `devices/0001` | `vitals.finger_detected` | `caresync/{hosp}/{dev}/vitals` | **MQTT REPLACED (PRIMARY)** |
+| `status` | Firebase Firestore `devices/0001` | `status` | `caresync/{hosp}/{dev}/status` | **MQTT REPLACED (PRIMARY)** |
 
 ### 3. Non-Telemetry Usage Analysis
 - **Blynk Non-Telemetry Check**: 0 non-telemetry features exist in Blynk. It is used strictly for writing vitals to virtual pins V0-V4 every 2000ms.
 - **Firebase Non-Telemetry Check**: 0 non-telemetry features exist in Firebase. It is used strictly for patching the `devices/0001` Firestore document.
 
 ### 4. Secret & Credential Audit
-- **Blynk Token**: Placeholder `replace-with-blynk-token` in `HealthConnect_Kit_ESP8266_Code/secrets.example.h`.
+- **Blynk Token**: Placeholder `replace-with-blynk-token` in `CareSync_Kit_ESP8266_Code/secrets.example.h`.
 - **Firebase Keys**: Project ID `health-monitoring-system-7885c` and API key in `Network.cpp` preserved exclusively for firmware legacy fallback. Zero legacy keys exported to backend `.env` or Next.js client bundles.
 
 ### 5. Hardware Deletion Gate (12 Required Conditions)
@@ -549,7 +552,7 @@ Primary Telemetry Path:
    - `MQTTIngestionService` successfully connected to MQTT broker on port 1883 (`paho.mqtt.client` received `CONNACK` return code `0`).
 
 3. **Synthetic Vitals & Persistence Verification**:
-   - Published synthetic vitals matching Stage 3 schema to `healconnect/hosp-001/node-9901/vitals`.
+   - Published synthetic vitals matching Stage 3 schema to `caresync/hosp-001/node-9901/vitals`.
    - Verified payload landed in database layer (`DatabaseService` / memory buffer).
    - Sample row query:
      ```json
@@ -594,8 +597,8 @@ Primary Telemetry Path:
 ### PART B — Static Firmware Audit
 
 1. **Compile-blocking & Header Inspection**:
-   - Verified by reading [HealthConnect_Kit_Arduino_Code.ino](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/HealthConnect_Kit_ESP8266_Code/HealthConnect_Kit_Arduino_Code.ino): Line 1 includes `secrets.example.h`. All library headers (`<ESP8266WiFi.h>`, `<PubSubClient.h>`, `<DHT.h>`, `<OneWire.h>`, `<DallasTemperature.h>`, `"MAX30105.h"`) are included cleanly.
-   - Line 83 of [Network.cpp](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/HealthConnect_Kit_ESP8266_Code/Network.cpp) sets `mqttClient.setBufferSize(512)`. Calculated JSON vitals payload length is ~380-440 bytes; 512 bytes is adequate for current payload schema.
+   - Verified by reading [HealthConnect_Kit_ESP8266_Code.ino](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/CareSync_Kit_ESP8266_Code/_legacy_blynk_DO_NOT_USE/HealthConnect_Kit_ESP8266_Code.ino): Line 1 includes `secrets.example.h`. All library headers (`<ESP8266WiFi.h>`, `<PubSubClient.h>`, `<DHT.h>`, `<OneWire.h>`, `<DallasTemperature.h>`, `"MAX30105.h"`) are included cleanly.
+   - Line 83 of [Network.cpp](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/CareSync_Kit_ESP8266_Code/_legacy_blynk_DO_NOT_USE/Network.cpp) sets `mqttClient.setBufferSize(512)`. Calculated JSON vitals payload length is ~380-440 bytes; 512 bytes is adequate for current payload schema.
 
 2. **Pin Conflicts Audit**:
    - MAX30102 I2C: Lines 81 (`Wire.begin(D2, D1)`) -> SDA=D2 (GPIO4), SCL=D1 (GPIO5).
@@ -604,20 +607,20 @@ Primary Telemetry Path:
    - WiFi / PubSubClient: Operates over internal ESP8266 SPI/WiFi radio interface. Zero pin collisions between MAX30102, DHT22, DS18B20, and Wi-Fi stack.
 
 3. **Memory Safety Audit**:
-   - Verified by reading [Network.cpp](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/HealthConnect_Kit_ESP8266_Code/Network.cpp) (lines 134–156): `publishVitals()` constructs JSON payload using dynamic Arduino `String` concatenation on heap every 2000ms. On long-term multi-day runtimes, dynamic heap string allocation on ESP8266 (~30KB RAM) risks heap fragmentation. Replacing with `snprintf()` stack buffers is recommended for production.
+   - Verified by reading [Network.cpp](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/CareSync_Kit_ESP8266_Code/_legacy_blynk_DO_NOT_USE/Network.cpp) (lines 134–156): `publishVitals()` constructs JSON payload using dynamic Arduino `String` concatenation on heap every 2000ms. On long-term multi-day runtimes, dynamic heap string allocation on ESP8266 (~30KB RAM) risks heap fragmentation. Replacing with `snprintf()` stack buffers is recommended for production.
 
 4. **WiFi & MQTT Backoff Logic**:
    - `maintainWiFi()` (Network.cpp:38-59): Resets `wifiBackoffInterval = 1000` upon `WL_CONNECTED`. Doubles interval up to 30000ms max on failure.
    - `maintainMQTT()` (Network.cpp:88-124): Resets `mqttBackoffInterval = 1000` upon successful MQTT connection. Doubles interval up to 30000ms max on failure. Cannot get stuck in infinite deadlocks.
 
 5. **LWT Registration Correctness**:
-   - Verified by reading [Network.cpp](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/HealthConnect_Kit_ESP8266_Code/Network.cpp) line 112: `mqttClient.connect(MQTT_DEVICE_ID, MQTT_USERNAME, MQTT_PASSWORD, statusTopic.c_str(), 1, true, lwtPayload.c_str())`. LWT registered on `connect()` call with `healconnect/{hosp}/{dev}/status`, QoS 1, Retain `true`.
+   - Verified by reading [Network.cpp](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/CareSync_Kit_ESP8266_Code/_legacy_blynk_DO_NOT_USE/Network.cpp) line 112: `mqttClient.connect(MQTT_DEVICE_ID, MQTT_USERNAME, MQTT_PASSWORD, statusTopic.c_str(), 1, true, lwtPayload.c_str())`. LWT registered on `connect()` call with `caresync/{hosp}/{dev}/status`, QoS 1, Retain `true`.
 
 6. **Credential Handling**:
-   - `secrets.example.h` correctly uses template placeholders. Note: lines 4–7 in [Network.cpp](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/HealthConnect_Kit_ESP8266_Code/Network.cpp) contain hardcoded legacy Firebase credentials (`API_KEY`, `USER_EMAIL`).
+   - `secrets.example.h` correctly uses template placeholders. Note: lines 4–7 in [Network.cpp](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/CareSync_Kit_ESP8266_Code/_legacy_blynk_DO_NOT_USE/Network.cpp) contain hardcoded legacy Firebase credentials (`API_KEY`, `USER_EMAIL`).
 
 7. **Compiler Flag Coexistence**:
-   - Setting `#define LEGACY_BLYNK_ENABLED 0` and `#define LEGACY_FIREBASE_ENABLED 0` in [HealthConnect_Kit_Arduino_Code.ino](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/HealthConnect_Kit_ESP8266_Code/HealthConnect_Kit_Arduino_Code.ino) cleanly bypasses Blynk and Firebase method calls without compilation errors or dangling references.
+   - Setting `#define LEGACY_BLYNK_ENABLED 0` and `#define LEGACY_FIREBASE_ENABLED 0` in [HealthConnect_Kit_ESP8266_Code.ino](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/CareSync_Kit_ESP8266_Code/_legacy_blynk_DO_NOT_USE/HealthConnect_Kit_ESP8266_Code.ino) cleanly bypasses Blynk and Firebase method calls without compilation errors or dangling references.
 
 8. **Sequence Counter & Reboot Survival**:
    - `sequenceNumber` declared in `Network.h:38` as `uint32_t sequenceNumber`. Persists in global `networkManager` object across WiFi/MQTT network reconnects. Resets to 0 only on physical ESP8266 reboot / power cycle.
@@ -659,8 +662,8 @@ When the physical ESP8266 board and sensors arrive, execute this 12-step validat
    - Pass Criteria: Body temperature reading between 30.0°C and 42.0°C.
 
 7. **Mosquitto Real Telemetry Live View**:
-   - Procedure: On host machine, run `mosquitto_sub -h 127.0.0.1 -p 1883 -u ingest_service_dev -P ingest_password_789! -t "healconnect/#" -v`.
-   - Expected Output: Real telemetry JSON packets arriving on `healconnect/hosp-001/node-9901/vitals` every 2000ms.
+   - Procedure: On host machine, run `mosquitto_sub -h 127.0.0.1 -p 1883 -u ingest_service_dev -P ingest_password_789! -t "caresync/#" -v`.
+   - Expected Output: Real telemetry JSON packets arriving on `caresync/hosp-001/node-9901/vitals` every 2000ms.
    - Pass Criteria: Live JSON packet matches Stage 3 schema with valid sensor values.
 
 8. **MQTT Ingestion Service Verification**:
@@ -722,7 +725,7 @@ When the physical ESP8266 board and sensors arrive, execute this 12-step validat
 ---
 
 ### 2. Hardcoded Firebase Credentials Removal
-* **Issue**: Hardcoded Firebase API Key (`AIzaSy...`) and User Email (`user@example.com`) literals were present in `HealthConnect_Kit_ESP8266_Code/Network.cpp`.
+* **Issue**: Hardcoded Firebase API Key (`AIzaSy...`) and User Email (`user@example.com`) literals were present in `CareSync_Kit_ESP8266_Code/_legacy_blynk_DO_NOT_USE/Network.cpp`.
 * **Before (`Network.cpp`)**:
   ```cpp
   #define API_KEY "replace-with-firebase-api-key"
@@ -770,7 +773,7 @@ When the physical ESP8266 board and sensors arrive, execute this 12-step validat
 * **After (`Network.cpp`)**:
   ```cpp
   char topic[128];
-  snprintf(topic, sizeof(topic), "healconnect/%s/%s/vitals", MQTT_HOSPITAL_ID, MQTT_DEVICE_ID);
+  snprintf(topic, sizeof(topic), "caresync/%s/%s/vitals", MQTT_HOSPITAL_ID, MQTT_DEVICE_ID);
 
   char payload[512];
   int len = snprintf(payload, sizeof(payload),

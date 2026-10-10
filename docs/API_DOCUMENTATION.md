@@ -29,7 +29,7 @@ Interactive OpenAPI / Swagger documentation is available at **`http://localhost:
 - **Request Body**:
   ```json
   {
-    "username": "admin@healconnect.com",
+    "username": "admin@caresync.com",
     "password": "12345678"
   }
   ```
@@ -40,7 +40,7 @@ Interactive OpenAPI / Swagger documentation is available at **`http://localhost:
     "token_type": "bearer",
     "user": {
       "id": "USR-001",
-      "email": "admin@healconnect.com",
+      "email": "admin@caresync.com",
       "role": "admin",
       "name": "System Administrator"
     }

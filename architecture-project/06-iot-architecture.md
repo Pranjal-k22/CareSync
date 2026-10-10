@@ -12,7 +12,7 @@ flowchart LR
     end
 
     subgraph Edge_Microcontroller["ESP8266 NodeMCU v1.0 / ESP-12E"]
-        Firmware["HealthConnect_Kit_ESP8266_Code.ino"]
+        Firmware["CareSync_Kit_ESP8266_Code.ino"]
         WiFi["ESP8266WiFi.h (802.11 b/g/n)"]
         MQTTClient["PubSubClient.h (MQTT Client)"]
         

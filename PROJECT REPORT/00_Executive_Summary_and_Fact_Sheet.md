@@ -29,7 +29,7 @@ Real-time telemetry streaming to Next.js 16 clinical dashboards is implemented v
 | **Database Engine** | Supabase PostgreSQL `15+`, Row Level Security (RLS) | `backend/supabase_schema.sql` |
 | **IoT Hardware Protocol** | MQTT v3.1.1 (QoS 1 Vitals, QoS 1 Retained LWT Status) over Mosquitto Broker (Port `1883`) | `mosquitto/config/mosquitto.conf` |
 | **Browser Telemetry Stream** | Server-Sent Events (SSE) via `/telemetry/stream` (EventSource API) | `backend/main.py#L1004-L1079` |
-| **Microcontroller Platform** | ESP8266 NodeMCU C++ Firmware (PubSubClient, Non-blocking `millis()`) | `HealthConnect_Kit_ESP8266_Code/ESP8266_MQTT_Client/ESP8266_MQTT_Client.ino` |
+| **Microcontroller Platform** | ESP8266 NodeMCU C++ Firmware (PubSubClient, Non-blocking `millis()`) | `CareSync_Kit_ESP8266_Code/ESP8266_MQTT_Client/ESP8266_MQTT_Client.ino` |
 | **Sensors Integrated** | MAX30102 (SpO2/HR), DHT22 (Room Temp/Humid), DS18B20 (Body Temp) | `docs/iotconnect.md#L46-L50` |
 | **Deterioration Model** | `RandomForestClassifier` (14 features, 167,146 samples, ROC-AUC `0.9120`, Accuracy `94.59%`) | `docs/ml_docs.md#L91-L102` |
 | **Disease/Flu Model** | `GradientBoostingClassifier` (11 features, 15,000 samples, ROC-AUC `0.9970`, Accuracy `96.58%`) | `docs/ml_docs.md#L103-L114` |

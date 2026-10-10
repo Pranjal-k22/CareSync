@@ -87,7 +87,7 @@ Immutable security and HIPAA audit trail logging all user authentication, profil
 | Column Name | Data Type | Purpose |
 | :--- | :--- | :--- |
 | `id` | `UUID` | Primary Key |
-| `user_id` | `TEXT` | Authenticated user ID or `guest@healconnect.com` |
+| `user_id` | `TEXT` | Authenticated user ID or `guest@caresync.com` |
 | `action` | `TEXT` | Event action string (`LOGIN`, `DISEASE_PREDICTION`, `UPDATE_BEDS`) |
 | `resource_type` | `TEXT` | Resource category (`AUTH`, `DISEASE_ENGINE`, `ICU_BEDS`) |
 | `entity_id` | `TEXT` | Affected entity ID |

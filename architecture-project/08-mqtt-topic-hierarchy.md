@@ -23,5 +23,5 @@ flowchart TD
 ```
 
 ## Topic Wildcard Resolution Examples
-* **Single-level Wildcard Subscription (`healconnect/HOSP_01/+/vitals`):** Subscribes to vital sign updates from *all* devices assigned to `HOSP_01`.
-* **Multi-level Wildcard Subscription (`healconnect/#`):** Subscribes to all telemetry, ECG, and status topics across all hospital nodes.
+* **Single-level Wildcard Subscription (`caresync/HOSP_01/+/vitals`):** Subscribes to vital sign updates from *all* devices assigned to `HOSP_01`.
+* **Multi-level Wildcard Subscription (`caresync/#`):** Subscribes to all telemetry, ECG, and status topics across all hospital nodes.

@@ -13,7 +13,7 @@ CareSync is engineered as a decoupled, multi-layered enterprise micro-architectu
                                     ▼
 ┌────────────────────────────────────────────────────────────────────────┐
 │ 2. MQTT MESSAGE BROKER LAYER (Eclipse Mosquitto - Port 1883/8883)       │
-│    Topics: healconnect/{hospital_id}/{device_id}/vitals & /status     │
+│    Topics: caresync/{hospital_id}/{device_id}/vitals & /status     │
 └───────────────────────────────────┬────────────────────────────────────┘
                                     │ (paho-mqtt Ingestion Subscriber)
                                     ▼
@@ -44,7 +44,7 @@ CareSync is engineered as a decoupled, multi-layered enterprise micro-architectu
 
 ## 4.2 Architecture Diagram Textual Flow Description
 
-1. **Edge-to-Broker Flow**: The ESP8266 NodeMCU reads physiological data from MAX30102 (SpO2/HR via I2C), DHT22 (room temp/humidity), and DS18B20 (body temp via OneWire). Every 2000ms, non-blocking `millis()` routines format a JSON telemetry packet (`version`, `device_id`, `seq`, `vitals`) and publish it over Wi-Fi to Mosquitto MQTT broker (`healconnect/{hosp}/{dev}/vitals`, QoS 1).
+1. **Edge-to-Broker Flow**: The ESP8266 NodeMCU reads physiological data from MAX30102 (SpO2/HR via I2C), DHT22 (room temp/humidity), and DS18B20 (body temp via OneWire). Every 2000ms, non-blocking `millis()` routines format a JSON telemetry packet (`version`, `device_id`, `seq`, `vitals`) and publish it over Wi-Fi to Mosquitto MQTT broker (`caresync/{hosp}/{dev}/vitals`, QoS 1).
 2. **Broker-to-Ingestion Flow**: The Eclipse Mosquitto broker evaluates client authentication (`allow_anonymous false`) and ACL rules (`mosquitto/config/acl`). `MQTTIngestionService` (`paho-mqtt` background thread) receives the packet, parses topic segments, validates JSON schemas and numerical bounds, checks a 60-second sliding cache window (`device_id`, `seq`) to drop duplicates, saves valid vitals to Supabase PostgreSQL via `DatabaseService`, and pushes the record to `_telemetry_broadcaster`.
 3. **Ingestion-to-Streaming Flow**: The FastAPI SSE streaming channel (`/telemetry/stream`) listens to `_telemetry_broadcaster`. Active client browser connections matching `patient_id` or `hospital_id` filters receive real-time JSON events over persistent `text/event-stream` channels.
 4. **Ingestion-to-ML & XAI Flow**: When inbound vitals breach critical bounds ($\text{SpO}_2 < 92\%$), `mqtt_ingestion_service` automatically invokes `predict_patient_health_risk()`. The 12-hour acute deterioration model evaluates physiological feature vectors, SHAP `TreeExplainer` computes attributions, an alert is persisted to Supabase, and notification flags are broadcast.
@@ -55,7 +55,7 @@ CareSync is engineered as a decoupled, multi-layered enterprise micro-architectu
 ## 4.3 IoT Architecture & MQTT Communication Contract
 
 ### ESP8266 Firmware Execution Loop
-The firmware ([`ESP8266_MQTT_Client.ino`](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/HealthConnect_Kit_ESP8266_Code/ESP8266_MQTT_Client/ESP8266_MQTT_Client.ino)) operates on a non-blocking architecture:
+The firmware ([`ESP8266_MQTT_Client.ino`](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/CareSync_Kit_ESP8266_Code/ESP8266_MQTT_Client/ESP8266_MQTT_Client.ino)) operates on a non-blocking architecture:
 - **`setup()`**: Configures Serial at 115200 baud, initializes I2C bus `Wire.begin(D2, D1)` for MAX30102 (SDA=D2, SCL=D1), initializes DHT22 on D5 and DS18B20 on D6, sets Mosquitto broker server host/port, and allocates a 512-byte PubSubClient MQTT buffer.
 - **`loop()`**: Executes `maintainWiFi()` and `maintainMQTT()` on every cycle. Timer checking `if (currentMillis - lastPublishTime >= 2000)` triggers sensor sampling, MAX30102 100-sample FIFO reading (`maxim_heart_rate_and_oxygen_saturation`), finger contact detection (`maxIR > 50000`), JSON payload construction (`snprintf`), and MQTT QoS 1 publishing.
 
@@ -63,9 +63,9 @@ The firmware ([`ESP8266_MQTT_Client.ino`](file:///c:/Users/pc/Desktop/capstone/H
 
 | Topic Structure | Direction | QoS | Retained | Purpose |
 | :--- | :--- | :---: | :---: | :--- |
-| `healconnect/{hospital_id}/{device_id}/vitals` | ESP8266 $\rightarrow$ Ingestion | 1 | `false` | Primary vital signs telemetry streaming packet. |
-| `healconnect/{hospital_id}/{device_id}/status` | ESP8266 $\rightarrow$ Ingestion | 1 | `true` | Retained Last Will & Testament (LWT) online/offline device state. |
-| `healconnect/{hospital_id}/{device_id}/alerts` | Ingestion $\rightarrow$ Dispatch | 1 | `false` | Critical threshold alert notification packet. |
+| `caresync/{hospital_id}/{device_id}/vitals` | ESP8266 $\rightarrow$ Ingestion | 1 | `false` | Primary vital signs telemetry streaming packet. |
+| `caresync/{hospital_id}/{device_id}/status` | ESP8266 $\rightarrow$ Ingestion | 1 | `true` | Retained Last Will & Testament (LWT) online/offline device state. |
+| `caresync/{hospital_id}/{device_id}/alerts` | Ingestion $\rightarrow$ Dispatch | 1 | `false` | Critical threshold alert notification packet. |
 
 ### JSON Telemetry Payload Schema Example
 ```json
@@ -103,7 +103,7 @@ The firmware ([`ESP8266_MQTT_Client.ino`](file:///c:/Users/pc/Desktop/capstone/H
 
 - **Broker Engine**: Eclipse Mosquitto v2.0 running via Docker container (`docker-compose.yml`).
 - **Authentication**: Direct username/password authentication enabled via `password_file` (`mosquitto/config/password_file`); anonymous access strictly disabled (`allow_anonymous false`).
-- **Access Control Lists (ACL)**: Configured in `mosquitto/config/acl`. Device client IDs are restricted exclusively to their own hospital/device topic namespace (`healconnect/{hospital_id}/{device_id}/#`), preventing cross-device topic hijacking or unauthorized eavesdropping.
+- **Access Control Lists (ACL)**: Configured in `mosquitto/config/acl`. Device client IDs are restricted exclusively to their own hospital/device topic namespace (`caresync/{hospital_id}/{device_id}/#`), preventing cross-device topic hijacking or unauthorized eavesdropping.
 - **Reconnection & Resilience**: Client microcontrollers implement exponential retry backoff (doubling from 1000ms to 30000ms max) on Wi-Fi and MQTT connection loss. Server-side `paho-mqtt` ingestion client uses `reconnect_delay_set(1, 120)` to maintain connection resilience.
 
 ---

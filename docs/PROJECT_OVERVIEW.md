@@ -40,7 +40,7 @@ CareSync bridges edge IoT hardware sensors with enterprise-grade dual machine le
 ### CURRENT CAPABILITIES
 - 100% real model inference (zero synthetic fallbacks).
 - 27 / 27 passing automated backend Pytest test suite.
-- Pre-configured instant development accounts (`admin@healconnect.com`, `doctor@healconnect.com`, `patient@healconnect.com`).
+- Pre-configured instant development accounts (`admin@caresync.com`, `doctor@caresync.com`, `patient@caresync.com`).
 - Live dual model inference endpoints (`/predict`, `/predict-disease`, `/predict-unified`).
 - Integrated OCR prescription processing via Google Gemini 2.5 Flash API.
 

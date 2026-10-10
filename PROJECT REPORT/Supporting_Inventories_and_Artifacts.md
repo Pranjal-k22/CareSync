@@ -32,7 +32,7 @@
 | **SHAP Explainability** | `backend/app/explain.py` | Computes local Shapley value attributions for prediction records. | **Active / Production** |
 | **Federated Engine** | `backend/federated/federated_engine.py` | Orchestrates Flower multi-node `FedAvg` weight aggregation. | **Active / Production** |
 | **Model Registry** | `backend/models/model_registry.py` | Resolves cross-platform relative paths & loads joblib binaries. | **Active / Production** |
-| **ESP8266 Firmware** | `HealthConnect_Kit_ESP8266_Code/ESP8266_MQTT_Client/` | C++ Arduino firmware for Wi-Fi sampling & MQTT publishing. | **Active / Firmware Built** |
+| **ESP8266 Firmware** | `CareSync_Kit_ESP8266_Code/ESP8266_MQTT_Client/` | C++ Arduino firmware for Wi-Fi sampling & MQTT publishing. | **Active / Firmware Built** |
 | **Mosquitto Broker Config**| `mosquitto/config/` | Configures Mosquitto listeners, password database, & ACL rules. | **Active / Production** |
 | **Next.js Web UI** | `pages/` & `components/` | Role-tailored dashboards for Admin, Doctor, and Patient portals. | **Active / Production** |
 | **Legacy WebSocket Server**| `websocket-server/server.js` | Legacy Node.js WebSocket server on port 8080. | **Isolated Legacy** |
@@ -79,9 +79,9 @@
 
 | Topic Structure | Publisher | Subscriber | QoS | Retained | Purpose & Data Payload | Security & Access Control |
 | :--- | :--- | :--- | :---: | :---: | :--- | :--- |
-| `healconnect/{hosp}/{dev}/vitals` | ESP8266 Microcontroller | MQTT Ingestion Service | 1 | `false` | Real-time vital signs telemetry packet (HR, SpO2, Temp, Humid, Seq). | Mosquitto ACL restricted to device namespace |
-| `healconnect/{hosp}/{dev}/status` | ESP8266 Microcontroller | MQTT Ingestion Service | 1 | `true` | Retained Last Will & Testament (LWT) device online/offline status. | Mosquitto ACL restricted to device namespace |
-| `healconnect/{hosp}/{dev}/alerts` | Ingestion / ESP8266 | Alert Dispatcher | 1 | `false` | Critical vital sign breach threshold alert notification. | Mosquitto ACL restricted to device namespace |
+| `caresync/{hosp}/{dev}/vitals` | ESP8266 Microcontroller | MQTT Ingestion Service | 1 | `false` | Real-time vital signs telemetry packet (HR, SpO2, Temp, Humid, Seq). | Mosquitto ACL restricted to device namespace |
+| `caresync/{hosp}/{dev}/status` | ESP8266 Microcontroller | MQTT Ingestion Service | 1 | `true` | Retained Last Will & Testament (LWT) device online/offline status. | Mosquitto ACL restricted to device namespace |
+| `caresync/{hosp}/{dev}/alerts` | Ingestion / ESP8266 | Alert Dispatcher | 1 | `false` | Critical vital sign breach threshold alert notification. | Mosquitto ACL restricted to device namespace |
 
 ---
 
@@ -136,7 +136,7 @@
 | **Multi-Class Disease Screening** | [`backend/app/predict_disease.py`](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/backend/app/predict_disease.py) | `backend/models/flu_model_v1.joblib`, `ml/train_final_flu_model.py` |
 | **SHAP XAI Explainability** | [`backend/app/explain.py`](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/backend/app/explain.py) | `ml/explain_prediction.py`, `components/AIInsightCard.jsx` |
 | **Flower Federated Learning** | [`backend/federated/federated_engine.py`](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/backend/federated/federated_engine.py) | `backend/federated/hospital_a_node.py`, `pages/admin/federated.jsx` |
-| **Edge ESP8266 C++ Firmware** | [`HealthConnect_Kit_ESP8266_Code/ESP8266_MQTT_Client/ESP8266_MQTT_Client.ino`](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/HealthConnect_Kit_ESP8266_Code/ESP8266_MQTT_Client/ESP8266_MQTT_Client.ino) | `HealthConnect_Kit_ESP8266_Code/secrets.h`, `docs/iotconnect.md` |
+| **Edge ESP8266 C++ Firmware** | [`CareSync_Kit_ESP8266_Code/ESP8266_MQTT_Client/ESP8266_MQTT_Client.ino`](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/CareSync_Kit_ESP8266_Code/ESP8266_MQTT_Client/ESP8266_MQTT_Client.ino) | `CareSync_Kit_ESP8266_Code/secrets.h`, `docs/iotconnect.md` |
 | **Mosquitto MQTT Config** | [`mosquitto/config/mosquitto.conf`](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/mosquitto/config/mosquitto.conf) | `mosquitto/config/acl`, `mosquitto/config/password_file`, `docker-compose.yml` |
 | **Clinical Frontend Dashboard** | [`pages/monitoring.jsx`](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/pages/monitoring.jsx) | `components/LiveMonitor/WebSocketMonitor.js`, `pages/ai-dashboard.jsx` |
 | **E-Prescription OCR Reader** | [`pages/prescriptions.jsx`](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/pages/prescriptions.jsx) | `pages/api/process-prescription.js` |
@@ -209,8 +209,8 @@ Every technical claim, architectural metric, API signature, and test result in t
    - `backend/supabase_schema.sql`: Canonical PostgreSQL database schema and RLS policies.
 
 3. **IoT Firmware & Broker Infrastructure**:
-   - `HealthConnect_Kit_ESP8266_Code/ESP8266_MQTT_Client/ESP8266_MQTT_Client.ino`: Non-blocking C++ ESP8266 Arduino firmware for MAX30102, DHT22, DS18B20, and PubSubClient MQTT publishing.
-   - `HealthConnect_Kit_ESP8266_Code/secrets.h`: Hardware host configuration and credential template.
+   - `CareSync_Kit_ESP8266_Code/ESP8266_MQTT_Client/ESP8266_MQTT_Client.ino`: Non-blocking C++ ESP8266 Arduino firmware for MAX30102, DHT22, DS18B20, and PubSubClient MQTT publishing.
+   - `CareSync_Kit_ESP8266_Code/secrets.h`: Hardware host configuration and credential template.
    - `mosquitto/config/mosquitto.conf`: Eclipse Mosquitto broker configuration, listeners, and authentication flags.
    - `mosquitto/config/acl`: Mosquitto Access Control List topic isolation rules.
    - `docker-compose.yml`: Containerized Mosquitto MQTT broker deployment manifest.

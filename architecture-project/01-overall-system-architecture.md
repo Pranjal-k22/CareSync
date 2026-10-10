@@ -15,12 +15,12 @@ flowchart TD
 
     subgraph MQTT_Broker["2. MQTT Messaging Broker"]
         Mosquitto["Eclipse Mosquitto Broker (Port 1883/8883)"]
-        ESP -->|Pub: healconnect/+/+/vitals| Mosquitto
+        ESP -->|Pub: caresync/+/+/vitals| Mosquitto
     end
 
     subgraph Ingestion_Layer["3. Ingestion & Backend Core"]
         Ingest["MQTT Ingestion Worker (paho-mqtt)"]
-        Mosquitto -->|Sub: healconnect/+/+/vitals| Ingest
+        Mosquitto -->|Sub: caresync/+/+/vitals| Ingest
         DB[("Database (SQLite / Supabase Postgres)")]
         ML["RandomForest Risk ML Model (risk_model.joblib)"]
         SHAP["SHAP TreeExplainer Service"]
@@ -46,7 +46,7 @@ flowchart TD
 ## Component Responsibilities & Connections
 
 1. **IoT Edge Layer:** Reads physiological signals from MAX30102 and DHT22 via I2C and single-bus interfaces. Formats JSON telemetry payloads published over MQTT.
-2. **MQTT Broker:** Eclipse Mosquitto handles publish/subscribe topic routing (`healconnect/{hospital}/{device}/vitals`) with QoS 1 delivery guarantees.
+2. **MQTT Broker:** Eclipse Mosquitto handles publish/subscribe topic routing (`caresync/{hospital}/{device}/vitals`) with QoS 1 delivery guarantees.
 3. **MQTT Ingestion Worker:** Python `paho-mqtt` background service subscribing to broker topics, storing raw vitals into PostgreSQL/SQLite database, and triggering ML inference.
 4. **Machine Learning & SHAP:** Executes `risk_model.joblib` (Random Forest, 94.59% accuracy) and `explain.py` for feature attribution scores.
 5. **FastAPI SSE Broadcaster:** Maintains persistent `/telemetry/stream` connections to stream JSON events without polling.

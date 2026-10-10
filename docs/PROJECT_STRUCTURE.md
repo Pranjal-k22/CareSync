@@ -39,7 +39,7 @@ CareSync/
 │   └── LiveMonitor/                   # Live clinical telemetry monitoring components
 ├── datasets/                          # Cleaned clinical datasets
 ├── docs/                              # Project documentation knowledge base
-├── HealthConnect_Kit_ESP8266_Code/    # ESP8266 C++ / Arduino firmware code
+├── CareSync_Kit_ESP8266_Code/    # ESP8266 C++ / Arduino firmware code
 ├── lib/                               # Client-side utility functions & Supabase JS client
 ├── ml/                                # Machine learning training & evaluation pipelines
 │   ├── artifacts/                     # Generated model binaries & JSON metrics

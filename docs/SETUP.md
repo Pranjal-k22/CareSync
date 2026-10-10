@@ -101,7 +101,7 @@ Launch all development servers in separate terminal sessions:
 # Docker Compose start Mosquitto broker
 docker-compose up -d mosquitto
 ```
-> **Broker Verification**: Run `mosquitto_sub -h 127.0.0.1 -p 1883 -u ingest_service_dev -P ingest_password_789! -t "healconnect/#" -v`
+> **Broker Verification**: Run `mosquitto_sub -h 127.0.0.1 -p 1883 -u ingest_service_dev -P ingest_password_789! -t "caresync/#" -v`
 
 ### 🐍 Terminal 2: FastAPI Backend Gateway & MQTT Ingestion Service (Port 8000)
 ```bash
@@ -122,6 +122,6 @@ npm run dev
 
 | Portal Role | Login Identifier | Default Password | Features Available |
 | :--- | :--- | :--- | :--- |
-| **🛡️ System Admin** | `admin@healconnect.com` | `12345678` | Roster management, ICU ward bed control, security audit logs. |
-| **👨‍⚕️ Doctor** | `DOC-8891` or `doctor@healconnect.com` | `12345678` | Live telemetry station, AI risk analysis, SHAP XAI breakdown. |
-| **🩺 Patient** | `PAT-1001` or `rahul.sharma@healconnect.com` | `12345678` | Tele-consultations, digital E-prescriptions, lab report PDF viewer. |
+| **🛡️ System Admin** | `admin@caresync.com` | `12345678` | Roster management, ICU ward bed control, security audit logs. |
+| **👨‍⚕️ Doctor** | `DOC-8891` or `doctor@caresync.com` | `12345678` | Live telemetry station, AI risk analysis, SHAP XAI breakdown. |
+| **🩺 Patient** | `PAT-1001` or `rahul.sharma@caresync.com` | `12345678` | Tele-consultations, digital E-prescriptions, lab report PDF viewer. |

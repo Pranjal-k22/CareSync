@@ -107,13 +107,13 @@ The laptop's IPv4 address changed (e.g. laptop reconnected from mobile hotspot `
    ```
 3. Re-compile and re-flash firmware to ESP8266 using `arduino-cli`:
    ```powershell
-   arduino-cli compile --fqbn esp8266:esp8266:generic HealthConnect_Kit_ESP8266_Code/ESP8266_MQTT_Client
-   arduino-cli upload -p COM7 --fqbn esp8266:esp8266:generic HealthConnect_Kit_ESP8266_Code/ESP8266_MQTT_Client
+   arduino-cli compile --fqbn esp8266:esp8266:generic CareSync_Kit_ESP8266_Code/ESP8266_MQTT_Client
+   arduino-cli upload -p COM7 --fqbn esp8266:esp8266:generic CareSync_Kit_ESP8266_Code/ESP8266_MQTT_Client
    ```
 
 ### Files Changed
-- `HealthConnect_Kit_ESP8266_Code/ESP8266_MQTT_Client/secrets.h`
-- `HealthConnect_Kit_ESP8266_Code/secrets.h`
+- `CareSync_Kit_ESP8266_Code/ESP8266_MQTT_Client/secrets.h`
+- `CareSync_Kit_ESP8266_Code/secrets.h`
 
 ### Verification
 ESP8266 Serial Monitor prints `[MQTT] Connected successfully!`, and telemetry packets flow into backend ingestion and Next.js frontend.
@@ -143,7 +143,7 @@ if (bTemp == DEVICE_DISCONNECTED_C || bTemp <= -55.0) {
 ```
 
 ### Files Changed
-- `HealthConnect_Kit_ESP8266_Code/ESP8266_MQTT_Client/ESP8266_MQTT_Client.ino`
+- `CareSync_Kit_ESP8266_Code/ESP8266_MQTT_Client/ESP8266_MQTT_Client.ino`
 
 ### Verification
 When probe is disconnected, hardware prints `[DS18B20] ERROR` and outputs `BodyTemp: 0.0°C`, cleanly resetting state.
@@ -167,7 +167,7 @@ Frontend monitoring page showed `-- NOT DETECTED` for heart rate and SpO2.
 2. Instructed users on optical sensor placement: finger must cover the red/IR LED window for 5–10 seconds continuously to compute valid pulse waveforms.
 
 ### Files Changed
-- `HealthConnect_Kit_ESP8266_Code/ESP8266_MQTT_Client/ESP8266_MQTT_Client.ino`
+- `CareSync_Kit_ESP8266_Code/ESP8266_MQTT_Client/ESP8266_MQTT_Client.ino`
 - `pages/monitoring.jsx`
 - `components/LiveMonitor/WebSocketMonitor.js`
 

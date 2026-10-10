@@ -34,7 +34,7 @@ flowchart TD
         AUDIT[HIPAA Audit Log Manager]
         SSE_PUB[FastAPI SSE Broadcaster - /telemetry/stream]
         
-        MOSQ -->|Subscribe healconnect/#| INGEST
+        MOSQ -->|Subscribe caresync/#| INGEST
         INGEST --> API
         API --> AUTH
         API --> REG
@@ -126,7 +126,7 @@ flowchart TD
 
 ### F. Real-Time Telemetry & Hardware Layer
 - **Edge Hardware**: ESP8266 NodeMCU microcontroller connected to MAX30102 pulse oximeter, DHT22 room temperature/humidity sensor, and DS18B20 body temperature sensor (`PHYSICAL ESP8266: NOT VERIFIED`).
-- **Primary Telemetry Transport**: Eclipse Mosquitto MQTT Broker (`port 1883`) publishing QoS 1 JSON payloads to `healconnect/{hospital_id}/{device_id}/vitals` and retained LWT status events to `healconnect/{hospital_id}/{device_id}/status`.
+- **Primary Telemetry Transport**: Eclipse Mosquitto MQTT Broker (`port 1883`) publishing QoS 1 JSON payloads to `caresync/{hospital_id}/{device_id}/vitals` and retained LWT status events to `caresync/{hospital_id}/{device_id}/status`.
 - **Server-Side Ingestion**: `MQTTIngestionService` (`backend/app/services/mqtt_ingestion_service.py`) subscribes to broker, validates JSON schema, deduplicates packets via `(device_id, seq)`, persists vitals to `DatabaseService`, and triggers auto-prediction/alert evaluation.
 - **Legacy Fallback Transports**: Legacy Blynk Cloud (`sendToBlynk()`) and Firebase Firestore REST (`devices/0001` patch) are preserved behind `#define LEGACY_BLYNK_ENABLED 1` and `#define LEGACY_FIREBASE_ENABLED 1` compiler flags pending physical hardware validation.
 - **Legacy WebSocket Server**: Standalone Node.js server (`websocket-server/`) preserved in isolated state; inactive in primary clinical telemetry path.

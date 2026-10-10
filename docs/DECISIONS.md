@@ -129,7 +129,7 @@ Adopt **Eclipse Mosquitto MQTT Broker** (port 1883 dev / port 8883 TLS blueprint
 - **Custom Node.js WebSocket Daemon**: Rejected to eliminate unauthenticated standalone daemon dependencies.
 
 ### Reason
-Mosquitto provides native QoS 1 message guarantees, retained Last Will & Testament (LWT) device offline state handling, and ACL topic isolation (`healconnect/{hospital}/{device}/vitals`). FastAPI SSE delivers native browser reconnection via `EventSource` with zero broker credential exposure.
+Mosquitto provides native QoS 1 message guarantees, retained Last Will & Testament (LWT) device offline state handling, and ACL topic isolation (`caresync/{hospital}/{device}/vitals`). FastAPI SSE delivers native browser reconnection via `EventSource` with zero broker credential exposure.
 
 ### Status
 `Accepted`

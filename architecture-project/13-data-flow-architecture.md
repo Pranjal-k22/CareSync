@@ -7,7 +7,7 @@
 flowchart TD
     Sensors["1. MAX30102 / DHT22 Sensors"] -->|Raw Analog/Digital Readings| ESP["2. ESP8266 Microcontroller"]
     ESP -->|3. JSON over MQTT Port 1883| Mosquitto["4. Mosquitto Broker"]
-    Mosquitto -->|5. Topic: healconnect/+/+/vitals| Ingest["6. Python Ingestion Service"]
+    Mosquitto -->|5. Topic: caresync/+/+/vitals| Ingest["6. Python Ingestion Service"]
     
     Ingest -->|7a. Write Raw Vitals| DB[("7. Database (SQLite / Supabase)")]
     Ingest -->|7b. Execute 14-Feature ML| ML["8. RandomForest ML Model"]

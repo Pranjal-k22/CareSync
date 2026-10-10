@@ -4,7 +4,7 @@
 
 | System Layer | Technology / Tool | Exact Version | Purpose & Technical Function | Evidence File Path |
 | :--- | :--- | :--- | :--- | :--- |
-| **Edge Hardware** | ESP8266 NodeMCU | Hardware MCU | Microcontroller executing non-blocking sensor sampling & MQTT publishing. | `HealthConnect_Kit_ESP8266_Code/` |
+| **Edge Hardware** | ESP8266 NodeMCU | Hardware MCU | Microcontroller executing non-blocking sensor sampling & MQTT publishing. | `CareSync_Kit_ESP8266_Code/` |
 | **Sensors** | MAX30102, DHT22, DS18B20 | Hardware Probes | Optical SpO2/HR, ambient room temp/humidity, and body temp probes. | `ESP8266_MQTT_Client.ino#L14-L26` |
 | **MQTT Broker** | Eclipse Mosquitto | `2.0` (Docker) | Containerized message broker enforcing password auth & ACL topic isolation. | `mosquitto/config/mosquitto.conf` |
 | **Ingestion Engine** | Paho MQTT (`paho-mqtt`) | `2.1.0` | Python client consuming vitals, enforcing dedup, & saving to Supabase. | `backend/app/services/mqtt_ingestion_service.py` |
@@ -57,7 +57,7 @@ The database is built on Supabase PostgreSQL 15+ ([`backend/supabase_schema.sql`
 
 ## 5.5 IoT Firmware Implementation
 
-The ESP8266 NodeMCU firmware ([`ESP8266_MQTT_Client.ino`](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/HealthConnect_Kit_ESP8266_Code/ESP8266_MQTT_Client/ESP8266_MQTT_Client.ino)) is written in C++:
+The ESP8266 NodeMCU firmware ([`ESP8266_MQTT_Client.ino`](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/CareSync_Kit_ESP8266_Code/ESP8266_MQTT_Client/ESP8266_MQTT_Client.ino)) is written in C++:
 - **Sensor Sampling**: Executes every 2000ms using non-blocking `millis()` timing.
 - **MAX30102 Optical Processing**: Reads 100 continuous samples from the optical sensor FIFO buffer into `irBuffer` and `redBuffer`. Evaluates `fingerDetected = (maxIR > 50000)`. If finger is present, computes `heartRate` and `spo2` via `maxim_heart_rate_and_oxygen_saturation()`.
 - **DS18B20 Disconnect Fault Handling**: Evaluates `sensors.getTempCByIndex(0)`. If sensor returns `DEVICE_DISCONNECTED_C` (`-127.0°C`), sets `bodyTemp = 0.0` to avoid storing corrupt temperatures.
@@ -70,9 +70,9 @@ The ESP8266 NodeMCU firmware ([`ESP8266_MQTT_Client.ino`](file:///c:/Users/pc/De
 
 | Sensor | Parameter Measured | Interface / Pin | Reading Behavior & Algorithm | Destination Path | Verification Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **MAX30102** | Heart Rate & $\text{SpO}_2\%$ | I2C (SDA=D2, SCL=D1) | 100-sample FIFO buffer, `maxIR > 50000` finger check, Maxim SpO2 algorithm | MQTT `healconnect/+/+/vitals` | **Firmware Written / Physical Board Unverified** |
-| **DHT22** | Room Temp & Humidity | Digital Pin D5 | Sampled every 2000ms via `dht.readTemperature()` & `readHumidity()` | MQTT `healconnect/+/+/vitals` | **Firmware Written / Physical Board Unverified** |
-| **DS18B20** | Body Temperature | OneWire Pin D6 | Sampled every 2000ms; `DEVICE_DISCONNECTED_C` checks for probe unplugging | MQTT `healconnect/+/+/vitals` | **Firmware Written / Physical Board Unverified** |
+| **MAX30102** | Heart Rate & $\text{SpO}_2\%$ | I2C (SDA=D2, SCL=D1) | 100-sample FIFO buffer, `maxIR > 50000` finger check, Maxim SpO2 algorithm | MQTT `caresync/+/+/vitals` | **Firmware Written / Physical Board Unverified** |
+| **DHT22** | Room Temp & Humidity | Digital Pin D5 | Sampled every 2000ms via `dht.readTemperature()` & `readHumidity()` | MQTT `caresync/+/+/vitals` | **Firmware Written / Physical Board Unverified** |
+| **DS18B20** | Body Temperature | OneWire Pin D6 | Sampled every 2000ms; `DEVICE_DISCONNECTED_C` checks for probe unplugging | MQTT `caresync/+/+/vitals` | **Firmware Written / Physical Board Unverified** |
 | **ECG Stream** | Lead-II ECG Waveform | Telemetry API | 500Hz synthetic stream generation | UI Visualization (Simulated Stream) | **Simulated** |
  
 ---
@@ -80,18 +80,18 @@ The ESP8266 NodeMCU firmware ([`ESP8266_MQTT_Client.ino`](file:///c:/Users/pc/De
 ## 5.7 MQTT Implementation
 
 - **Broker**: Eclipse Mosquitto v2.0 running on TCP port 1883 (development) / port 8883 (TLS blueprint).
-- **Authentication & ACL**: Authenticates via `mosquitto/config/password_file` (`allow_anonymous false`). ACL rules in `mosquitto/config/acl` restrict devices to `healconnect/{hospital_id}/{device_id}/#`.
+- **Authentication & ACL**: Authenticates via `mosquitto/config/password_file` (`allow_anonymous false`). ACL rules in `mosquitto/config/acl` restrict devices to `caresync/{hospital_id}/{device_id}/#`.
 - **Topics**:
-  - Vitals: `healconnect/{hospital_id}/{device_id}/vitals` (QoS 1, Retain `false`)
-  - Status: `healconnect/{hospital_id}/{device_id}/status` (QoS 1, Retain `true` [LWT])
-  - Alerts: `healconnect/{hospital_id}/{device_id}/alerts` (QoS 1, Retain `false`)
+  - Vitals: `caresync/{hospital_id}/{device_id}/vitals` (QoS 1, Retain `false`)
+  - Status: `caresync/{hospital_id}/{device_id}/status` (QoS 1, Retain `true` [LWT])
+  - Alerts: `caresync/{hospital_id}/{device_id}/alerts` (QoS 1, Retain `false`)
 
 ---
 
 ## 5.8 MQTT Ingestion Service
 
 The ingestion engine ([`mqtt_ingestion_service.py`](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/backend/app/services/mqtt_ingestion_service.py)) runs as a background thread using `paho-mqtt` v2.1.0:
-1. **Connection & Subscription**: Connects to Mosquitto as `ingest_service_dev` and subscribes to `healconnect/#`.
+1. **Connection & Subscription**: Connects to Mosquitto as `ingest_service_dev` and subscribes to `caresync/#`.
 2. **Schema & Bound Validation**: Validates topic segments and checks numeric ranges ($\text{SpO}_2: 50–100\%$, $\text{HR}: 30–250\text{ BPM}$, $\text{Temp}: 25.0–45.0^\circ\text{C}$).
 3. **Deduplication**: Maintains a 60-second sliding cache window tracking `(device_id, seq)` tuples. Duplicate packets are acknowledged safely and dropped.
 4. **Persistence & Alerts**: Saves valid vitals via `db_service.save_vitals()` and evaluates threshold alerts ($\text{SpO}_2 < 92\%$), dispatching critical alert records.
@@ -211,7 +211,7 @@ FRONTEND PRODUCTION BUILD:         45 / 45 PAGES COMPILED (npx next build --webp
 
 ## 5.18 Scalability Analysis
 
-- **Multi-Device MQTT Partitioning**: Topic segmentation (`healconnect/{hospital}/{device}/vitals`) enables Mosquitto broker to scale across thousands of concurrent microcontrollers.
+- **Multi-Device MQTT Partitioning**: Topic segmentation (`caresync/{hospital}/{device}/vitals`) enables Mosquitto broker to scale across thousands of concurrent microcontrollers.
 - **Single-Worker SSE Boundary**: FastAPI in-memory subscriber queue (`_telemetry_subscribers`) operates per worker process. Production multi-worker scaling requires attaching Redis Pub/Sub to `_telemetry_broadcaster`.
 
 ---
@@ -219,4 +219,4 @@ FRONTEND PRODUCTION BUILD:         45 / 45 PAGES COMPILED (npx next build --webp
 ## 5.19 Legacy Components Audit
 
 1. **Legacy Node.js WebSocket Server (`websocket-server/server.js`)**: Standalone server on port 8080. It is preserved in an isolated directory in the repository but is completely disconnected from the active frontend, which consumes telemetry via FastAPI SSE (`/telemetry/stream`).
-2. **Legacy Blynk & Firebase Firmware Routines**: Located in `HealthConnect_Kit_ESP8266_Code/`. Preserved behind compiler flags `#define LEGACY_BLYNK_ENABLED 1` and `#define LEGACY_FIREBASE_ENABLED 1`. Hardware deletion was gated by Stage 9C validation criteria; because physical hardware bench testing was unavailable (`PHYSICAL ESP8266: NOT VERIFIED`), permanent deletion was correctly blocked to protect firmware fallback options.
+2. **Legacy Blynk & Firebase Firmware Routines**: Located in `CareSync_Kit_ESP8266_Code/`. Preserved behind compiler flags `#define LEGACY_BLYNK_ENABLED 1` and `#define LEGACY_FIREBASE_ENABLED 1`. Hardware deletion was gated by Stage 9C validation criteria; because physical hardware bench testing was unavailable (`PHYSICAL ESP8266: NOT VERIFIED`), permanent deletion was correctly blocked to protect firmware fallback options.

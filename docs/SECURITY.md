@@ -67,7 +67,7 @@ The database row-level security policy enforces **INSERT-ONLY** access for `audi
 ## 6. MQTT Message Broker Security & Client Isolation
 
 - **Authentication & Anonymous Access**: Mosquitto broker enforces `allow_anonymous false` with password file authentication (`mosquitto/config/password_file`).
-- **ACL Topic Authorization**: Enforced via `mosquitto/config/acl.conf`. Devices are strictly restricted to publishing/subscribing to their own hospital/device topic namespace (`healconnect/{hospital_id}/{device_id}/vitals` and `status`).
+- **ACL Topic Authorization**: Enforced via `mosquitto/config/acl.conf`. Devices are strictly restricted to publishing/subscribing to their own hospital/device topic namespace (`caresync/{hospital_id}/{device_id}/vitals` and `status`).
 - **Client-Side Bundle Security**: Web browsers consume telemetry exclusively via FastAPI SSE (`/telemetry/stream`). No MQTT broker usernames or passwords are published or embedded in Next.js client-side JavaScript bundles.
 - **TLS Configuration Blueprint**: Development broker runs on port 1883 without TLS. Production port 8883 TLS configuration is documented as a blueprint in `mosquitto/config/mosquitto.conf`.
 

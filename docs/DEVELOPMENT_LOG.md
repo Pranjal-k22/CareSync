@@ -6,7 +6,7 @@
 Inspect the complete codebase, fix model unpickling and path resolution issues, verify 100% test passing rate, launch active development servers, and establish a permanent engineering documentation system under `docs/`.
 
 ### Investigation
-- Checked codebase layout across `backend/`, `ml/`, `pages/`, `components/`, `websocket-server/`, and `HealthConnect_Kit_ESP8266_Code/`.
+- Checked codebase layout across `backend/`, `ml/`, `pages/`, `components/`, `websocket-server/`, and `CareSync_Kit_ESP8266_Code/`.
 - Ran Pytest suite (`python -m pytest backend/tests/`). Identified initial 9 failures due to:
   1. `ModuleNotFoundError: No module named '_loss'` from legacy `.joblib` model unpickling.
   2. `FileNotFoundError` from hardcoded `/Users/omraj/Downloads/...` paths in `registry_config.json` and metadata files.
@@ -105,7 +105,7 @@ Execute systematic end-to-end migration of CareSync telemetry architecture from 
 
 ### Key Milestones Achieved
 1. **Stage 0–3 Contract Specification**: Documented current system state, selected Eclipse Mosquitto (port 1883 dev / 8883 TLS blueprint), and established QoS 1 vitals schema and retained LWT status contract.
-2. **Stage 4 Firmware Update**: Updated ESP8266 C++ firmware (`HealthConnect_Kit_ESP8266_Code/`) with PubSubClient, non-blocking backoff loops, and legacy fallback compiler flags (`#define LEGACY_BLYNK_ENABLED 1`, `#define LEGACY_FIREBASE_ENABLED 1`).
+2. **Stage 4 Firmware Update**: Updated ESP8266 C++ firmware (`CareSync_Kit_ESP8266_Code/`) with PubSubClient, non-blocking backoff loops, and legacy fallback compiler flags (`#define LEGACY_BLYNK_ENABLED 1`, `#define LEGACY_FIREBASE_ENABLED 1`).
 3. **Stage 5 MQTT Ingestion Service**: Built `MQTTIngestionService` (`backend/app/services/mqtt_ingestion_service.py`) with schema validation, numerical bounds checking, packet deduplication, and database persistence (`vitals` table).
 4. **Stage 6 Backend / ML Integration**: Integrated ML risk prediction and SHAP explainability into telemetry ingestion pipeline with error boundary isolation.
 5. **Stage 7 Frontend SSE Migration**: Migrated Next.js clinical UI (`components/LiveMonitor/WebSocketMonitor.js`, `ViewLivePatient.js`, `ECGMonitor.js`) to consume `/telemetry/stream` SSE stream events.

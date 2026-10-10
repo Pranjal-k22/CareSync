@@ -20,18 +20,18 @@ flowchart TD
         Ingest["Python MQTT Ingestion Worker (paho-mqtt)"]
     end
 
-    ESP -->|Pub: healconnect/+/+/vitals (QoS 1)| Mosquitto_Broker
-    SimECG -->|Pub: healconnect/+/+/ecg (QoS 0)| Mosquitto_Broker
-    ESP -.->|Pub: healconnect/+/+/status (LWT QoS 1)| Mosquitto_Broker
+    ESP -->|Pub: caresync/+/+/vitals (QoS 1)| Mosquitto_Broker
+    SimECG -->|Pub: caresync/+/+/ecg (QoS 0)| Mosquitto_Broker
+    ESP -.->|Pub: caresync/+/+/status (LWT QoS 1)| Mosquitto_Broker
     
-    Mosquitto_Broker -->|Sub: healconnect/+/+/vitals| Ingest
-    Mosquitto_Broker -->|Sub: healconnect/+/+/ecg| Ingest
+    Mosquitto_Broker -->|Sub: caresync/+/+/vitals| Ingest
+    Mosquitto_Broker -->|Sub: caresync/+/+/ecg| Ingest
 ```
 
 ## Topic Specifications
 
 | MQTT Topic Pattern | Publisher | Subscriber | Purpose | QoS Level | Source File |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `healconnect/{hospital}/{device}/vitals` | ESP8266 | Ingestion Service | Vital signs telemetry payload | QoS 1 | `HealthConnect_Kit_ESP8266_Code.ino` |
-| `healconnect/{hospital}/{device}/ecg` | Simulator | Ingestion Service | Streaming ECG samples | QoS 0 | `HealthConnect_Kit_ESP8266_Code.ino` |
-| `healconnect/{hospital}/{device}/status` | ESP8266 | Ingestion Service | Last Will & Testament status | QoS 1 | `HealthConnect_Kit_ESP8266_Code.ino` |
+| `caresync/{hospital}/{device}/vitals` | ESP8266 | Ingestion Service | Vital signs telemetry payload | QoS 1 | `CareSync_Kit_ESP8266_Code.ino` |
+| `caresync/{hospital}/{device}/ecg` | Simulator | Ingestion Service | Streaming ECG samples | QoS 0 | `CareSync_Kit_ESP8266_Code.ino` |
+| `caresync/{hospital}/{device}/status` | ESP8266 | Ingestion Service | Last Will & Testament status | QoS 1 | `CareSync_Kit_ESP8266_Code.ino` |

@@ -57,9 +57,9 @@ flowchart TD
         NextJS["Next.js React Dashboard<br/>(Three.js 3D Telemetry & SSE)"]
     end
 
-    ESP -->|Pub: healconnect/+/+/vitals (QoS 1)| Mosquitto
+    ESP -->|Pub: caresync/+/+/vitals (QoS 1)| Mosquitto
     SimECG -.->|Simulated Waveform| NextJS
-    Mosquitto -->|Sub: healconnect/+/+/vitals| Ingest
+    Mosquitto -->|Sub: caresync/+/+/vitals| Ingest
     Ingest -->|Insert Vitals| Supabase
     FastAPI -->|Query Vitals| Supabase
     FastAPI <-->|Infer & Explain| ML
@@ -97,7 +97,7 @@ CareSync/
 │   └── main.py               # FastAPI Core Server Entrypoint
 ├── components/               # Next.js UI Components (Dashboard, Vitals, Forms)
 ├── docs/                     # Comprehensive System Documentation Index
-├── HealthConnect_Kit_ESP8266_Code/ # C++ ESP8266 Firmware Source Code
+├── CareSync_Kit_ESP8266_Code/ # C++ ESP8266 Firmware Source Code
 ├── ml/                       # Machine Learning Pipelines, Training & Artifacts
 │   ├── artifacts/            # Trained Joblib Models & Performance Metrics
 │   ├── notebooks/            # Jupyter Notebooks for EDA & Model Evaluation
@@ -162,8 +162,8 @@ For rapid evaluation in local development mode (`ALLOW_INSECURE_DEMO_ADMIN=true`
 
 | Role | Username / Email | Password |
 | :--- | :--- | :--- |
-| **Administrator** | `admin@healconnect.com` | `12345678` |
-| **Doctor** | `doctor@healconnect.com` | `doc12345` |
+| **Administrator** | `admin@caresync.com` | `12345678` |
+| **Doctor** | `doctor@caresync.com` | `doc12345` |
 
 ---
 

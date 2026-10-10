@@ -27,12 +27,12 @@ flowchart TD
 
     subgraph MQTT_Broker["2. MQTT Messaging Broker"]
         Mosquitto["Eclipse Mosquitto Broker (Port 1883/8883)"]
-        ESP -->|Pub: healconnect/+/+/vitals| Mosquitto
+        ESP -->|Pub: caresync/+/+/vitals| Mosquitto
     end
 
     subgraph Ingestion_Layer["3. Ingestion & Backend Core"]
         Ingest["MQTT Ingestion Worker (paho-mqtt)"]
-        Mosquitto -->|Sub: healconnect/+/+/vitals| Ingest
+        Mosquitto -->|Sub: caresync/+/+/vitals| Ingest
         DB[("Database (SQLite / Supabase Postgres)")]
         ML["RandomForest Risk ML Model (risk_model.joblib)"]
         SHAP["SHAP TreeExplainer Service"]
@@ -255,12 +255,12 @@ flowchart TD
     subgraph Broker_Transport["Mosquitto MQTT Broker (Ports 1883/8883)"]
         Mosquitto["Eclipse Mosquitto Broker"]
         ACL["ACL & Password Authentication"]
-        ESP -->|Pub: healconnect/+/+/vitals (QoS 1)| Mosquitto
+        ESP -->|Pub: caresync/+/+/vitals (QoS 1)| Mosquitto
     end
 
     subgraph Server_Ingestion["Backend Ingestion Engine"]
         Ingest["Python MQTT Ingestion Worker (paho-mqtt)"]
-        Mosquitto -->|Sub: healconnect/+/+/vitals| Ingest
+        Mosquitto -->|Sub: caresync/+/+/vitals| Ingest
     end
 
     subgraph Streaming_Output["Real-Time User Interface"]
@@ -337,7 +337,7 @@ flowchart TD
 
         subgraph Storage_Volumes["Persistent Storage Volumes"]
             MosquittoVol["mosquitto_data Volume"]
-            DBVol["healconnect_db Volume"]
+            DBVol["caresync_db Volume"]
         end
     end
 

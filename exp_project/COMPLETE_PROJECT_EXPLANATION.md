@@ -83,8 +83,8 @@ CareSync_main2.0/
 │   ├── preprocess.py               # Feature cleaning, encoding, imputation
 │   ├── model.py                    # Class wrappers & sklearn pipelines
 │   └── predict.py                  # Standalone inference execution utility
-├── HealthConnect_Kit_ESP8266_Code/  # IoT Edge Firmware
-│   └── HealthConnect_Kit_ESP8266_Code.ino # C++ ESP8266 MQTT & Sensor Firmware
+├── CareSync_Kit_ESP8266_Code/  # IoT Edge Firmware
+│   └── CareSync_Kit_ESP8266_Code.ino # C++ ESP8266 MQTT & Sensor Firmware
 ├── components/                     # Next.js UI Components
 │   ├── Dashboard/                  # Clinical Dashboard layout & summary cards
 │   ├── LiveMonitor/                # Live vitals and ECG visualizer components
@@ -124,7 +124,7 @@ graph TD
     end
 
     SubGraph2["Ingestion & Backend Core"]
-        Mosquitto -->|Sub: healconnect/+/+/vitals| Ingestion["MQTT Ingestion Service (paho-mqtt)"]
+        Mosquitto -->|Sub: caresync/+/+/vitals| Ingestion["MQTT Ingestion Service (paho-mqtt)"]
         Ingestion -->|1. Store Raw Telemetry| DB[("PostgreSQL / SQLite Database")]
         Ingestion -->|2. Compute ML Risk| ML_Engine["Risk ML Service (risk_model.joblib)"]
         ML_Engine -->|3. Persist Risk & Alert| DB
@@ -158,7 +158,7 @@ graph TD
 ## 5. Backend
 
 * **Language & Framework:** Python 3.10+ running FastAPI `0.115.8` hosted on `uvicorn`.
-* **Database Driver:** SQLAlchemy `2.0.38` with SQLite (`healconnect.db`) local backend and PostgreSQL/Supabase production support.
+* **Database Driver:** SQLAlchemy `2.0.38` with SQLite (`caresync.db`) local backend and PostgreSQL/Supabase production support.
 
 ### Complete API Inventory Table
 
@@ -328,7 +328,7 @@ backend/models/risk_model.joblib
 ## 8. IoT
 
 * **Microcontroller:** ESP8266 (NodeMCU v1.0 / ESP-12E)
-* **Firmware Path:** `HealthConnect_Kit_ESP8266_Code/HealthConnect_Kit_ESP8266_Code.ino`
+* **Firmware Path:** `CareSync_Kit_ESP8266_Code/CareSync_Kit_ESP8266_Code.ino`
 
 ### Sensor Hardware Table
 
@@ -349,16 +349,16 @@ backend/models/risk_model.joblib
 
 | MQTT Topic Format | Publisher | Subscriber | Purpose | Payload | QoS | Source File |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| `healconnect/{hospital}/{device}/vitals` | ESP8266 | Ingestion Service | Telemetry Payload | JSON | QoS 1 | `HealthConnect_Kit_ESP8266_Code.ino` |
-| `healconnect/{hospital}/{device}/ecg` | ESP8266/Sim | Ingestion Service | ECG Waveform | JSON | QoS 0 | `HealthConnect_Kit_ESP8266_Code.ino` |
-| `healconnect/{hospital}/{device}/status` | ESP8266 (LWT) | Ingestion Service | Device Status | Plaintext | QoS 1 | `HealthConnect_Kit_ESP8266_Code.ino` |
+| `caresync/{hospital}/{device}/vitals` | ESP8266 | Ingestion Service | Telemetry Payload | JSON | QoS 1 | `CareSync_Kit_ESP8266_Code.ino` |
+| `caresync/{hospital}/{device}/ecg` | ESP8266/Sim | Ingestion Service | ECG Waveform | JSON | QoS 0 | `CareSync_Kit_ESP8266_Code.ino` |
+| `caresync/{hospital}/{device}/status` | ESP8266 (LWT) | Ingestion Service | Device Status | Plaintext | QoS 1 | `CareSync_Kit_ESP8266_Code.ino` |
 
 ---
 
 ## 10. MQTT Ingestion Service
 
 * **Implementation:** Python `paho-mqtt` background subscriber service (`backend/app/services/`).
-* **Lifecycle:** Subscribes to `healconnect/+/+/vitals` $\rightarrow$ parses JSON $\rightarrow$ validates parameters $\rightarrow$ writes to database $\rightarrow$ triggers ML risk score $\rightarrow$ dispatches payload to FastAPI SSE broadcaster queue.
+* **Lifecycle:** Subscribes to `caresync/+/+/vitals` $\rightarrow$ parses JSON $\rightarrow$ validates parameters $\rightarrow$ writes to database $\rightarrow$ triggers ML risk score $\rightarrow$ dispatches payload to FastAPI SSE broadcaster queue.
 
 ---
 
@@ -415,7 +415,7 @@ backend/models/risk_model.joblib
 ESP8266 Firmware (C++)
 ↓ (MQTT Port 1883, QoS 1)
 Mosquitto MQTT Broker
-↓ (healconnect/+/+/vitals)
+↓ (caresync/+/+/vitals)
 Python Ingestion Worker (paho-mqtt)
 ↓
 SQLAlchemy Database Storage
@@ -471,7 +471,7 @@ Located at `exp_project/`, this research laboratory contains:
 | `backend/app/api/telemetry.py` | Telemetry API | REST ingestion & SSE `/telemetry/stream` | `post_telemetry()`, `telemetry_stream()` | Implemented & Tested |
 | `ml/train.py` | ML Pipeline | Deterioration model training pipeline | `train_random_forest()`, `save_artifacts()` | Implemented & Verified |
 | `ml/evaluate.py` | ML Pipeline | Calculates ROC-AUC (0.9120) & Accuracy (94.59%) | `evaluate_model()` | Implemented & Verified |
-| `HealthConnect_Kit_ESP8266_Code.ino` | IoT Firmware | ESP8266 MQTT & MAX30102 C++ firmware | `setup()`, `loop()`, `publishVitals()` | Implemented (`Hardware Unverified`) |
+| `CareSync_Kit_ESP8266_Code.ino` | IoT Firmware | ESP8266 MQTT & MAX30102 C++ firmware | `setup()`, `loop()`, `publishVitals()` | Implemented (`Hardware Unverified`) |
 | `pages/live-monitoring.jsx` | Next.js UI | Real-time SSE live vital streaming portal | `LiveMonitoring()`, `EventSource` subscriber | Implemented & Compiled |
 
 ---

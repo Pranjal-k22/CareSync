@@ -20,7 +20,7 @@ This document tracks known technical limitations, edge cases, and temporary work
 ### 2. ESP8266 WiFi Reconnection Latency
 - **Issue**: If the ESP8266 NodeMCU hardware loses WiFi connection to the local network router, sensor sampling pauses for up to 5 seconds during reconnection retries.
 - **Impact**: Brief 5-second gap in live WebSocket telemetry waveform stream.
-- **Affected Components**: `HealthConnect_Kit_ESP8266_Code/`, WebSocket Telemetry Station.
+- **Affected Components**: `CareSync_Kit_ESP8266_Code/`, WebSocket Telemetry Station.
 - **Current Workaround**: Frontend `TelemetryStation.jsx` uses local rolling buffer interpolation to preserve smooth ECG waveform rendering during temporary transport gaps.
 - **Priority**: Low
 - **Status**: Tracked

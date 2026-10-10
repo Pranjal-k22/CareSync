@@ -72,7 +72,7 @@ CareSync was engineered to achieve specific primary, secondary, technical, and h
 To maintain rigorous engineering standards, CareSync explicitly defines its operational boundaries:
 
 ### In-Scope (Implemented & Verified Capabilities)
-- **Edge Telemetry Processing**: Real-time acquisition and ingestion of Heart Rate, $\text{SpO}_2$, Body Temperature, Room Temperature, and Humidity via MQTT (`healconnect/+/+/vitals`).
+- **Edge Telemetry Processing**: Real-time acquisition and ingestion of Heart Rate, $\text{SpO}_2$, Body Temperature, Room Temperature, and Humidity via MQTT (`caresync/+/+/vitals`).
 - **Real-Time Telemetry Streaming**: FastAPI SSE stream (`/telemetry/stream`) consuming MQTT vitals and broadcasting to Next.js reactive dashboards via `EventSource`.
 - **12-Hour Acute Deterioration Model**: `RandomForestClassifier` trained on 167,146 clinical records (`cleaned_hospital_data.csv`), achieving ROC-AUC `0.9120` and Accuracy `94.59%`.
 - **Multi-Class Disease Screening Model**: `GradientBoostingClassifier` trained on 15,000 febrile records (`disease_prediction_dataset.csv`), achieving ROC-AUC `0.9970` and Accuracy `96.58%`.
@@ -88,7 +88,7 @@ To maintain rigorous engineering standards, CareSync explicitly defines its oper
 
 ### Hardware-Dependent & Simulated Functionality
 - **Simulated ECG Waveform**: Marked as **SIMULATED** in the UI (`SIMULATED ECG WAVEFORM`). The 500Hz Lead-II waveform is generated programmatically for real-time visualization.
-- **Physical ESP8266 Hardware Testing**: Marked as **PHYSICAL HARDWARE: NOT VERIFIED**. ESP8266 MQTT firmware is fully written and statically audited (`HealthConnect_Kit_ESP8266_Code/`), and backend ingestion is 100% software-verified using synthetic MQTT publisher test suites. Physical bench testing with physical sensors remains deferred pending physical hardware arrival.
+- **Physical ESP8266 Hardware Testing**: Marked as **PHYSICAL HARDWARE: NOT VERIFIED**. ESP8266 MQTT firmware is fully written and statically audited (`CareSync_Kit_ESP8266_Code/`), and backend ingestion is 100% software-verified using synthetic MQTT publisher test suites. Physical bench testing with physical sensors remains deferred pending physical hardware arrival.
 
 ### Future Scope (Planned Enhancements)
 - HL7 FHIR R4 JSON bundle serialization for telemetry exports.
@@ -140,8 +140,8 @@ The end-to-end telemetry, machine learning, and visualization workflow of CareSy
             ▼  (Wi-Fi / MQTT QoS 1 JSON Payloads / 2000ms Interval)
 [ Message Broker Layer ]
   Eclipse Mosquitto MQTT Broker (TCP Port 1883 dev / 8883 TLS blueprint)
-  ├── Topic: healconnect/{hospital_id}/{device_id}/vitals
-  └── Topic: healconnect/{hospital_id}/{device_id}/status (Retained LWT)
+  ├── Topic: caresync/{hospital_id}/{device_id}/vitals
+  └── Topic: caresync/{hospital_id}/{device_id}/status (Retained LWT)
             │
             ▼  (paho-mqtt v2.1.0 Client Subscription)
 [ Ingestion & Gateway Layer ]
@@ -175,12 +175,12 @@ The end-to-end telemetry, machine learning, and visualization workflow of CareSy
 The codebase is organized into eight primary functional modules:
 
 1. **`backend/main.py` (FastAPI API Gateway)**: Serves as the central application entry point. Handles HTTP routing, JWT bearer authentication, security response headers, Structured JSON logging middleware, exception handling, and SSE stream dispatching.
-2. **`backend/app/services/mqtt_ingestion_service.py` (MQTT Ingestion Engine)**: Implements the background MQTT client subscribing to `healconnect/#`. Enforces topic segment validation, tenant access control, numeric range filtering, 60-second sliding-window packet deduplication, database persistence, and threshold alert triggers.
+2. **`backend/app/services/mqtt_ingestion_service.py` (MQTT Ingestion Engine)**: Implements the background MQTT client subscribing to `caresync/#`. Enforces topic segment validation, tenant access control, numeric range filtering, 60-second sliding-window packet deduplication, database persistence, and threshold alert triggers.
 3. **`backend/app/services/db_service.py` (Database Abstraction Layer)**: Interfaces with Supabase PostgreSQL (and local in-memory fallbacks). Manages CRUD operations for `users`, `patients`, `vitals`, `prediction_history`, `alerts`, and `audit_logs`.
 4. **`backend/app/predict.py` & `predict_disease.py` (Dual AI Risk Models)**: Deserializes joblib binary model artifacts (`risk_model.joblib` and `flu_model_v1.joblib`), executes data preprocessing pipelines (`ColumnTransformer`), fills missing features with clinical baselines, and returns predicted probabilities and categorical risk grades.
 5. **`backend/app/explain.py` (SHAP Explainability Engine)**: Wraps `shap.TreeExplainer` to compute local feature attributions for inbound patient vitals, producing structured JSON outputs detailing feature impact magnitude and direction.
 6. **`backend/federated/` (Flower Federated Learning Framework)**: Contains `federated_engine.py` and edge client node implementations (`hospital_a_node.py`, `hospital_b_node.py`, `hospital_c_node.py`). Orchestrates multi-node `FedAvg` weight aggregation rounds and serializes versioned global models.
-7. **`HealthConnect_Kit_ESP8266_Code/` (Edge Firmware)**: Modular C++ Arduino code for ESP8266 NodeMCU. Implements non-blocking `millis()` timers, PubSubClient MQTT publishing, MAX30102 100-sample FIFO reading, DS18B20 disconnect handling, and exponential backoff reconnection loops.
+7. **`CareSync_Kit_ESP8266_Code/` (Edge Firmware)**: Modular C++ Arduino code for ESP8266 NodeMCU. Implements non-blocking `millis()` timers, PubSubClient MQTT publishing, MAX30102 100-sample FIFO reading, DS18B20 disconnect handling, and exponential backoff reconnection loops.
 8. **`pages/` & `components/` (Next.js Frontend)**: Contains Next.js page views (`index.jsx`, `monitoring.jsx`, `ai-dashboard.jsx`, `prescriptions.jsx`, `admin/federated.jsx`) and reusable UI components (`AIInsightCard.jsx`, `WebSocketMonitor.js`, `ECGMonitor.js`).
 
 ---
