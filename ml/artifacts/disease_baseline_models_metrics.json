@@ -1,0 +1,56 @@
+{
+  "Logistic Regression": {
+    "fit_time_sec": 0.027,
+    "val_accuracy": 0.956,
+    "test_accuracy": 0.9596,
+    "test_precision": 0.9597,
+    "test_recall": 0.9596,
+    "test_f1_score": 0.9596,
+    "test_roc_auc": 0.9958
+  },
+  "Decision Tree": {
+    "fit_time_sec": 0.017,
+    "val_accuracy": 0.9507,
+    "test_accuracy": 0.96,
+    "test_precision": 0.9601,
+    "test_recall": 0.96,
+    "test_f1_score": 0.96,
+    "test_roc_auc": 0.9944
+  },
+  "Random Forest": {
+    "fit_time_sec": 0.101,
+    "val_accuracy": 0.9613,
+    "test_accuracy": 0.9658,
+    "test_precision": 0.9658,
+    "test_recall": 0.9658,
+    "test_f1_score": 0.9658,
+    "test_roc_auc": 0.9965
+  },
+  "HistGradientBoosting": {
+    "fit_time_sec": 2.315,
+    "val_accuracy": 0.9609,
+    "test_accuracy": 0.9658,
+    "test_precision": 0.9658,
+    "test_recall": 0.9658,
+    "test_f1_score": 0.9658,
+    "test_roc_auc": 0.9969
+  },
+  "Linear SVM (Calibrated)": {
+    "fit_time_sec": 0.09,
+    "val_accuracy": 0.9516,
+    "test_accuracy": 0.9493,
+    "test_precision": 0.9493,
+    "test_recall": 0.9493,
+    "test_f1_score": 0.9493,
+    "test_roc_auc": 0.9942
+  },
+  "Gradient Boosting": {
+    "fit_time_sec": 1.514,
+    "val_accuracy": 0.9613,
+    "test_accuracy": 0.968,
+    "test_precision": 0.968,
+    "test_recall": 0.968,
+    "test_f1_score": 0.968,
+    "test_roc_auc": 0.997
+  }
+}
