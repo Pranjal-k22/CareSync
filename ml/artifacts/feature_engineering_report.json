@@ -1,0 +1,88 @@
+{
+  "feature_engineering_version": "v1.0-CLINICAL",
+  "total_features": 14,
+  "derived_features": [
+    {
+      "feature": "fever_severity_index",
+      "formula": "max(0, temperature_c - 37.0)",
+      "clinical_rationale": "Quantifies degree of fever elevation above baseline normal 37\u00b0C core body temperature."
+    },
+    {
+      "feature": "symptom_total_score",
+      "formula": "cough_severity + headache_severity + fatigue_score + chills + body_ache + sore_throat",
+      "clinical_rationale": "Aggregates overall systemic viral symptom burden score (range 0 to 12)."
+    },
+    {
+      "feature": "cardiorespiratory_stress_ratio",
+      "formula": "heart_rate / spo2_pct",
+      "clinical_rationale": "Measures pulse rate elevation relative to arterial oxygen saturation."
+    },
+    {
+      "feature": "flu_symptom_triad",
+      "formula": "chills==1 AND body_ache==1 AND cough_severity>=2",
+      "clinical_rationale": "Binary indicator for classic acute influenza triad presentation."
+    }
+  ],
+  "feature_importance_ranking": [
+    {
+      "feature": "symptom_total_score",
+      "importance": 0.1525
+    },
+    {
+      "feature": "temperature_c",
+      "importance": 0.1412
+    },
+    {
+      "feature": "fever_severity_index",
+      "importance": 0.1277
+    },
+    {
+      "feature": "fatigue_score",
+      "importance": 0.1263
+    },
+    {
+      "feature": "cough_severity",
+      "importance": 0.1232
+    },
+    {
+      "feature": "headache_severity",
+      "importance": 0.1008
+    },
+    {
+      "feature": "heart_rate",
+      "importance": 0.053
+    },
+    {
+      "feature": "spo2_pct",
+      "importance": 0.0445
+    },
+    {
+      "feature": "cardiorespiratory_stress_ratio",
+      "importance": 0.0393
+    },
+    {
+      "feature": "chills",
+      "importance": 0.0258
+    },
+    {
+      "feature": "body_ache",
+      "importance": 0.0244
+    },
+    {
+      "feature": "flu_symptom_triad",
+      "importance": 0.0242
+    },
+    {
+      "feature": "age",
+      "importance": 0.0097
+    },
+    {
+      "feature": "sore_throat",
+      "importance": 0.0074
+    }
+  ],
+  "model_performance_with_derived": {
+    "accuracy": 0.9627,
+    "f1_score": 0.9626
+  }
+}
