@@ -1,0 +1,16 @@
+{
+  "round_number": 37,
+  "model_version": "global_model_v37",
+  "participating_hospitals": [
+    "Hospital A - Central Edge Node",
+    "Hospital B - Apollo Telemetry Node",
+    "Hospital C - Fortis Cardiac Node"
+  ],
+  "training_timestamp": "2026-08-09T09:11:40.560921+00:00",
+  "metrics": {
+    "global_accuracy": 99.8,
+    "global_loss": 0.04,
+    "privacy_budget_epsilon": 0.5
+  },
+  "algorithm": "FedAvg (Federated Averaging)"
+}
