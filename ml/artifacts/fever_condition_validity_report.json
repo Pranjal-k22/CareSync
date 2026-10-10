@@ -1,0 +1,10 @@
+{
+  "valid_fever_outcome_confirmed": true,
+  "label_name": "Fever-Related Condition (Viral / High Fever / Febrile Illness)",
+  "total_febrile_records": 3782,
+  "is_simple_temperature_threshold": false,
+  "rule_threshold_accuracy": 70.11,
+  "fever_cases_below_38c": 8,
+  "flu_cases_above_38c": 3889,
+  "conclusion": "Confirmed valid clinically documented fever-related condition label derived from multi-symptom presentation, distinct from simple static temperature thresholding."
+}
