@@ -5,7 +5,7 @@
 
 ```mermaid
 mindmap
-  root((HealConnect Project))
+  root((CareSync Project))
     Frontend Layer
       pages/index.js
       pages/dashboard.jsx

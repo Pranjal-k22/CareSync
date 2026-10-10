@@ -176,7 +176,7 @@ The platform has been audited using Pytest and scratch verification suites acros
 
 ```
 ================================================================================
-HEALCONNECT COMPREHENSIVE AUTOMATED VERIFICATION SUITE MATRIX
+CARESYNC COMPREHENSIVE AUTOMATED VERIFICATION SUITE MATRIX
 ================================================================================
 1. Pytest Backend Core Suite:      27 / 27 PASSING (100%) [python -m pytest backend/tests/]
 2. Stage 5 MQTT Ingestion Suite:   17 / 17 PASSING (100%) [python scratch/test_mqtt_ingestion.py]

@@ -1,6 +1,6 @@
-# 🎯 HealConnect — Product Roadmap
+# 🎯 CareSync — Product Roadmap
 
-This document outlines completed milestones, active engineering tasks, and future planned capabilities for HealConnect.
+This document outlines completed milestones, active engineering tasks, and future planned capabilities for CareSync.
 
 ---
 

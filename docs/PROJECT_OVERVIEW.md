@@ -1,7 +1,7 @@
-# 📖 HealConnect — Project Overview
+# 📖 CareSync — Project Overview
 
 ## Project Name
-**HealConnect** — Enterprise Multi-Hospital AI Telemetry, Clinical Deterioration Prediction & Privacy-Preserving Federated Learning Platform.
+**CareSync** — Enterprise Multi-Hospital AI Telemetry, Clinical Deterioration Prediction & Privacy-Preserving Federated Learning Platform.
 
 ---
 
@@ -11,7 +11,7 @@
 Hospital ICUs and ward units face critical challenges in monitoring physiological patient signals in real-time. Delayed detection of acute clinical deterioration leads to preventable adverse events, cardiac arrests, and unplanned ICU escalations. Furthermore, sharing sensitive patient vital data across multi-hospital networks for machine learning model training poses severe HIPAA compliance and privacy risks.
 
 ### Why it exists
-HealConnect bridges edge IoT hardware sensors with enterprise-grade dual machine learning engines (12-hour acute deterioration prediction and multi-class influenza/fever screening) paired with SHAP model explainability. It enables cross-hospital collaborative model optimization using Flower privacy-preserving federated learning without centralizing raw health data.
+CareSync bridges edge IoT hardware sensors with enterprise-grade dual machine learning engines (12-hour acute deterioration prediction and multi-class influenza/fever screening) paired with SHAP model explainability. It enables cross-hospital collaborative model optimization using Flower privacy-preserving federated learning without centralizing raw health data.
 
 ### Who uses it
 1. **ICU Clinicians & Physicians**: Monitor live telemetry streams (ECG, SpO2, Heart Rate), review AI acute deterioration risk scores, analyze SHAP feature attributions, and conduct video tele-consultations.

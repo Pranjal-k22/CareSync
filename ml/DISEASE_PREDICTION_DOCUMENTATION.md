@@ -1,4 +1,4 @@
-# 🩺 HealConnect Disease Prediction & Influenza Module
+# 🩺 CareSync Disease Prediction & Influenza Module
 
 > **Mandatory Clinical Disclaimer**:
 > *"This model predicts risk based on patterns learned from the training dataset. It does not constitute medical diagnosis."*
@@ -6,7 +6,7 @@
 ---
 
 ## 📌 Executive Overview
-The **HealConnect Disease Prediction Module** extends the HealConnect Healthcare platform with a multi-class clinical decision-support engine. The engine predicts **Flu / Influenza** and **Fever-Related Conditions** alongside **Normal Baselines** using real patient vital signs, symptom severity scores, and demographic indicators.
+The **CareSync Disease Prediction Module** extends the CareSync Healthcare platform with a multi-class clinical decision-support engine. The engine predicts **Flu / Influenza** and **Fever-Related Conditions** alongside **Normal Baselines** using real patient vital signs, symptom severity scores, and demographic indicators.
 
 ---
 

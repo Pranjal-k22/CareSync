@@ -2,7 +2,7 @@
 
 ## 4.1 Overall System Architecture
 
-HealConnect is engineered as a decoupled, multi-layered enterprise micro-architecture. The system separates high-frequency hardware telemetry ingestion from analytical machine learning inference, real-time client streaming, and database storage.
+CareSync is engineered as a decoupled, multi-layered enterprise micro-architecture. The system separates high-frequency hardware telemetry ingestion from analytical machine learning inference, real-time client streaming, and database storage.
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
@@ -229,7 +229,7 @@ CREATE POLICY "Insert-only audit trail" ON audit_logs FOR INSERT WITH CHECK (tru
 
 ## 4.10 Design Methodology
 
-HealConnect was engineered using a **Layered, Event-Driven Micro-Architecture** combined with **Test-Driven Verification**:
+CareSync was engineered using a **Layered, Event-Driven Micro-Architecture** combined with **Test-Driven Verification**:
 - **Event-Driven Pub/Sub**: Edge microcontrollers publish vitals asynchronously to Mosquitto MQTT; server ingestion listens to topics and broadcasts events to reactive UI streams.
 - **Layered Decoupling**: Hardware ingestion, REST API serving, ML inference, federated learning, and database storage run in decoupled modules.
 - **Test-Driven Verification**: Engineering progress was gated through Stage 0 to Stage 11 verification suites, enforcing 100% test pass rates (`84/84 tests passing`) before release candidate tagging.
@@ -238,7 +238,7 @@ HealConnect was engineered using a **Layered, Event-Driven Micro-Architecture** 
 
 ## 4.11 Novelty & Distinctive Technical Combinations
 
-HealConnect does not make exaggerated marketing claims ("world's first" or "revolutionary"). Instead, it presents four technically defensible architectural innovations validated by source code evidence:
+CareSync does not make exaggerated marketing claims ("world's first" or "revolutionary"). Instead, it presents four technically defensible architectural innovations validated by source code evidence:
 
 1. **Integrated Real-Time MQTT-to-SSE Telemetry Bridge**: Bridges edge IoT hardware MQTT publishing (QoS 1) with browser client Server-Sent Events (`/telemetry/stream`) without exposing broker credentials to frontend JavaScript bundles (`backend/app/services/mqtt_ingestion_service.py` & `backend/main.py#L1004`).
 2. **Dual-Engine AI Risk Forecasting with Local SHAP Explanations**: Combines 12-hour acute deterioration forecasting (`RandomForestClassifier`, ROC-AUC `0.9120`) and multi-class disease screening (`GradientBoostingClassifier`, ROC-AUC `0.9970`) with real-time SHAP `TreeExplainer` Shapley feature attributions (`backend/app/explain.py`), converting black-box probabilities into directional clinical insights.

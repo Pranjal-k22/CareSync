@@ -1,6 +1,6 @@
-# ⚠️ HealConnect — Known Technical Issues & Workarounds
+# ⚠️ CareSync — Known Technical Issues & Workarounds
 
-This document tracks known technical limitations, edge cases, and temporary workarounds in the current HealConnect codebase.
+This document tracks known technical limitations, edge cases, and temporary workarounds in the current CareSync codebase.
 
 ---
 

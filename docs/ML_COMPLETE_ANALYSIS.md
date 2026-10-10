@@ -1,4 +1,4 @@
-# HealConnect — Deep Machine Learning Technical Analysis
+# CareSync — Deep Machine Learning Technical Analysis
 
 > **Location:** `C:\Users\pc\Desktop\capstone\Heal_connectmain2.0\ml`  
 > **Focus:** Full ML Pipeline, Algorithms, Datasets, Metrics, XAI, and Federated Architecture  
@@ -7,7 +7,7 @@
 
 ## 1. Machine Learning Ecosystem Architecture
 
-HealConnect integrates dual predictive models alongside Explainable AI (SHAP) and Privacy-Preserving Federated Learning (Flower):
+CareSync integrates dual predictive models alongside Explainable AI (SHAP) and Privacy-Preserving Federated Learning (Flower):
 
 ```mermaid
 graph TD

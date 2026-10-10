@@ -1,8 +1,8 @@
-# 🩺 HealConnect — Executive Summary & Project Fact Sheet
+# 🩺 CareSync — Executive Summary & Project Fact Sheet
 
 ## Executive Summary
 
-**HealConnect** is an enterprise-grade, multi-hospital AI healthcare telemetry platform that combines continuous edge IoT sensor monitoring, dual-model machine learning risk prediction, SHAP model explainability, privacy-preserving Flower federated learning, and HIPAA-compliant database auditing. Designed for modern hospital networks, ICUs, and telehealth environments, HealConnect bridges the gap between hardware biometrics and actionable artificial intelligence for clinical decision support.
+**CareSync** is an enterprise-grade, multi-hospital AI healthcare telemetry platform that combines continuous edge IoT sensor monitoring, dual-model machine learning risk prediction, SHAP model explainability, privacy-preserving Flower federated learning, and HIPAA-compliant database auditing. Designed for modern hospital networks, ICUs, and telehealth environments, CareSync bridges the gap between hardware biometrics and actionable artificial intelligence for clinical decision support.
 
 The platform establishes an end-to-end telemetry and artificial intelligence pipeline. Edge telemetry acquisition is performed using ESP8266 NodeMCU microcontrollers interfaced with MAX30102 pulse oximetry, DHT22 ambient room temperature/humidity, and DS18B20 body temperature sensors. Telemetry packets are transmitted over standard Wi-Fi using the MQTT protocol (QoS 1 delivery, retained Last Will and Testament status) to an Eclipse Mosquitto Message Broker. Server-side processing is driven by an asynchronous Python FastAPI application and an `MQTTIngestionService` that validates schema structure, enforces sliding-window packet sequence deduplication (`60s` cache), and persists telemetry to a Supabase PostgreSQL database protected by Row Level Security (RLS).
 
@@ -10,7 +10,7 @@ Clinical intelligence is provided by a dual Machine Learning (ML) engine:
 1. **12-Hour Acute Clinical Deterioration Engine**: A `RandomForestClassifier` (100 estimators, max depth 12) trained on 167,146 clinical record sequences (`cleaned_hospital_data.csv`). It evaluates 14 physiological parameters to predict 12-hour acute deterioration probability with a holdout **ROC-AUC of 0.9120** and **Accuracy of 94.59%**.
 2. **Influenza & Febrile Disease Screening Engine**: A tuned `GradientBoostingClassifier` trained on 15,000 patient entries (`disease_prediction_dataset.csv`) to screen for Normal Baselines, Flu / Influenza, and Febrile Conditions with **ROC-AUC of 0.9970** and **Accuracy of 96.58%**.
 
-To eliminate black-box AI predictions, the backend integrates a **SHAP (`shap.TreeExplainer`) XAI Engine** that computes patient-specific Shapley feature attributions, delivering directional explanations (`increases_risk` / `reduces_risk`) to attending clinicians. For privacy-preserving collaborative intelligence across independent health systems, HealConnect implements a **Flower (`flwr.client.NumPyClient`) Federated Learning Network** spanning 3 hospital edge nodes (Hospital A, Apollo Telemetry, Fortis Cardiac; 334,291 total training samples), executing weighted `FedAvg` parameter aggregation without transmitting raw patient records.
+To eliminate black-box AI predictions, the backend integrates a **SHAP (`shap.TreeExplainer`) XAI Engine** that computes patient-specific Shapley feature attributions, delivering directional explanations (`increases_risk` / `reduces_risk`) to attending clinicians. For privacy-preserving collaborative intelligence across independent health systems, CareSync implements a **Flower (`flwr.client.NumPyClient`) Federated Learning Network** spanning 3 hospital edge nodes (Hospital A, Apollo Telemetry, Fortis Cardiac; 334,291 total training samples), executing weighted `FedAvg` parameter aggregation without transmitting raw patient records.
 
 Real-time telemetry streaming to Next.js 16 clinical dashboards is implemented via FastAPI Server-Sent Events (SSE) at `/telemetry/stream`, completely replacing unauthenticated legacy WebSocket processes. The platform includes a 27-test automated Pytest backend suite and 57 stage verification test cases (`84/84 tests passing, 100% success rate`), and a Next.js production build compiling 45/45 pages cleanly. The codebase is classified as a **Software Release Candidate**; physical ESP8266 hardware sensor validation remains physically unverified due to hardware bench unavailability (`PHYSICAL ESP8266: NOT VERIFIED`), with legacy Blynk/Firebase routines preserved behind compiler flags pending physical hardware deployment.
 
@@ -20,7 +20,7 @@ Real-time telemetry streaming to Next.js 16 clinical dashboards is implemented v
 
 | Dimension | Project Specification & Attribute | Evidence Source File |
 | :--- | :--- | :--- |
-| **Project Name** | HealConnect | `README.md` |
+| **Project Name** | CareSync | `README.md` |
 | **Project Type** | Enterprise IoT Multi-Hospital AI Telemetry & Federated Learning Platform | `docs/PROJECT_OVERVIEW.md` |
 | **Target Operating Domain** | Hospital ICUs, Step-Down Units, Isolation Wards, Remote Telehealth | `docs/ARCHITECTURE.md` |
 | **Primary System Roles** | System Admin (`admin`), Physician/Clinician (`doctor`), Nurse/Staff (`staff`), Patient (`patient`) | `backend/main.py#L371-L380` |

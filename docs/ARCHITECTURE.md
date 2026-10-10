@@ -1,8 +1,8 @@
-# 🏗️ HealConnect — System Architecture Documentation
+# 🏗️ CareSync — System Architecture Documentation
 
 ## 1. High-Level Architecture Overview
 
-HealConnect is designed as a decoupled enterprise IoT & ML micro-architecture consisting of edge IoT hardware, Eclipse Mosquitto MQTT message broker, server-side MQTT telemetry ingestion service, FastAPI REST & Server-Sent Events (SSE) gateway, a dual Machine Learning pipeline with SHAP explainability, a Flower federated learning aggregation network, a PostgreSQL database (Supabase), and a Next.js interactive web frontend.
+CareSync is designed as a decoupled enterprise IoT & ML micro-architecture consisting of edge IoT hardware, Eclipse Mosquitto MQTT message broker, server-side MQTT telemetry ingestion service, FastAPI REST & Server-Sent Events (SSE) gateway, a dual Machine Learning pipeline with SHAP explainability, a Flower federated learning aggregation network, a PostgreSQL database (Supabase), and a Next.js interactive web frontend.
 
 ```mermaid
 flowchart TD

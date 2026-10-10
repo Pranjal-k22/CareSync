@@ -1,8 +1,8 @@
-# 🩺 HealConnect — Comprehensive Academic & Technical Project Report
+# 🩺 CareSync — Comprehensive Academic & Technical Project Report
 
-**Project Title**: HealConnect: Enterprise Multi-Hospital AI Telemetry, Clinical Deterioration Prediction & Privacy-Preserving Federated Learning Platform  
+**Project Title**: CareSync: Enterprise Multi-Hospital AI Telemetry, Clinical Deterioration Prediction & Privacy-Preserving Federated Learning Platform  
 **Document Type**: Final Year B.Tech Academic Project Report & Technical Documentation  
-**Repository**: `OmRaj6666/HealConnect`  
+**Repository**: `OmRaj6666/CareSync`  
 **Date**: September 2026  
 **Status**: Software Release Candidate (`84/84 Tests Passing`, `45/45 Frontend Pages Compiled`, `Physical Hardware Verification Deferred`)
 
@@ -37,7 +37,7 @@
 
 # 1. Executive Summary
 
-**HealConnect** is an enterprise-grade, multi-hospital AI healthcare telemetry and clinical decision-support platform designed to address two paramount challenges in modern health informatics: (1) high-latency, manual vital signs monitoring in intensive care units (ICUs) and general ward beds that leads to delayed recognition of acute physiological deterioration, and (2) severe HIPAA regulatory constraints that prevent centralized pooling of patient vital records across hospital networks for machine learning model optimization.
+**CareSync** is an enterprise-grade, multi-hospital AI healthcare telemetry and clinical decision-support platform designed to address two paramount challenges in modern health informatics: (1) high-latency, manual vital signs monitoring in intensive care units (ICUs) and general ward beds that leads to delayed recognition of acute physiological deterioration, and (2) severe HIPAA regulatory constraints that prevent centralized pooling of patient vital records across hospital networks for machine learning model optimization.
 
 The platform establishes an end-to-end telemetry and artificial intelligence pipeline. Edge telemetry acquisition is performed using ESP8266 NodeMCU microcontrollers interfaced with MAX30102 pulse oximetry, DHT22 ambient room temperature/humidity, and DS18B20 body temperature sensors. Telemetry packets are transmitted over standard Wi-Fi using the MQTT protocol (QoS 1 delivery, retained Last Will and Testament status) to an Eclipse Mosquitto Message Broker. Server-side processing is driven by an asynchronous Python FastAPI application and an `MQTTIngestionService` that validates schema structure, enforces sliding-window packet sequence deduplication (`60s` cache), and persists telemetry to a Supabase PostgreSQL database protected by Row Level Security (RLS).
 
@@ -45,7 +45,7 @@ Clinical intelligence is provided by a dual Machine Learning (ML) engine:
 1. **12-Hour Acute Clinical Deterioration Engine**: A `RandomForestClassifier` (100 estimators, max depth 12) trained on 167,146 clinical record sequences (`cleaned_hospital_data.csv`). It evaluates 14 physiological parameters to predict 12-hour acute deterioration probability with a holdout **ROC-AUC of 0.9120** and **Accuracy of 94.59%**.
 2. **Influenza & Febrile Disease Screening Engine**: A tuned `GradientBoostingClassifier` trained on 15,000 patient entries (`disease_prediction_dataset.csv`) to screen for Normal Baselines, Flu / Influenza, and Febrile Conditions with **ROC-AUC of 0.9970** and **Accuracy of 96.58%**.
 
-To eliminate black-box AI predictions, the backend integrates a **SHAP (`shap.TreeExplainer`) XAI Engine** that computes patient-specific Shapley feature attributions, delivering directional explanations (`increases_risk` / `reduces_risk`) to attending clinicians. For privacy-preserving collaborative intelligence across independent health systems, HealConnect implements a **Flower (`flwr.client.NumPyClient`) Federated Learning Network** spanning 3 hospital edge nodes (Hospital A, Apollo Telemetry, Fortis Cardiac; 334,291 total training samples), executing weighted `FedAvg` parameter aggregation without transmitting raw patient records.
+To eliminate black-box AI predictions, the backend integrates a **SHAP (`shap.TreeExplainer`) XAI Engine** that computes patient-specific Shapley feature attributions, delivering directional explanations (`increases_risk` / `reduces_risk`) to attending clinicians. For privacy-preserving collaborative intelligence across independent health systems, CareSync implements a **Flower (`flwr.client.NumPyClient`) Federated Learning Network** spanning 3 hospital edge nodes (Hospital A, Apollo Telemetry, Fortis Cardiac; 334,291 total training samples), executing weighted `FedAvg` parameter aggregation without transmitting raw patient records.
 
 Real-time telemetry streaming to Next.js 16 clinical dashboards is implemented via FastAPI Server-Sent Events (SSE) at `/telemetry/stream`, completely replacing unauthenticated legacy WebSocket processes. The platform includes a 27-test automated Pytest backend suite and 57 stage verification test cases (`84/84 tests passing, 100% success rate`), and a Next.js production build compiling 45/45 pages cleanly. The codebase is classified as a **Software Release Candidate**; physical ESP8266 hardware sensor validation remains physically unverified due to hardware bench unavailability (`PHYSICAL ESP8266: NOT VERIFIED`), with legacy Blynk/Firebase routines preserved behind compiler flags pending physical hardware deployment.
 
@@ -55,7 +55,7 @@ Real-time telemetry streaming to Next.js 16 clinical dashboards is implemented v
 
 | Dimension | Project Specification & Attribute | Evidence Source File |
 | :--- | :--- | :--- |
-| **Project Name** | HealConnect | `README.md` |
+| **Project Name** | CareSync | `README.md` |
 | **Project Type** | Enterprise IoT Multi-Hospital AI Telemetry & Federated Learning Platform | `docs/PROJECT_OVERVIEW.md` |
 | **Target Operating Domain** | Hospital ICUs, Step-Down Units, Isolation Wards, Remote Telehealth | `docs/ARCHITECTURE.md` |
 | **Primary System Roles** | System Admin (`admin`), Physician/Clinician (`doctor`), Nurse/Staff (`staff`), Patient (`patient`) | `backend/main.py#L371-L380` |
@@ -82,17 +82,17 @@ Real-time telemetry streaming to Next.js 16 clinical dashboards is implemented v
 
 ## 1.1 Project Introduction
 
-### What HealConnect Is
-**HealConnect** is an enterprise-grade, multi-hospital AI healthcare telemetry platform that unifies edge IoT vital sensor monitoring, dual-model machine learning risk inference, SHAP model explainability, privacy-preserving federated learning, and HIPAA-compliant database auditing. Designed for modern hospital networks and clinical environments, HealConnect bridges the gap between hardware biometrics and actionable artificial intelligence for clinical decision support.
+### What CareSync Is
+**CareSync** is an enterprise-grade, multi-hospital AI healthcare telemetry platform that unifies edge IoT vital sensor monitoring, dual-model machine learning risk inference, SHAP model explainability, privacy-preserving federated learning, and HIPAA-compliant database auditing. Designed for modern hospital networks and clinical environments, CareSync bridges the gap between hardware biometrics and actionable artificial intelligence for clinical decision support.
 
 ### Healthcare Problem Being Addressed
 Hospital Intensive Care Units (ICUs) and general inpatient wards frequently suffer from fragmented vital sign monitoring workflows. Traditional monitoring systems rely on periodic manual nursing checks (often spaced 4 to 8 hours apart) or isolated bedside monitors that fail to synthesize multi-parameter physiological trends over extended time horizons. Delayed recognition of subtle physiological deterioration—such as gradual hypoxemia, silent tachycardia, or rising pyrexia—frequently leads to preventable adverse clinical events, cardiac arrests, emergency ICU transfers, and increased hospital mortality. Furthermore, cross-hospital collaborative machine learning research is heavily restricted by health data privacy regulations (e.g., HIPAA and GDPR), preventing institutions from pooling raw patient vitals into centralized servers.
 
 ### Motivation Behind the Project
-The primary motivation behind HealConnect is to build a continuous, real-time physiological telemetry and risk-forecasting engine that automatically analyzes stream data at the edge, flags early deterioration risks up to 12 hours before acute clinical collapse, explains the underlying biometric drivers to attending physicians, and allows multiple independent hospitals to train shared predictive models collaboratively without sacrificing patient privacy.
+The primary motivation behind CareSync is to build a continuous, real-time physiological telemetry and risk-forecasting engine that automatically analyzes stream data at the edge, flags early deterioration risks up to 12 hours before acute clinical collapse, explains the underlying biometric drivers to attending physicians, and allows multiple independent hospitals to train shared predictive models collaboratively without sacrificing patient privacy.
 
 ### Target Users & Target Healthcare Environment
-HealConnect is engineered for multi-tenant hospital networks, tertiary care hospitals, intensive care units, step-down monitoring wards, isolation units, and remote telehealth clinics. Its target users encompass:
+CareSync is engineered for multi-tenant hospital networks, tertiary care hospitals, intensive care units, step-down monitoring wards, isolation units, and remote telehealth clinics. Its target users encompass:
 1. **Attending Physicians & ICU Consultants**: Require continuous telemetry visibility, predictive acute deterioration risk scores, SHAP feature attributions, and tele-consultation capabilities.
 2. **Nurses & Clinical Caregivers**: Require instant alerts on vital sign breaches (e.g., $\text{SpO}_2 < 92\%$), automated bed status synchronization, and streamlined manual vital entry interfaces.
 3. **Hospital & Clinical Administrators**: Require macro-level ICU bed allocation management, staff duty roster oversight, federated model training control, and HIPAA security audit trail inspection.
@@ -100,7 +100,7 @@ HealConnect is engineered for multi-tenant hospital networks, tertiary care hosp
 5. **Bio-Medical & System Engineers**: Require secure MQTT device onboarding, broker access control management, and system health monitoring.
 
 ### Main Purpose of the System & Importance of Real-Time Monitoring
-The central purpose of HealConnect is to convert continuous physiological sensor streams into real-time, explainable, and predictive clinical insights. Real-time monitoring is critical in acute healthcare because physiological degradation occurs dynamically; a drop in blood oxygen saturation combined with elevated respiratory rate can signal impending respiratory failure hours before overt clinical collapse. By ingesting sensor data continuously at 2-second intervals, evaluating abnormal thresholds, and running dual AI risk models, HealConnect empowers care teams to intervene proactively rather than reactively.
+The central purpose of CareSync is to convert continuous physiological sensor streams into real-time, explainable, and predictive clinical insights. Real-time monitoring is critical in acute healthcare because physiological degradation occurs dynamically; a drop in blood oxygen saturation combined with elevated respiratory rate can signal impending respiratory failure hours before overt clinical collapse. By ingesting sensor data continuously at 2-second intervals, evaluating abnormal thresholds, and running dual AI risk models, CareSync empowers care teams to intervene proactively rather than reactively.
 
 ---
 
@@ -122,7 +122,7 @@ Despite technological advancements in medical equipment, modern healthcare facil
 
 ## 1.3 Project Objectives
 
-HealConnect was engineered to achieve specific primary, secondary, technical, and healthcare objectives:
+CareSync was engineered to achieve specific primary, secondary, technical, and healthcare objectives:
 
 ### Primary Objectives
 - **Build an Enterprise IoT Telemetry Pipeline**: Implement an MQTT-based edge-to-cloud ingestion pipeline using Eclipse Mosquitto broker (QoS 1) and FastAPI Server-Sent Events (SSE) to stream live vitals to web dashboards.
@@ -149,7 +149,7 @@ HealConnect was engineered to achieve specific primary, secondary, technical, an
 
 ## 1.4 Project Scope
 
-To maintain rigorous engineering standards, HealConnect explicitly defines its operational boundaries:
+To maintain rigorous engineering standards, CareSync explicitly defines its operational boundaries:
 
 ### In-Scope (Implemented & Verified Capabilities)
 - **Edge Telemetry Processing**: Real-time acquisition and ingestion of Heart Rate, $\text{SpO}_2$, Body Temperature, Room Temperature, and Humidity via MQTT (`healconnect/+/+/vitals`).
@@ -208,7 +208,7 @@ To maintain rigorous engineering standards, HealConnect explicitly defines its o
 
 ## 1.7 Project Workflow
 
-The end-to-end telemetry, machine learning, and visualization workflow of HealConnect is verified across repository source files as follows:
+The end-to-end telemetry, machine learning, and visualization workflow of CareSync is verified across repository source files as follows:
 
 ```
 [ Edge Hardware Layer ]
@@ -286,7 +286,7 @@ To adhere to strict academic honesty, all physical, operational, and algorithmic
 
 Remote Patient Monitoring (RPM) and real-time clinical telemetry have evolved rapidly over the past decade. Early IoT healthcare solutions relied heavily on HTTP polling or third-party consumer IoT clouds (such as Blynk, Thingspeak, or Adafruit IO). While accessible, these early frameworks lacked enterprise security controls, custom binary communication contracts, multi-tenant hospital isolation, and server-side artificial intelligence integration.
 
-In modern hospital infrastructure, real-time patient telemetry demands low-latency packet delivery, minimal bandwidth consumption, high transport reliability, and robust data isolation. This chapter examines existing architectural approaches in healthcare IoT—including WebSocket broadcasting, Server-Sent Events (SSE), MQTT pub/sub, cloud-native telemetry, and wearable biometric monitoring—evaluating their strengths and limitations against HealConnect.
+In modern hospital infrastructure, real-time patient telemetry demands low-latency packet delivery, minimal bandwidth consumption, high transport reliability, and robust data isolation. This chapter examines existing architectural approaches in healthcare IoT—including WebSocket broadcasting, Server-Sent Events (SSE), MQTT pub/sub, cloud-native telemetry, and wearable biometric monitoring—evaluating their strengths and limitations against CareSync.
 
 ---
 
@@ -297,40 +297,40 @@ In modern hospital infrastructure, real-time patient telemetry demands low-laten
 - **Technology Used**: REST APIs over HTTP/1.1 or HTTP/2, JSON payloads.
 - **Advantages**: Simple to implement, stateless, firewall-friendly.
 - **Limitations**: High network overhead due to repeated HTTP header exchanges, server resource exhaustion under high client concurrency, and inherent latency (up to the polling interval duration).
-- **Relevance to HealConnect**: Rejected as the primary live telemetry transport due to latency and resource inefficiency. Retained strictly for static query endpoints (e.g., fetching historical prediction logs).
+- **Relevance to CareSync**: Rejected as the primary live telemetry transport due to latency and resource inefficiency. Retained strictly for static query endpoints (e.g., fetching historical prediction logs).
 
 ### 2. Standalone WebSocket Telemetry Servers
 - **Existing Approach**: Microcontrollers or edge gateways establish bi-directional full-duplex TCP WebSocket sockets (`ws://` or `wss://`) directly to a dedicated broadcasting server.
 - **Technology Used**: Node.js `ws` library, Socket.io, or Python WebSockets.
 - **Advantages**: Full-duplex bi-directional communication, extremely low frame header overhead (2 to 10 bytes), sub-100ms latency.
 - **Limitations**: Manually managing connection lifecycles, heartbeats, and client subscription state is complex. Furthermore, allowing browser JS bundles to establish unauthenticated raw WebSocket sockets directly to edge servers exposes internal infrastructure and bypasses application API security layers.
-- **Relevance to HealConnect**: HealConnect originally included a legacy Node.js WebSocket server (`websocket-server/server.js`, port 8080). Architectural audit (ADR-006) revealed that browser-side WebSockets bypassed backend authorization. The WebSocket server was isolated, and live browser streaming was migrated to FastAPI SSE.
+- **Relevance to CareSync**: CareSync originally included a legacy Node.js WebSocket server (`websocket-server/server.js`, port 8080). Architectural audit (ADR-006) revealed that browser-side WebSockets bypassed backend authorization. The WebSocket server was isolated, and live browser streaming was migrated to FastAPI SSE.
 
 ### 3. Native MQTT Broker Architecture (Edge Ingestion)
 - **Existing Approach**: Microcontrollers publish lightweight binary/JSON telemetry payloads over TCP to a dedicated MQTT message broker. Applications subscribe to topic hierarchies to consume data.
 - **Technology Used**: Eclipse Mosquitto, EMQX, HiveMQ, MQTT v3.1.1/v5.0.
 - **Advantages**: Publish/Subscribe decoupling, minimal packet header overhead (2 bytes), built-in Quality of Service levels (QoS 0, 1, 2), retained messages, Last Will and Testament (LWT) automated offline detection, and Access Control List (ACL) topic isolation.
 - **Limitations**: Standard MQTT operates over raw TCP/IP sockets, which native browser JavaScript cannot access directly without WebSockets-over-MQTT proxies (which expose broker credentials to browser bundles if unmanaged).
-- **Relevance to HealConnect**: Adopted as the authoritative edge-to-backend telemetry transport (ADR-006). ESP8266 microcontrollers publish QoS 1 vitals to `healconnect/{hospital_id}/{device_id}/vitals` and retained LWT status to `healconnect/{hospital_id}/{device_id}/status`. The backend `MQTTIngestionService` consumes and validates payloads securely on the server side.
+- **Relevance to CareSync**: Adopted as the authoritative edge-to-backend telemetry transport (ADR-006). ESP8266 microcontrollers publish QoS 1 vitals to `healconnect/{hospital_id}/{device_id}/vitals` and retained LWT status to `healconnect/{hospital_id}/{device_id}/status`. The backend `MQTTIngestionService` consumes and validates payloads securely on the server side.
 
 ### 4. Server-Sent Events (SSE) (Browser Telemetry Streaming)
 - **Existing Approach**: The backend server maintains a persistent, one-way HTTP connection to client browsers, pushing UTF-8 formatted text streams (`text/event-stream`) whenever new data arrives.
 - **Technology Used**: HTML5 `EventSource` API, HTTP/1.1 or HTTP/2 persistent streaming.
 - **Advantages**: Native browser auto-reconnection via built-in `EventSource` retry headers, zero third-party client JavaScript dependencies, seamless integration with standard HTTP authentication (JWT/cookies), and zero exposure of internal broker credentials to client bundles.
 - **Limitations**: Monodirectional (server-to-client only), maximum 6 HTTP/1.1 connection limit per domain in older browsers (mitigated by HTTP/2 multiplexing).
-- **Relevance to HealConnect**: Adopted as the authoritative browser streaming transport (ADR-006). FastAPI endpoint `/telemetry/stream` bridges internal MQTT ingestion with client browser dashboards, enforcing server-side patient and tenant filtering.
+- **Relevance to CareSync**: Adopted as the authoritative browser streaming transport (ADR-006). FastAPI endpoint `/telemetry/stream` bridges internal MQTT ingestion with client browser dashboards, enforcing server-side patient and tenant filtering.
 
 ---
 
 ## 2.3 Comprehensive Technical Comparison Matrix
 
-| Approach / Technology | Primary Protocol | Strengths & Advantages | Critical Limitations | HealConnect Architectural Difference |
+| Approach / Technology | Primary Protocol | Strengths & Advantages | Critical Limitations | CareSync Architectural Difference |
 | :--- | :--- | :--- | :--- | :--- |
-| **REST Polling** | HTTP/1.1 GET | Simple, stateless, easy caching | High latency, excessive header overhead, poor scalability | HealConnect uses REST only for static CRUD/history; live vitals use SSE. |
-| **Direct Browser WebSockets** | WS / WSS | Low latency, bi-directional full-duplex | Complex state management, exposes raw sockets, bypasses API security | HealConnect isolates raw WebSockets (`websocket-server/`); uses SSE behind FastAPI gateway. |
-| **Consumer IoT Cloud (Blynk/Firebase)** | Proprietary REST / HTTP | Rapid prototyping, zero server setup | Vendor lock-in, no QoS guarantees, lacks XAI/Federated ML integration | HealConnect replaces cloud dependencies with self-hosted Mosquitto MQTT & FastAPI. |
-| **Direct Browser MQTT** | WebSockets MQTT | Native Pub/Sub in browser | Exposes broker passwords (`MQTT_PASSWORD`) in JS bundles; security risk | HealConnect keeps MQTT on backend; streams to browser via credential-free SSE. |
-| **HealConnect Hybrid Architecture** 🏆 | **MQTT (Edge) + SSE (Browser)** | **QoS 1 guarantees, LWT offline detection, 0 client secret leak, XAI + Federated ML** | Single-worker process constraint (mitigated by documentation) | **Combines Mosquitto MQTT for hardware ingestion with FastAPI SSE for secure UI streaming.** |
+| **REST Polling** | HTTP/1.1 GET | Simple, stateless, easy caching | High latency, excessive header overhead, poor scalability | CareSync uses REST only for static CRUD/history; live vitals use SSE. |
+| **Direct Browser WebSockets** | WS / WSS | Low latency, bi-directional full-duplex | Complex state management, exposes raw sockets, bypasses API security | CareSync isolates raw WebSockets (`websocket-server/`); uses SSE behind FastAPI gateway. |
+| **Consumer IoT Cloud (Blynk/Firebase)** | Proprietary REST / HTTP | Rapid prototyping, zero server setup | Vendor lock-in, no QoS guarantees, lacks XAI/Federated ML integration | CareSync replaces cloud dependencies with self-hosted Mosquitto MQTT & FastAPI. |
+| **Direct Browser MQTT** | WebSockets MQTT | Native Pub/Sub in browser | Exposes broker passwords (`MQTT_PASSWORD`) in JS bundles; security risk | CareSync keeps MQTT on backend; streams to browser via credential-free SSE. |
+| **CareSync Hybrid Architecture** 🏆 | **MQTT (Edge) + SSE (Browser)** | **QoS 1 guarantees, LWT offline detection, 0 client secret leak, XAI + Federated ML** | Single-worker process constraint (mitigated by documentation) | **Combines Mosquitto MQTT for hardware ingestion with FastAPI SSE for secure UI streaming.** |
 
 ---
 
@@ -338,7 +338,7 @@ In modern hospital infrastructure, real-time patient telemetry demands low-laten
 
 1. **Migration from WebSockets to MQTT (ADR-006)**: The legacy codebase relied on a standalone Node.js WebSocket process (`ws://10.92.0.122:8080`). This setup lacked message delivery guarantees, device authentication, ACL topic isolation, and retained offline state handling. Migrating edge microcontrollers to Eclipse Mosquitto MQTT provided native QoS 1 delivery, Last Will and Testament (LWT) disconnect detection, and multi-tenant ACL rules (`healconnect/{hospital}/{device}/vitals`).
 2. **Selection of Server-Sent Events (SSE) for Browser Telemetry (ADR-006)**: Transporting telemetry from backend to browser via SSE (`/telemetry/stream`) eliminates client-side MQTT library overhead and prevents sensitive broker credentials (`MQTT_PASSWORD`) from leaking into browser JavaScript bundles. Browser `EventSource` handles reconnection automatically while FastAPI validates tenant permissions server-side.
-3. **Decoupled Dual Machine Learning Architecture (ADR-002)**: Rather than deploying a complex black-box Deep Neural Network that is prone to catastrophic forgetting and hard to interpret, HealConnect separates clinical acute deterioration (`RandomForestClassifier`) from disease screening (`GradientBoostingClassifier`). This allows fast CPU inference (< 15ms) and full game-theoretic tree explainability via SHAP.
+3. **Decoupled Dual Machine Learning Architecture (ADR-002)**: Rather than deploying a complex black-box Deep Neural Network that is prone to catastrophic forgetting and hard to interpret, CareSync separates clinical acute deterioration (`RandomForestClassifier`) from disease screening (`GradientBoostingClassifier`). This allows fast CPU inference (< 15ms) and full game-theoretic tree explainability via SHAP.
 4. **Flower Framework for Privacy-Preserving Federated Learning (ADR-003)**: Hospital data privacy laws forbid centralizing raw patient vitals. Adopting Flower (`flwr.client.NumPyClient`) enables edge hospital nodes to train local scikit-learn model parameters locally and exchange only aggregated weight matrices ($\mathbf{W}, B$) via weighted `FedAvg`.
 
 ---
@@ -476,7 +476,7 @@ Every functional requirement listed below is extracted directly from authoritati
 
 ## 4.1 Overall System Architecture
 
-HealConnect is engineered as a decoupled, multi-layered enterprise micro-architecture. The system separates high-frequency hardware telemetry ingestion from analytical machine learning inference, real-time client streaming, and database storage.
+CareSync is engineered as a decoupled, multi-layered enterprise micro-architecture. The system separates high-frequency hardware telemetry ingestion from analytical machine learning inference, real-time client streaming, and database storage.
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
@@ -703,7 +703,7 @@ CREATE POLICY "Insert-only audit trail" ON audit_logs FOR INSERT WITH CHECK (tru
 
 ## 4.10 Design Methodology
 
-HealConnect was engineered using a **Layered, Event-Driven Micro-Architecture** combined with **Test-Driven Verification**:
+CareSync was engineered using a **Layered, Event-Driven Micro-Architecture** combined with **Test-Driven Verification**:
 - **Event-Driven Pub/Sub**: Edge microcontrollers publish vitals asynchronously to Mosquitto MQTT; server ingestion listens to topics and broadcasts events to reactive UI streams.
 - **Layered Decoupling**: Hardware ingestion, REST API serving, ML inference, federated learning, and database storage run in decoupled modules.
 - **Test-Driven Verification**: Engineering progress was gated through Stage 0 to Stage 11 verification suites, enforcing 100% test pass rates (`84/84 tests passing`) before release candidate tagging.
@@ -712,7 +712,7 @@ HealConnect was engineered using a **Layered, Event-Driven Micro-Architecture** 
 
 ## 4.11 Novelty & Distinctive Technical Combinations
 
-HealConnect does not make exaggerated marketing claims ("world's first" or "revolutionary"). Instead, it presents four technically defensible architectural innovations validated by source code evidence:
+CareSync does not make exaggerated marketing claims ("world's first" or "revolutionary"). Instead, it presents four technically defensible architectural innovations validated by source code evidence:
 
 1. **Integrated Real-Time MQTT-to-SSE Telemetry Bridge**: Bridges edge IoT hardware MQTT publishing (QoS 1) with browser client Server-Sent Events (`/telemetry/stream`) without exposing broker credentials to frontend JavaScript bundles (`backend/app/services/mqtt_ingestion_service.py` & `backend/main.py#L1004`).
 2. **Dual-Engine AI Risk Forecasting with Local SHAP Explanations**: Combines 12-hour acute deterioration forecasting (`RandomForestClassifier`, ROC-AUC `0.9120`) and multi-class disease screening (`GradientBoostingClassifier`, ROC-AUC `0.9970`) with real-time SHAP `TreeExplainer` Shapley feature attributions (`backend/app/explain.py`), converting black-box probabilities into directional clinical insights.
@@ -899,7 +899,7 @@ The platform has been audited using Pytest and scratch verification suites acros
 
 ```
 ================================================================================
-HEALCONNECT COMPREHENSIVE AUTOMATED VERIFICATION SUITE MATRIX
+CARESYNC COMPREHENSIVE AUTOMATED VERIFICATION SUITE MATRIX
 ================================================================================
 1. Pytest Backend Core Suite:      27 / 27 PASSING (100%) [python -m pytest backend/tests/]
 2. Stage 5 MQTT Ingestion Suite:   17 / 17 PASSING (100%) [python scratch/test_mqtt_ingestion.py]
@@ -950,7 +950,7 @@ FRONTEND PRODUCTION BUILD:         45 / 45 PAGES COMPILED (npx next build --webp
 
 ## 6.1 Project Outcomes
 
-The development of HealConnect successfully achieved all primary software, artificial intelligence, and telemetry architectural objectives:
+The development of CareSync successfully achieved all primary software, artificial intelligence, and telemetry architectural objectives:
 - **Unified Telemetry Ingestion**: Successfully implemented and verified an MQTT telemetry pipeline capable of receiving, schema-validating, deduplicating, and persisting vitals at 2-second intervals.
 - **Dual AI Diagnostic Capability**: Deployed a 12-hour acute deterioration model (ROC-AUC `0.9120`, Accuracy `94.59%`) and a multi-class flu/fever screening model (ROC-AUC `0.9970`, Accuracy `96.58%`).
 - **Clinical Explainability Integration**: Delivered local SHAP `TreeExplainer` feature attributions directly into clinical REST responses and web UI components.
@@ -1008,13 +1008,13 @@ OVERALL VERIFIED TEST SUITE TOTAL:    84 / 84 PASS (100% SUCCESS RATE)
 
 ## 6.5 Healthcare Applicability
 
-HealConnect is technically applicable to several clinical operational environments:
+CareSync is technically applicable to several clinical operational environments:
 - **Intensive Care Units (ICUs) & Step-Down Wards**: Continuous telemetry monitoring and 12-hour early deterioration forecasting.
 - **Multi-Hospital Healthcare Systems**: Collaborative federated model training across independent hospitals without raw data centralization.
 - **Isolation Units & Infectious Disease Wards**: Remote non-contact patient vital sign monitoring.
 - **Tele-Consultation & Outpatient Clinics**: Video telehealth visits, digital e-prescriptions, and OCR prescription reader support.
 
-*Regulatory Disclaimer: HealConnect is designed for clinical decision support. It has not received FDA 510(k) or CE mark medical device certification and must be operated under licensed clinician oversight.*
+*Regulatory Disclaimer: CareSync is designed for clinical decision support. It has not received FDA 510(k) or CE mark medical device certification and must be operated under licensed clinician oversight.*
 
 ---
 
@@ -1060,7 +1060,7 @@ HealConnect is technically applicable to several clinical operational environmen
 
 ## 7.1 Conclusion
 
-The **HealConnect** project has successfully designed, implemented, and verified an enterprise-grade IoT telemetry, dual-model machine learning, and privacy-preserving federated learning platform tailored for multi-hospital healthcare environments. By combining non-blocking ESP8266 C++ edge firmware, Eclipse Mosquitto MQTT broker ingestion, server-side packet deduplication, FastAPI Server-Sent Events streaming, Random Forest deterioration prediction, Gradient Boosting flu screening, SHAP TreeExplainer explainability, and Flower federated learning, HealConnect offers a robust technical foundation for modern clinical decision support.
+The **CareSync** project has successfully designed, implemented, and verified an enterprise-grade IoT telemetry, dual-model machine learning, and privacy-preserving federated learning platform tailored for multi-hospital healthcare environments. By combining non-blocking ESP8266 C++ edge firmware, Eclipse Mosquitto MQTT broker ingestion, server-side packet deduplication, FastAPI Server-Sent Events streaming, Random Forest deterioration prediction, Gradient Boosting flu screening, SHAP TreeExplainer explainability, and Flower federated learning, CareSync offers a robust technical foundation for modern clinical decision support.
 
 The software implementation has achieved 100% automated test verification across 84 test cases and cleanly compiled 45 Next.js production pages. Physical hardware verification remains deferred (`PHYSICAL ESP8266: NOT VERIFIED`), and legacy Blynk/Firebase code has been safely preserved behind fallback compiler flags. The overall system is classified as a **Software Release Candidate**, demonstrating high technical rigor, strict HIPAA security controls, and clear practical utility for academic and clinical research.
 

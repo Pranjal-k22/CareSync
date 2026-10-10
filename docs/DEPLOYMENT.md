@@ -1,8 +1,8 @@
-# 🚢 HealConnect — Production Deployment Guide
+# 🚢 CareSync — Production Deployment Guide
 
 ## 1. Production Architecture Overview
 
-The production environment deploys HealConnect as decoupled services:
+The production environment deploys CareSync as decoupled services:
 
 ```text
                +----------------------------------+

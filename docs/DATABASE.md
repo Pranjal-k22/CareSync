@@ -1,4 +1,4 @@
-# 🗄️ HealConnect — Database Schema & Data Architecture
+# 🗄️ CareSync — Database Schema & Data Architecture
 
 ## Database Technology
 - **Database Engine**: PostgreSQL 15+ (Hosted via **Supabase**).

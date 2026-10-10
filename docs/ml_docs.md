@@ -1,4 +1,4 @@
-# 🧠 HealConnect Machine Learning Architecture & Model Documentation (`ml_docs.md`)
+# 🧠 CareSync Machine Learning Architecture & Model Documentation (`ml_docs.md`)
 
 > **Mandatory Clinical & Regulatory Disclaimer**:
 > *"The machine learning models documented herein provide data-driven predictive probability estimates and feature attribution scores based on training data distributions. They are designed exclusively for clinical decision support and telemetry monitoring assistance. They do not substitute for professional medical judgment, diagnosis, or treatment by a licensed physician."*
@@ -7,7 +7,7 @@
 
 ## 📌 1. Executive Summary
 
-The **HealConnect Machine Learning Architecture** powers real-time clinical risk prediction, acute deterioration forecasting, multi-class disease screening, and privacy-preserving federated model training across multi-hospital telemetry networks.
+The **CareSync Machine Learning Architecture** powers real-time clinical risk prediction, acute deterioration forecasting, multi-class disease screening, and privacy-preserving federated model training across multi-hospital telemetry networks.
 
 ### Key Capabilities & Empirical Benchmarks
 - **12-Hour Acute Deterioration Risk Prediction**: Evaluates 12-hour physiological risk of acute deterioration using 167,146 clinical records (**ROC-AUC: 0.9120**, **Accuracy: 94.59%**).
@@ -176,7 +176,7 @@ To ensure full transparency for clinical decision support, the platform integrat
 
 ## 🌸 7. Federated Learning Architecture
 
-HealConnect implements privacy-preserving federated model learning using **Flower NumPyClient** (`backend/federated/`).
+CareSync implements privacy-preserving federated model learning using **Flower NumPyClient** (`backend/federated/`).
 
 ```
                 ┌───────────────────────────────────────┐

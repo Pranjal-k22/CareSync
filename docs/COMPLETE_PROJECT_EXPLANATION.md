@@ -1,4 +1,4 @@
-# HealConnect — Complete Project Explanation
+# CareSync — Complete Project Explanation
 
 > **Repository Root:** `C:\Users\pc\Desktop\capstone\Heal_connectmain2.0`  
 > **Author:** Antigravity AI Technical Architecture Team  
@@ -9,8 +9,8 @@
 
 ## 1. Project Overview
 
-### What HealConnect Is
-**HealConnect** is an integrated, real-time IoT, Machine Learning, and Cloud-native Remote Patient Monitoring (RPM) and Clinical Decision Support (CDS) platform. It provides continuous vital signs ingestion, automated patient deterioration risk scoring, disease outbreak prediction, real-time telemetry streaming via Server-Sent Events (SSE), and interactive visual analytics for healthcare providers.
+### What CareSync Is
+**CareSync** is an integrated, real-time IoT, Machine Learning, and Cloud-native Remote Patient Monitoring (RPM) and Clinical Decision Support (CDS) platform. It provides continuous vital signs ingestion, automated patient deterioration risk scoring, disease outbreak prediction, real-time telemetry streaming via Server-Sent Events (SSE), and interactive visual analytics for healthcare providers.
 
 ### Problem Being Solved
 1. **Delayed Clinical Intervention:** In traditional ward environments, patient vitals are recorded manually every 4–8 hours. Physiological deterioration occurring between rounds goes undetected until acute decompensation.
@@ -192,7 +192,7 @@ graph TD
 ## 7. MACHINE LEARNING — VERY DETAILED
 
 ### 7.1 ML Architecture
-HealConnect embeds a dual-model architecture:
+CareSync embeds a dual-model architecture:
 1. **Patient Deterioration Risk Model:** Predicts acute clinical deterioration within 24 hours.
 2. **Disease Outbreak Prediction Model:** Classifies infection probability based on multi-system symptom indicators.
 
@@ -480,7 +480,7 @@ Located at `exp_project/`, this research laboratory contains:
 
 1. **Hardware Verification:** Physical ESP8266 board hardware testing was not performed in automated test passes (`PHYSICAL HARDWARE: NOT VERIFIED`).
 2. **ECG Status:** Single-lead ECG signals are currently **SIMULATED**.
-3. **Clinical Validation:** HealConnect is a decision support tool prototype; **NOT certified for diagnostic clinical use**.
+3. **Clinical Validation:** CareSync is a decision support tool prototype; **NOT certified for diagnostic clinical use**.
 
 ---
 
@@ -493,7 +493,7 @@ Located at `exp_project/`, this research laboratory contains:
 
 ## 23. Final Complete System Explanation
 
-HealConnect operates as an end-to-end continuous monitoring ecosystem:
+CareSync operates as an end-to-end continuous monitoring ecosystem:
 1. **IoT Edge:** ESP8266 samples MAX30102 and DHT22 sensors $\rightarrow$ publishes JSON over **Mosquitto MQTT Broker (Port 1883)**.
 2. **Backend Ingestion:** Python `paho-mqtt` worker ingests telemetry $\rightarrow$ saves raw records to **Database (SQLite/Supabase)**.
 3. **ML Risk Scoring:** `RandomForestClassifier` (`risk_model.joblib`) computes patient deterioration risk probability $\rightarrow$ **SHAP (`explain.py`)** attaches feature attribution vectors.

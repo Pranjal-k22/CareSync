@@ -11,7 +11,7 @@ flowchart TD
         DP_Proto["federated_differential_privacy.py (Laplace NoisePerturbation)"]
     end
 
-    subgraph Main_System["HealConnect Core System"]
+    subgraph Main_System["CareSync Core System"]
         BackendAPI["FastAPI Core Backend"]
         FL_System["Flower Federated Learning Engine"]
     end

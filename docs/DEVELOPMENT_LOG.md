@@ -1,4 +1,4 @@
-# 📝 HealConnect — Engineering Development Log
+# 📝 CareSync — Engineering Development Log
 
 ## 2026-09-27 — System Inspection, ML Retraining, Path Standardization & Docs Knowledge Base
 
@@ -101,7 +101,7 @@ Resolve live physical hardware telemetry discrepancies between ESP8266, MQTT bro
 ## 2026-09-27 — IoT Telemetry MQTT Migration (Stages 0–11)
 
 ### Objective
-Execute systematic end-to-end migration of HealConnect telemetry architecture from legacy WebSocket/Blynk/Firebase to Eclipse Mosquitto MQTT Broker, server-side MQTT Ingestion Service, and FastAPI Server-Sent Events (SSE) live streaming.
+Execute systematic end-to-end migration of CareSync telemetry architecture from legacy WebSocket/Blynk/Firebase to Eclipse Mosquitto MQTT Broker, server-side MQTT Ingestion Service, and FastAPI Server-Sent Events (SSE) live streaming.
 
 ### Key Milestones Achieved
 1. **Stage 0–3 Contract Specification**: Documented current system state, selected Eclipse Mosquitto (port 1883 dev / 8883 TLS blueprint), and established QoS 1 vitals schema and retained LWT status contract.
@@ -128,7 +128,7 @@ Execute systematic end-to-end migration of HealConnect telemetry architecture fr
 ## 2026-09-27 — Integrated System End-to-End Run & Software Release Candidate Validation
 
 ### Objective
-Execute the full HealConnect platform end-to-end locally, validating the software pipeline from MQTT broker input, backend ingestion, database persistence, ML prediction, SSE stream broadcasting, through to Next.js frontend UI monitoring.
+Execute the full CareSync platform end-to-end locally, validating the software pipeline from MQTT broker input, backend ingestion, database persistence, ML prediction, SSE stream broadcasting, through to Next.js frontend UI monitoring.
 
 ### Execution Results
 1. **MQTT Broker Service**: Started local broker on `127.0.0.1:1883` (TCP) and `9001` (WS). Verified pub/sub topic hierarchy and authentication contract.

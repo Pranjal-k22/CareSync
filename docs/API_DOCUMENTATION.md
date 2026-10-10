@@ -1,4 +1,4 @@
-# 🔌 HealConnect — API Endpoint Documentation
+# 🔌 CareSync — API Endpoint Documentation
 
 Interactive OpenAPI / Swagger documentation is available at **`http://localhost:8000/docs`**.
 
@@ -14,7 +14,7 @@ Interactive OpenAPI / Swagger documentation is available at **`http://localhost:
   ```json
   {
     "status": "healthy",
-    "service": "HEALCONNECT AI Health Telemetry Engine",
+    "service": "CARESYNC AI Health Telemetry Engine",
     "version": "2.5.0",
     "timestamp": "2026-09-27T08:42:19.956676+00:00"
   }
@@ -201,13 +201,13 @@ Interactive OpenAPI / Swagger documentation is available at **`http://localhost:
     "status": "success",
     "registered_models": {
       "deterioration": {
-        "name": "HealConnect Patient Deterioration Risk Engine",
+        "name": "CareSync Patient Deterioration Risk Engine",
         "version": "v1.0",
         "algorithm": "RandomForestClassifier",
         "features_count": 14
       },
       "disease": {
-        "name": "HealConnect Flu & Disease Diagnosis Model",
+        "name": "CareSync Flu & Disease Diagnosis Model",
         "version": "v1.0",
         "algorithm": "GradientBoostingClassifier (Tuned)",
         "features_count": 11

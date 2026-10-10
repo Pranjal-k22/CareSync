@@ -1,8 +1,8 @@
-# 💻 HealConnect — Development Guide
+# 💻 CareSync — Development Guide
 
 ## 1. Development Workflow
 
-Follow this 10-step systematic engineering workflow whenever adding new features or resolving issues in HealConnect:
+Follow this 10-step systematic engineering workflow whenever adding new features or resolving issues in CareSync:
 
 ```text
 1. Understand the Requirement

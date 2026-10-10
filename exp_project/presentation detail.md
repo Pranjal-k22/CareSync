@@ -1,4 +1,4 @@
-# HealConnect — Review-I Presentation Technical Detail Reference Manual
+# CareSync — Review-I Presentation Technical Detail Reference Manual
 
 > **File Path:** `c:\Users\pc\Desktop\capstone\Heal_connectmain2.0\docs\presentation detail.md`  
 > **Target Purpose:** Single Source of Truth for Review-I Capstone Presentation & Viva Defense  
@@ -18,10 +18,10 @@ In modern clinical healthcare settings, patient monitoring is a critical determi
 3. **Data Isolation & Protocol Fragmentation:** Medical devices often stream data across proprietary, isolated channels, preventing unified real-time aggregation and cloud-native predictive analytics.
 
 ### System Overview
-**HealConnect** is an integrated, low-latency Remote Patient Monitoring (RPM) and Clinical Decision Support (CDS) platform. It combines low-cost IoT edge hardware, lightweight MQTT telemetry transport, machine-learning-based patient deterioration risk scoring, explainable AI (SHAP), and real-time Server-Sent Events (SSE) web visual analytics.
+**CareSync** is an integrated, low-latency Remote Patient Monitoring (RPM) and Clinical Decision Support (CDS) platform. It combines low-cost IoT edge hardware, lightweight MQTT telemetry transport, machine-learning-based patient deterioration risk scoring, explainable AI (SHAP), and real-time Server-Sent Events (SSE) web visual analytics.
 
-### Why HealConnect is Needed
-HealConnect bridges the gap between low-cost IoT hardware and high-performance predictive clinical decision support. By replacing intermittent manual spot-checks with continuous sub-second telemetry ingestion and automated multi-variable risk scoring, HealConnect enables early clinical risk detection, prioritized triage, and transparent explainability for clinicians.
+### Why CareSync is Needed
+CareSync bridges the gap between low-cost IoT hardware and high-performance predictive clinical decision support. By replacing intermittent manual spot-checks with continuous sub-second telemetry ingestion and automated multi-variable risk scoring, CareSync enables early clinical risk detection, prioritized triage, and transparent explainability for clinicians.
 
 ---
 
@@ -64,7 +64,7 @@ To eliminate the dangerous latency gap in routine ward monitoring by creating a 
 # 3. Literature Review
 
 ### Domain Context & Research Areas
-HealConnect synthesizes research across four core technical domains:
+CareSync synthesizes research across four core technical domains:
 1. **IoT-Based Remote Patient Monitoring (RPM):** Utilizing low-cost microcontrollers for wearable and bedside health parameter collection.
 2. **Publish/Subscribe Messaging Protocols:** Evaluating MQTT vs. WebSockets for constrained healthcare IoT networks.
 3. **Machine Learning in Clinical Risk Scoring:** Multi-variable acute deterioration modeling replacing static early warning scores (NEWS/MEWS).
@@ -72,7 +72,7 @@ HealConnect synthesizes research across four core technical domains:
 
 ### Structured Literature Comparison
 
-| Domain / Aspect | Traditional Ward Monitoring | Existing IoT Health Solutions | Proposed HealConnect System |
+| Domain / Aspect | Traditional Ward Monitoring | Existing IoT Health Solutions | Proposed CareSync System |
 | :--- | :--- | :--- | :--- |
 | **Data Collection** | Manual spot-checks every 4–8 hrs | Continuous static threshold monitoring | Continuous multi-sensor IoT telemetry (Sub-second) |
 | **Transport Protocol** | Paper charts / Manual EMR entry | HTTP REST polling / WebSockets | Lightweight **MQTT (QoS 1)** via Mosquitto Broker |
@@ -81,10 +81,10 @@ HealConnect synthesizes research across four core technical domains:
 | **Client Streaming** | Periodic manual refresh | HTTP Polling / WebSockets | **FastAPI Server-Sent Events (SSE)** |
 | **Data Privacy** | Local isolated storage | Centralized server upload | **Flower Federated Learning + Differential Privacy** |
 
-### Limitations / Gaps Addressed by HealConnect
-1. **Gap 1: Network Overhead of WebSockets on Microcontrollers:** Legacy solutions use WebSockets or HTTP REST. HealConnect utilizes MQTT with a 2-byte fixed header, significantly reducing power and bandwidth consumption on ESP8266.
-2. **Gap 2: Black-Box Machine Learning:** Standard ML models provide probabilities without justification. HealConnect implements SHAP to display explicit clinical feature contributions for every flagged patient.
-3. **Gap 3: Polling Latency in Web UIs:** HealConnect implements unidirectional HTTP SSE streaming (`/telemetry/stream`), allowing Next.js clients to render real-time Recharts updates with zero polling overhead.
+### Limitations / Gaps Addressed by CareSync
+1. **Gap 1: Network Overhead of WebSockets on Microcontrollers:** Legacy solutions use WebSockets or HTTP REST. CareSync utilizes MQTT with a 2-byte fixed header, significantly reducing power and bandwidth consumption on ESP8266.
+2. **Gap 2: Black-Box Machine Learning:** Standard ML models provide probabilities without justification. CareSync implements SHAP to display explicit clinical feature contributions for every flagged patient.
+3. **Gap 3: Polling Latency in Web UIs:** CareSync implements unidirectional HTTP SSE streaming (`/telemetry/stream`), allowing Next.js clients to render real-time Recharts updates with zero polling overhead.
 
 ### References & Citations (Verified in Project Repository)
 * **MQTT Standard:** OASIS Standard for MQTT v3.1.1 / v5.0 (`mosquitto/config/mosquitto.conf`).
@@ -99,7 +99,7 @@ HealConnect synthesizes research across four core technical domains:
 # 4. Proposed Work
 
 ### Overall Concept Architecture
-HealConnect is structured into a multi-layer decoupled architecture spanning IoT Edge Firmware, Mosquitto MQTT Broker, Python Telemetry Ingestion, FastAPI Core Services, Machine Learning Risk Inference, and Next.js Web Frontend.
+CareSync is structured into a multi-layer decoupled architecture spanning IoT Edge Firmware, Mosquitto MQTT Broker, Python Telemetry Ingestion, FastAPI Core Services, Machine Learning Risk Inference, and Next.js Web Frontend.
 
 ```mermaid
 graph TD

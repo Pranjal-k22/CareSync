@@ -1,7 +1,7 @@
-# HealConnect — Complete Project Architecture Master Specification
+# CareSync — Complete Project Architecture Master Specification
 
 > **File Path:** `architecture-project/complete project architecture.md`  
-> **Target:** Master Single-File Reference Specification for HealConnect Architecture  
+> **Target:** Master Single-File Reference Specification for CareSync Architecture  
 > **Repository Root:** `C:\Users\pc\Desktop\capstone\Heal_connectmain2.0`  
 > **Status:** Code-Grounded, Fully Verified & Classified  
 
@@ -9,7 +9,7 @@
 
 ## Executive Summary & System Overview
 
-**HealConnect** is a cloud-native, IoT-enabled Remote Patient Monitoring (RPM) and Clinical Decision Support (CDS) platform. It provides real-time vital signs telemetry ingestion via MQTT, automated patient deterioration risk scoring (`RandomForestClassifier`, **94.59% accuracy**), Explainable AI (SHAP `TreeExplainer`), low-latency streaming via Server-Sent Events (SSE), and privacy-preserving multi-hospital Federated Learning (Flower).
+**CareSync** is a cloud-native, IoT-enabled Remote Patient Monitoring (RPM) and Clinical Decision Support (CDS) platform. It provides real-time vital signs telemetry ingestion via MQTT, automated patient deterioration risk scoring (`RandomForestClassifier`, **94.59% accuracy**), Explainable AI (SHAP `TreeExplainer`), low-latency streaming via Server-Sent Events (SSE), and privacy-preserving multi-hospital Federated Learning (Flower).
 
 ---
 
@@ -276,7 +276,7 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    Root["healconnect (Root Namespace)"]
+    Root["caresync (Root Namespace)"]
     
     Hospital["{hospital_id} (Hospital Node Identifier)"]
     Root --> Hospital

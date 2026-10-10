@@ -1,8 +1,8 @@
-# 🧪 HealConnect — Automated Testing & Verification Guide
+# 🧪 CareSync — Automated Testing & Verification Guide
 
 ## 1. Test Architecture Overview
 
-HealConnect includes a comprehensive automated backend test suite using **Pytest** and FastAPI `TestClient`.
+CareSync includes a comprehensive automated backend test suite using **Pytest** and FastAPI `TestClient`.
 
 The test suite covers:
 1. **REST API Endpoints** ([`backend/tests/test_api.py`](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/backend/tests/test_api.py)): Authentication, disease screening (`/predict-disease`), unified prediction (`/predict-unified`), SHAP explainability (`/explain/{id}`), federated training (`/federated/train`), and model registry (`/models`).

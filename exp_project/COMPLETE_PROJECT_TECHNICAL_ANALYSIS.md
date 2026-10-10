@@ -1,4 +1,4 @@
-# HealConnect — Complete Project Technical Analysis
+# CareSync — Complete Project Technical Analysis
 
 > **Root Path:** `C:\Users\pc\Desktop\capstone\Heal_connectmain2.0`  
 > **Target:** B.Tech Final Year Capstone Technical Analysis & Architecture Manual  
@@ -7,7 +7,7 @@
 ---
 
 ## Executive Summary
-HealConnect is a clinical-grade Remote Patient Monitoring (RPM) and Clinical Decision Support (CDS) software ecosystem. It bridges low-power IoT edge microcontrollers, high-throughput MQTT ingestion, predictive machine learning pipelines, and real-time Server-Sent Events (SSE) web visualizers.
+CareSync is a clinical-grade Remote Patient Monitoring (RPM) and Clinical Decision Support (CDS) software ecosystem. It bridges low-power IoT edge microcontrollers, high-throughput MQTT ingestion, predictive machine learning pipelines, and real-time Server-Sent Events (SSE) web visualizers.
 
 ---
 

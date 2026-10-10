@@ -5,7 +5,7 @@
 
 ```mermaid
 flowchart TD
-    Root["healconnect (Root Namespace)"]
+    Root["caresync (Root Namespace)"]
     
     Hospital["{hospital_id} (Hospital Node Identifier)"]
     Root --> Hospital

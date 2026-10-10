@@ -1,4 +1,4 @@
-# 🔒 HealConnect — Security, Privacy & HIPAA Compliance
+# 🔒 CareSync — Security, Privacy & HIPAA Compliance
 
 ## 1. Authentication & Key Management
 

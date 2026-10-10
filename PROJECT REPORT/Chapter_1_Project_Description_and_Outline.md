@@ -2,17 +2,17 @@
 
 ## 1.1 Project Introduction
 
-### What HealConnect Is
-**HealConnect** is an enterprise-grade, multi-hospital AI healthcare telemetry platform that unifies edge IoT vital sensor monitoring, dual-model machine learning risk inference, SHAP model explainability, privacy-preserving federated learning, and HIPAA-compliant database auditing. Designed for modern hospital networks and clinical environments, HealConnect bridges the gap between hardware biometrics and actionable artificial intelligence for clinical decision support.
+### What CareSync Is
+**CareSync** is an enterprise-grade, multi-hospital AI healthcare telemetry platform that unifies edge IoT vital sensor monitoring, dual-model machine learning risk inference, SHAP model explainability, privacy-preserving federated learning, and HIPAA-compliant database auditing. Designed for modern hospital networks and clinical environments, CareSync bridges the gap between hardware biometrics and actionable artificial intelligence for clinical decision support.
 
 ### Healthcare Problem Being Addressed
 Hospital Intensive Care Units (ICUs) and general inpatient wards frequently suffer from fragmented vital sign monitoring workflows. Traditional monitoring systems rely on periodic manual nursing checks (often spaced 4 to 8 hours apart) or isolated bedside monitors that fail to synthesize multi-parameter physiological trends over extended time horizons. Delayed recognition of subtle physiological deterioration—such as gradual hypoxemia, silent tachycardia, or rising pyrexia—frequently leads to preventable adverse clinical events, cardiac arrests, emergency ICU transfers, and increased hospital mortality. Furthermore, cross-hospital collaborative machine learning research is heavily restricted by health data privacy regulations (e.g., HIPAA and GDPR), preventing institutions from pooling raw patient vitals into centralized servers.
 
 ### Motivation Behind the Project
-The primary motivation behind HealConnect is to build a continuous, real-time physiological telemetry and risk-forecasting engine that automatically analyzes stream data at the edge, flags early deterioration risks up to 12 hours before acute clinical collapse, explains the underlying biometric drivers to attending physicians, and allows multiple independent hospitals to train shared predictive models collaboratively without sacrificing patient privacy.
+The primary motivation behind CareSync is to build a continuous, real-time physiological telemetry and risk-forecasting engine that automatically analyzes stream data at the edge, flags early deterioration risks up to 12 hours before acute clinical collapse, explains the underlying biometric drivers to attending physicians, and allows multiple independent hospitals to train shared predictive models collaboratively without sacrificing patient privacy.
 
 ### Target Users & Target Healthcare Environment
-HealConnect is engineered for multi-tenant hospital networks, tertiary care hospitals, intensive care units, step-down monitoring wards, isolation units, and remote telehealth clinics. Its target users encompass:
+CareSync is engineered for multi-tenant hospital networks, tertiary care hospitals, intensive care units, step-down monitoring wards, isolation units, and remote telehealth clinics. Its target users encompass:
 1. **Attending Physicians & ICU Consultants**: Require continuous telemetry visibility, predictive acute deterioration risk scores, SHAP feature attributions, and tele-consultation capabilities.
 2. **Nurses & Clinical Caregivers**: Require instant alerts on vital sign breaches (e.g., $\text{SpO}_2 < 92\%$), automated bed status synchronization, and streamlined manual vital entry interfaces.
 3. **Hospital & Clinical Administrators**: Require macro-level ICU bed allocation management, staff duty roster oversight, federated model training control, and HIPAA security audit trail inspection.
@@ -20,7 +20,7 @@ HealConnect is engineered for multi-tenant hospital networks, tertiary care hosp
 5. **Bio-Medical & System Engineers**: Require secure MQTT device onboarding, broker access control management, and system health monitoring.
 
 ### Main Purpose of the System & Importance of Real-Time Monitoring
-The central purpose of HealConnect is to convert continuous physiological sensor streams into real-time, explainable, and predictive clinical insights. Real-time monitoring is critical in acute healthcare because physiological degradation occurs dynamically; a drop in blood oxygen saturation combined with elevated respiratory rate can signal impending respiratory failure hours before overt clinical collapse. By ingesting sensor data continuously at 2-second intervals, evaluating abnormal thresholds, and running dual AI risk models, HealConnect empowers care teams to intervene proactively rather than reactively.
+The central purpose of CareSync is to convert continuous physiological sensor streams into real-time, explainable, and predictive clinical insights. Real-time monitoring is critical in acute healthcare because physiological degradation occurs dynamically; a drop in blood oxygen saturation combined with elevated respiratory rate can signal impending respiratory failure hours before overt clinical collapse. By ingesting sensor data continuously at 2-second intervals, evaluating abnormal thresholds, and running dual AI risk models, CareSync empowers care teams to intervene proactively rather than reactively.
 
 ---
 
@@ -42,7 +42,7 @@ Despite technological advancements in medical equipment, modern healthcare facil
 
 ## 1.3 Project Objectives
 
-HealConnect was engineered to achieve specific primary, secondary, technical, and healthcare objectives:
+CareSync was engineered to achieve specific primary, secondary, technical, and healthcare objectives:
 
 ### Primary Objectives
 - **Build an Enterprise IoT Telemetry Pipeline**: Implement an MQTT-based edge-to-cloud ingestion pipeline using Eclipse Mosquitto broker (QoS 1) and FastAPI Server-Sent Events (SSE) to stream live vitals to web dashboards.
@@ -69,7 +69,7 @@ HealConnect was engineered to achieve specific primary, secondary, technical, an
 
 ## 1.4 Project Scope
 
-To maintain rigorous engineering standards, HealConnect explicitly defines its operational boundaries:
+To maintain rigorous engineering standards, CareSync explicitly defines its operational boundaries:
 
 ### In-Scope (Implemented & Verified Capabilities)
 - **Edge Telemetry Processing**: Real-time acquisition and ingestion of Heart Rate, $\text{SpO}_2$, Body Temperature, Room Temperature, and Humidity via MQTT (`healconnect/+/+/vitals`).
@@ -128,7 +128,7 @@ To maintain rigorous engineering standards, HealConnect explicitly defines its o
 
 ## 1.7 Project Workflow
 
-The end-to-end telemetry, machine learning, and visualization workflow of HealConnect is verified across repository source files as follows:
+The end-to-end telemetry, machine learning, and visualization workflow of CareSync is verified across repository source files as follows:
 
 ```
 [ Edge Hardware Layer ]

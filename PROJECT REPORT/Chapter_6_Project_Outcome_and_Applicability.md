@@ -2,7 +2,7 @@
 
 ## 6.1 Project Outcomes
 
-The development of HealConnect successfully achieved all primary software, artificial intelligence, and telemetry architectural objectives:
+The development of CareSync successfully achieved all primary software, artificial intelligence, and telemetry architectural objectives:
 - **Unified Telemetry Ingestion**: Successfully implemented and verified an MQTT telemetry pipeline capable of receiving, schema-validating, deduplicating, and persisting vitals at 2-second intervals.
 - **Dual AI Diagnostic Capability**: Deployed a 12-hour acute deterioration model (ROC-AUC `0.9120`, Accuracy `94.59%`) and a multi-class flu/fever screening model (ROC-AUC `0.9970`, Accuracy `96.58%`).
 - **Clinical Explainability Integration**: Delivered local SHAP `TreeExplainer` feature attributions directly into clinical REST responses and web UI components.
@@ -60,13 +60,13 @@ OVERALL VERIFIED TEST SUITE TOTAL:    84 / 84 PASS (100% SUCCESS RATE)
 
 ## 6.5 Healthcare Applicability
 
-HealConnect is technically applicable to several clinical operational environments:
+CareSync is technically applicable to several clinical operational environments:
 - **Intensive Care Units (ICUs) & Step-Down Wards**: Continuous telemetry monitoring and 12-hour early deterioration forecasting.
 - **Multi-Hospital Healthcare Systems**: Collaborative federated model training across independent hospitals without raw data centralization.
 - **Isolation Units & Infectious Disease Wards**: Remote non-contact patient vital sign monitoring.
 - **Tele-Consultation & Outpatient Clinics**: Video telehealth visits, digital e-prescriptions, and OCR prescription reader support.
 
-*Regulatory Disclaimer: HealConnect is designed for clinical decision support. It has not received FDA 510(k) or CE mark medical device certification and must be operated under licensed clinician oversight.*
+*Regulatory Disclaimer: CareSync is designed for clinical decision support. It has not received FDA 510(k) or CE mark medical device certification and must be operated under licensed clinician oversight.*
 
 ---
 

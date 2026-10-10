@@ -1,6 +1,6 @@
-# 🏛️ HealConnect — Architectural Decision Records (ADRs)
+# 🏛️ CareSync — Architectural Decision Records (ADRs)
 
-This document records key technical decisions, context, trade-offs, and consequences in HealConnect.
+This document records key technical decisions, context, trade-offs, and consequences in CareSync.
 
 ---
 
@@ -10,7 +10,7 @@ This document records key technical decisions, context, trade-offs, and conseque
 2026-08-01
 
 ### Context
-HealConnect required a high-performance, asynchronous, type-safe Python API gateway to handle high-frequency IoT telemetry payloads, execute ML model inference, interface with Supabase, and generate automated OpenAPI documentation.
+CareSync required a high-performance, asynchronous, type-safe Python API gateway to handle high-frequency IoT telemetry payloads, execute ML model inference, interface with Supabase, and generate automated OpenAPI documentation.
 
 ### Decision
 Use **FastAPI** running on Uvicorn ASGI server.

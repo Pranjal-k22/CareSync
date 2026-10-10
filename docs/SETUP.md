@@ -1,6 +1,6 @@
-# ⚙️ HealConnect — Setup & Installation Guide
+# ⚙️ CareSync — Setup & Installation Guide
 
-This guide provides step-by-step instructions for installing, configuring, testing, and running the complete HealConnect platform from scratch.
+This guide provides step-by-step instructions for installing, configuring, testing, and running the complete CareSync platform from scratch.
 
 ---
 
@@ -21,8 +21,8 @@ Ensure the following software packages are installed on your system:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/OmRaj6666/HealConnect.git
-cd HealConnect
+git clone https://github.com/Pranjal-k22/CareSync.git
+cd CareSync
 
 # 2. Install Python backend dependencies
 python -m pip install -r backend/requirements.txt

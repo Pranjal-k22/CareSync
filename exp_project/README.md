@@ -1,4 +1,4 @@
-# HealConnect Experimental & Documentation Laboratory (`exp_project`)
+# CareSync Experimental & Documentation Laboratory (`exp_project`)
 
 > **Location:** `C:\Users\pc\Desktop\capstone\Heal_connectmain2.0\exp_project`  
 > **Purpose:** Isolated research sandbox containing experimental ML/IoT prototypes and compiled comprehensive system documentation artifacts.

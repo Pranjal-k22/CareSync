@@ -1,4 +1,4 @@
-# 📡 HealConnect — IoT Telemetry System Audit & MQTT Migration Plan (IoTConnect)
+# 📡 CareSync — IoT Telemetry System Audit & MQTT Migration Plan (IoTConnect)
 
 ## Stage Migration Tracker
 
@@ -52,7 +52,7 @@ ESP8266 NodeMCU Firmware (HealthConnect_Kit_ESP8266_Code/)
   MQTT Broker (Eclipse Mosquitto - TCP Port 1883 / TLS 8883)
        │
        ▼ (MQTT Ingestion Service / FastAPI Background Worker)
-  HealConnect Application API & Data Layer (backend/main.py)
+  CareSync Application API & Data Layer (backend/main.py)
        │
        ├──> Supabase PostgreSQL (`reports` & `vitals` tables)
        └──> REST API / WebSocket Broadcaster
@@ -66,7 +66,7 @@ ESP8266 NodeMCU Firmware (HealthConnect_Kit_ESP8266_Code/)
 ## STAGE 2: MQTT Broker Environment & Configuration Setup
 
 ```text
-HealConnect/
+CareSync/
 ├── docker-compose.yml                  # Containerized Eclipse Mosquitto 2.0 service
 ├── mosquitto/
 │   ├── config/
@@ -124,7 +124,7 @@ MQTT Ingestion Service (`backend/app/services/mqtt_ingestion_service.py`)
        └── 7. Status & Retained LWT Cache Management
                │
                ▼
-HealConnect DatabaseService (`backend/app/services/db_service.py`)
+CareSync DatabaseService (`backend/app/services/db_service.py`)
        │
        └──> Supabase PostgreSQL (`vitals`, `alerts`, `reports` tables)
 ```
@@ -145,7 +145,7 @@ Run via `python scratch/test_mqtt_ingestion.py`:
 
 ```text
 ============================================================
-HEALCONNECT STAGE 5 -- MQTT INGESTION SERVICE TEST SUITE
+CARESYNC STAGE 5 -- MQTT INGESTION SERVICE TEST SUITE
 ============================================================
 PASS [1/17] Broker startup & listener ready
 PASS [2/17] Ingestion Service connected & authenticated
@@ -237,7 +237,7 @@ Run via `python scratch/test_stage6_integration.py`:
 
 ```text
 ============================================================
-HEALCONNECT STAGE 6 -- BACKEND & RISK PREDICTION INTEGRATION TEST SUITE
+CARESYNC STAGE 6 -- BACKEND & RISK PREDICTION INTEGRATION TEST SUITE
 ============================================================
 PASS [1/13] Valid MQTT vitals successfully persisted to DatabaseService
 PASS [2/13] Prediction path executed cleanly (Risk Score: 2.69%, Level: low)
@@ -279,7 +279,7 @@ MQTT Ingestion Service (`backend/app/services/mqtt_ingestion_service.py`)
       ├── Telemetry Normalization & Threshold Alert Detection
       │
       ▼
-HealConnect Backend Data Layer (`backend/main.py`)
+CareSync Backend Data Layer (`backend/main.py`)
       │
       ├──────────────────────────────┐
       ▼                              ▼
@@ -307,7 +307,7 @@ Run via `python scratch/test_stage7_frontend.py`:
 
 ```text
 ============================================================
-HEALCONNECT STAGE 7 -- FRONTEND LIVE STREAM MIGRATION TEST SUITE
+CARESYNC STAGE 7 -- FRONTEND LIVE STREAM MIGRATION TEST SUITE
 ============================================================
 PASS [1/18] Initial SSE stream connection established & ack event received
 PASS [2/18] Valid vitals telemetry broadcasted cleanly to SSE subscribers
@@ -604,20 +604,20 @@ Primary Telemetry Path:
    - WiFi / PubSubClient: Operates over internal ESP8266 SPI/WiFi radio interface. Zero pin collisions between MAX30102, DHT22, DS18B20, and Wi-Fi stack.
 
 3. **Memory Safety Audit**:
-   - Verified by reading [Network.cpp](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/HealthConnect_Kit_ESP8266_Code/Network.cpp) (lines 134–156): `publishVitals()` constructs JSON payload using dynamic Arduino `String` concatenation on heap every 2000ms. On long-term multi-day runtimes, dynamic heap string allocation on ESP8266 (~30KB RAM) risks heap fragmentation. Replacing with `snprintf()` stack buffers is recommended for production.
+   - Verified by reading [Network.cpp](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/HealthConnect_Kit_ESP8266_Code/_legacy_blynk_DO_NOT_USE/Network.cpp) (lines 134–156): `publishVitals()` constructs JSON payload using dynamic Arduino `String` concatenation on heap every 2000ms. On long-term multi-day runtimes, dynamic heap string allocation on ESP8266 (~30KB RAM) risks heap fragmentation. Replacing with `snprintf()` stack buffers is recommended for production.
 
 4. **WiFi & MQTT Backoff Logic**:
    - `maintainWiFi()` (Network.cpp:38-59): Resets `wifiBackoffInterval = 1000` upon `WL_CONNECTED`. Doubles interval up to 30000ms max on failure.
    - `maintainMQTT()` (Network.cpp:88-124): Resets `mqttBackoffInterval = 1000` upon successful MQTT connection. Doubles interval up to 30000ms max on failure. Cannot get stuck in infinite deadlocks.
 
 5. **LWT Registration Correctness**:
-   - Verified by reading [Network.cpp](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/HealthConnect_Kit_ESP8266_Code/Network.cpp) line 112: `mqttClient.connect(MQTT_DEVICE_ID, MQTT_USERNAME, MQTT_PASSWORD, statusTopic.c_str(), 1, true, lwtPayload.c_str())`. LWT registered on `connect()` call with `healconnect/{hosp}/{dev}/status`, QoS 1, Retain `true`.
+   - Verified by reading [Network.cpp](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/HealthConnect_Kit_ESP8266_Code/_legacy_blynk_DO_NOT_USE/Network.cpp) line 112: `mqttClient.connect(MQTT_DEVICE_ID, MQTT_USERNAME, MQTT_PASSWORD, statusTopic.c_str(), 1, true, lwtPayload.c_str())`. LWT registered on `connect()` call with `healconnect/{hosp}/{dev}/status`, QoS 1, Retain `true`.
 
 6. **Credential Handling**:
-   - `secrets.example.h` correctly uses template placeholders. Note: lines 4–7 in [Network.cpp](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/HealthConnect_Kit_ESP8266_Code/Network.cpp) contain hardcoded legacy Firebase credentials (`API_KEY`, `USER_EMAIL`).
+   - `secrets.example.h` correctly uses template placeholders. Note: lines 4–7 in [Network.cpp](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/HealthConnect_Kit_ESP8266_Code/_legacy_blynk_DO_NOT_USE/Network.cpp) contain hardcoded legacy Firebase credentials (`API_KEY`, `USER_EMAIL`).
 
 7. **Compiler Flag Coexistence**:
-   - Setting `#define LEGACY_BLYNK_ENABLED 0` and `#define LEGACY_FIREBASE_ENABLED 0` in [HealthConnect_Kit_Arduino_Code.ino](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/HealthConnect_Kit_ESP8266_Code/HealthConnect_Kit_Arduino_Code.ino) cleanly bypasses Blynk and Firebase method calls without compilation errors or dangling references.
+   - Setting `#define LEGACY_BLYNK_ENABLED 0` and `#define LEGACY_FIREBASE_ENABLED 0` in [HealthConnect_Kit_ESP8266_Code.ino](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/HealthConnect_Kit_ESP8266_Code/_legacy_blynk_DO_NOT_USE/HealthConnect_Kit_ESP8266_Code.ino) cleanly bypasses Blynk and Firebase method calls without compilation errors or dangling references.
 
 8. **Sequence Counter & Reboot Survival**:
    - `sequenceNumber` declared in `Network.h:38` as `uint32_t sequenceNumber`. Persists in global `networkManager` object across WiFi/MQTT network reconnects. Resets to 0 only on physical ESP8266 reboot / power cycle.
@@ -630,7 +630,7 @@ When the physical ESP8266 board and sensors arrive, execute this 12-step validat
 
 1. **Physical Board Boot**:
    - Procedure: Connect ESP8266 NodeMCU to USB power. Open Serial Monitor at 115200 baud.
-   - Expected Output: `[HealConnect] ESP8266 NodeMCU Telemetry Unit Booting...` followed by `Setup Completed cleanly.`
+   - Expected Output: `[CareSync] ESP8266 NodeMCU Telemetry Unit Booting...` followed by `Setup Completed cleanly.`
    - Pass Criteria: Serial boot banner prints without crash loop or WDT reset.
 
 2. **Wi-Fi Connection**:
@@ -709,7 +709,7 @@ When the physical ESP8266 board and sensors arrive, execute this 12-step validat
   ```
 * **Verification**: Executed `npm run build`. The build completed cleanly with 0 errors across all 45 static/dynamic routes:
   ```text
-  > HEALCONNECT@0.1.0 build
+  > CARESYNC@0.1.0 build
   > next build --webpack
 
   ▲ Next.js 16.3.0 (webpack)

@@ -1,9 +1,9 @@
-# 📁 HealConnect — Project Structure Documentation
+# 📁 CareSync — Project Structure Documentation
 
 ## Directory Layout Overview
 
 ```text
-HealConnect/
+CareSync/
 ├── .env.example                       # Example environment variables template
 ├── .env.local                         # Local environment configuration file
 ├── AGENTS.md                          # Agent execution directives
