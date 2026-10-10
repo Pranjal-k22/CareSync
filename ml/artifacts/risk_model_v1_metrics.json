@@ -1,0 +1,86 @@
+{
+  "model_version": "v1.0",
+  "algorithm": "RandomForestClassifier",
+  "trained_at": "2026-09-27T08:24:29.212797+00:00",
+  "dataset": "ml\\data\\cleaned_hospital_deterioration.csv",
+  "features": [
+    "heart_rate",
+    "respiratory_rate",
+    "spo2_pct",
+    "temperature_c",
+    "systolic_bp",
+    "diastolic_bp",
+    "oxygen_flow",
+    "mobility_score",
+    "nurse_alert",
+    "age",
+    "comorbidity_index",
+    "oxygen_device",
+    "gender",
+    "admission_type"
+  ],
+  "target": "deterioration_next_12h",
+  "train_rows": 335065,
+  "test_rows": 82801,
+  "test_patient_count": 2000,
+  "class_balance_train": {
+    "0": 317024,
+    "1": 18041
+  },
+  "metrics": {
+    "accuracy": 0.9325,
+    "precision": 0.4066,
+    "recall": 0.4987,
+    "f1_score": 0.448,
+    "roc_auc": 0.8822,
+    "average_precision": 0.4416
+  },
+  "confusion_matrix": {
+    "true_negative": 74943,
+    "false_positive": 3310,
+    "false_negative": 2280,
+    "true_positive": 2268
+  },
+  "top_feature_importances": [
+    {
+      "feature": "numeric__spo2_pct",
+      "importance": 0.226727
+    },
+    {
+      "feature": "numeric__mobility_score",
+      "importance": 0.123202
+    },
+    {
+      "feature": "numeric__respiratory_rate",
+      "importance": 0.122557
+    },
+    {
+      "feature": "numeric__systolic_bp",
+      "importance": 0.119656
+    },
+    {
+      "feature": "numeric__heart_rate",
+      "importance": 0.104771
+    },
+    {
+      "feature": "numeric__diastolic_bp",
+      "importance": 0.063412
+    },
+    {
+      "feature": "numeric__temperature_c",
+      "importance": 0.059981
+    },
+    {
+      "feature": "numeric__age",
+      "importance": 0.05411
+    },
+    {
+      "feature": "numeric__comorbidity_index",
+      "importance": 0.032779
+    },
+    {
+      "feature": "numeric__oxygen_flow",
+      "importance": 0.026906
+    }
+  ]
+}
