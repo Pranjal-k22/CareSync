@@ -2,8 +2,8 @@ import time
 import paho.mqtt.client as mqtt
 
 def on_connect(client, userdata, flags, rc, properties=None):
-    print("Connected to MQTT Broker, subscribing to healconnect/#")
-    client.subscribe("healconnect/#")
+    print("Connected to MQTT Broker, subscribing to caresync/#")
+    client.subscribe("caresync/#")
 
 def on_message(client, userdata, msg):
     print(f"Received msg on {msg.topic}: {msg.payload.decode('utf-8')}")

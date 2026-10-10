@@ -26,12 +26,12 @@ flowchart TD
 
     subgraph MQTT_Broker["2. MQTT Messaging Broker"]
         Mosquitto["Eclipse Mosquitto Broker (Port 1883/8883)"]
-        ESP -->|Pub: healconnect/+/+/vitals| Mosquitto
+        ESP -->|Pub: caresync/+/+/vitals| Mosquitto
     end
 
     subgraph Ingestion_Layer["3. Ingestion & Backend Core"]
         Ingest["MQTT Ingestion Worker (paho-mqtt)"]
-        Mosquitto -->|Sub: healconnect/+/+/vitals| Ingest
+        Mosquitto -->|Sub: caresync/+/+/vitals| Ingest
         DB[("Database (SQLite / Supabase Postgres)")]
         ML["RandomForest Risk ML Model (risk_model.joblib)"]
         SHAP["SHAP TreeExplainer Service"]
@@ -57,7 +57,7 @@ flowchart TD
 ## Component Responsibilities & Connections
 
 1. **IoT Edge Layer:** Reads physiological signals from MAX30102 and DHT22 via I2C and single-bus interfaces. Formats JSON telemetry payloads published over MQTT.
-2. **MQTT Broker:** Eclipse Mosquitto handles publish/subscribe topic routing (`healconnect/{hospital}/{device}/vitals`) with QoS 1 delivery guarantees.
+2. **MQTT Broker:** Eclipse Mosquitto handles publish/subscribe topic routing (`caresync/{hospital}/{device}/vitals`) with QoS 1 delivery guarantees.
 3. **MQTT Ingestion Worker:** Python `paho-mqtt` background service subscribing to broker topics, storing raw vitals into PostgreSQL/SQLite database, and triggering ML inference.
 4. **Machine Learning & SHAP:** Executes `risk_model.joblib` (Random Forest, 94.59% accuracy) and `explain.py` for feature attribution scores.
 5. **FastAPI SSE Broadcaster:** Maintains persistent `/telemetry/stream` connections to stream JSON events without polling.
@@ -292,7 +292,7 @@ flowchart LR
     end
 
     subgraph Edge_Microcontroller["ESP8266 NodeMCU v1.0 / ESP-12E"]
-        Firmware["HealthConnect_Kit_ESP8266_Code.ino"]
+        Firmware["CareSync_Kit_ESP8266_Code.ino"]
         WiFi["ESP8266WiFi.h (802.11 b/g/n)"]
         MQTTClient["PubSubClient.h (MQTT Client)"]
         
@@ -340,21 +340,21 @@ flowchart TD
         Ingest["Python MQTT Ingestion Worker (paho-mqtt)"]
     end
 
-    ESP -->|Pub: healconnect/+/+/vitals (QoS 1)| Mosquitto_Broker
-    SimECG -->|Pub: healconnect/+/+/ecg (QoS 0)| Mosquitto_Broker
-    ESP -.->|Pub: healconnect/+/+/status (LWT QoS 1)| Mosquitto_Broker
+    ESP -->|Pub: caresync/+/+/vitals (QoS 1)| Mosquitto_Broker
+    SimECG -->|Pub: caresync/+/+/ecg (QoS 0)| Mosquitto_Broker
+    ESP -.->|Pub: caresync/+/+/status (LWT QoS 1)| Mosquitto_Broker
     
-    Mosquitto_Broker -->|Sub: healconnect/+/+/vitals| Ingest
-    Mosquitto_Broker -->|Sub: healconnect/+/+/ecg| Ingest
+    Mosquitto_Broker -->|Sub: caresync/+/+/vitals| Ingest
+    Mosquitto_Broker -->|Sub: caresync/+/+/ecg| Ingest
 ```
 
 ## Topic Specifications
 
 | MQTT Topic Pattern | Publisher | Subscriber | Purpose | QoS Level | Source File |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `healconnect/{hospital}/{device}/vitals` | ESP8266 | Ingestion Service | Vital signs telemetry payload | QoS 1 | `HealthConnect_Kit_ESP8266_Code.ino` |
-| `healconnect/{hospital}/{device}/ecg` | Simulator | Ingestion Service | Streaming ECG samples | QoS 0 | `HealthConnect_Kit_ESP8266_Code.ino` |
-| `healconnect/{hospital}/{device}/status` | ESP8266 | Ingestion Service | Last Will & Testament status | QoS 1 | `HealthConnect_Kit_ESP8266_Code.ino` |
+| `caresync/{hospital}/{device}/vitals` | ESP8266 | Ingestion Service | Vital signs telemetry payload | QoS 1 | `CareSync_Kit_ESP8266_Code.ino` |
+| `caresync/{hospital}/{device}/ecg` | Simulator | Ingestion Service | Streaming ECG samples | QoS 0 | `CareSync_Kit_ESP8266_Code.ino` |
+| `caresync/{hospital}/{device}/status` | ESP8266 | Ingestion Service | Last Will & Testament status | QoS 1 | `CareSync_Kit_ESP8266_Code.ino` |
 """
 
     # File 08
@@ -383,8 +383,8 @@ flowchart TD
 ```
 
 ## Topic Wildcard Resolution Examples
-* **Single-level Wildcard Subscription (`healconnect/HOSP_01/+/vitals`):** Subscribes to vital sign updates from *all* devices assigned to `HOSP_01`.
-* **Multi-level Wildcard Subscription (`healconnect/#`):** Subscribes to all telemetry, ECG, and status topics across all hospital nodes.
+* **Single-level Wildcard Subscription (`caresync/HOSP_01/+/vitals`):** Subscribes to vital sign updates from *all* devices assigned to `HOSP_01`.
+* **Multi-level Wildcard Subscription (`caresync/#`):** Subscribes to all telemetry, ECG, and status topics across all hospital nodes.
 """
 
     # File 09
@@ -412,7 +412,7 @@ flowchart TD
 ```
 
 ## Processing Flow Steps
-1. **Message Reception:** `on_message` callback receives raw payload from topic `healconnect/{hospital}/{device}/vitals`.
+1. **Message Reception:** `on_message` callback receives raw payload from topic `caresync/{hospital}/{device}/vitals`.
 2. **Parsing & Validation:** Extracts device ID, verifies valid numeric ranges (`HR: 30-220`, `SpO2: 50-100%`).
 3. **Storage & Analytics:** Saves raw telemetry, invokes `risk_model.joblib`, and pushes updated payload to SSE stream queue.
 """
@@ -516,7 +516,7 @@ flowchart TD
 flowchart TD
     Sensors["1. MAX30102 / DHT22 Sensors"] -->|Raw Analog/Digital Readings| ESP["2. ESP8266 Microcontroller"]
     ESP -->|3. JSON over MQTT Port 1883| Mosquitto["4. Mosquitto Broker"]
-    Mosquitto -->|5. Topic: healconnect/+/+/vitals| Ingest["6. Python Ingestion Service"]
+    Mosquitto -->|5. Topic: caresync/+/+/vitals| Ingest["6. Python Ingestion Service"]
     
     Ingest -->|7a. Write Raw Vitals| DB[("7. Database (SQLite / Supabase)")]
     Ingest -->|7b. Execute 14-Feature ML| ML["8. RandomForest ML Model"]
@@ -559,8 +559,8 @@ flowchart TD
 ```mermaid
 flowchart LR
     ECG_Source["ECG Waveform Generator [SIMULATED]"] -->|Waveform Samples| ESP["Telemetry Simulator Script"]
-    ESP -->|Pub: healconnect/+/+/ecg (QoS 0)| Mosquitto["Mosquitto MQTT Broker"]
-    Mosquitto -->|Sub: healconnect/+/+/ecg| Ingest["MQTT Ingestion Worker"]
+    ESP -->|Pub: caresync/+/+/ecg (QoS 0)| Mosquitto["Mosquitto MQTT Broker"]
+    Mosquitto -->|Sub: caresync/+/+/ecg| Ingest["MQTT Ingestion Worker"]
     Ingest -->|Dispatch Event| SSE["FastAPI SSE Endpoint (/telemetry/stream)"]
     SSE -->|EventSource| NextJS["Next.js Live Monitoring Page"]
     NextJS -->|Render Waveform| Canvas["Live ECG Waveform Visualizer Component"]
@@ -614,7 +614,7 @@ flowchart TD
 
         subgraph Storage_Volumes["Persistent Storage Volumes"]
             MosquittoVol["mosquitto_data Volume"]
-            DBVol["healconnect_db Volume"]
+            DBVol["caresync_db Volume"]
         end
     end
 
@@ -651,7 +651,7 @@ mindmap
       ml/datasets/
       backend/models/risk_model.joblib
     IoT Edge Firmware
-      HealthConnect_Kit_ESP8266_Code.ino
+      CareSync_Kit_ESP8266_Code.ino
     Messaging Broker
       mosquitto/config/mosquitto.conf
     Experimental Sandbox

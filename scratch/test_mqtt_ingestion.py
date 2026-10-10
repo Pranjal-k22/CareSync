@@ -25,7 +25,7 @@ async def wait_for_count(initial_count: int, expected_diff: int, timeout: float 
 
 def run_ingestion_tests():
     print("=" * 60)
-    print("HEALCONNECT STAGE 5 -- MQTT INGESTION SERVICE TEST SUITE")
+    print("CARESYNC STAGE 5 -- MQTT INGESTION SERVICE TEST SUITE")
     print("=" * 60)
 
     from amqtt.broker import Broker
@@ -87,45 +87,45 @@ def run_ingestion_tests():
 
         # Test 4: Valid Vitals
         cnt0 = len(db_service._mem_vitals)
-        pub.publish("healconnect/hosp-001/node-9901/vitals", json.dumps(copy.deepcopy(base_payload)), qos=1)
+        pub.publish("caresync/hosp-001/node-9901/vitals", json.dumps(copy.deepcopy(base_payload)), qos=1)
         await wait_for_count(cnt0, 1)
         print("PASS [4/17] Valid vitals accepted and persisted to DatabaseService")
 
         # Test 5: Invalid JSON
-        pub.publish("healconnect/hosp-001/node-9901/vitals", "{malformed_json: true", qos=1)
+        pub.publish("caresync/hosp-001/node-9901/vitals", "{malformed_json: true", qos=1)
         await asyncio.sleep(0.2)
         print("PASS [5/17] Invalid JSON rejected without service crash")
 
         # Test 6: Missing Field
         invalid_missing = copy.deepcopy(base_payload)
         invalid_missing.pop("device_id")
-        pub.publish("healconnect/hosp-001/node-9901/vitals", json.dumps(invalid_missing), qos=1)
+        pub.publish("caresync/hosp-001/node-9901/vitals", json.dumps(invalid_missing), qos=1)
         await asyncio.sleep(0.2)
         print("PASS [6/17] Missing required field payload rejected")
 
         # Test 7: Invalid Type
         invalid_type = copy.deepcopy(base_payload)
         invalid_type["vitals"]["heart_rate"] = "invalid_string_bpm"
-        pub.publish("healconnect/hosp-001/node-9901/vitals", json.dumps(invalid_type), qos=1)
+        pub.publish("caresync/hosp-001/node-9901/vitals", json.dumps(invalid_type), qos=1)
         await asyncio.sleep(0.2)
         print("PASS [7/17] Invalid data type payload rejected")
 
         # Test 8: Out-of-Range Value
         invalid_range = copy.deepcopy(base_payload)
         invalid_range["vitals"]["spo2"] = 150.0  # SpO2 cannot exceed 100%
-        pub.publish("healconnect/hosp-001/node-9901/vitals", json.dumps(invalid_range), qos=1)
+        pub.publish("caresync/hosp-001/node-9901/vitals", json.dumps(invalid_range), qos=1)
         await asyncio.sleep(0.2)
         print("PASS [8/17] Out-of-range technical value rejected")
 
         # Test 9: Unknown Device
         unknown_device_payload = copy.deepcopy(base_payload)
         unknown_device_payload["device_id"] = "unregistered_hacker_node"
-        pub.publish("healconnect/hosp-001/unregistered_hacker_node/vitals", json.dumps(unknown_device_payload), qos=1)
+        pub.publish("caresync/hosp-001/unregistered_hacker_node/vitals", json.dumps(unknown_device_payload), qos=1)
         await asyncio.sleep(0.2)
         print("PASS [9/17] Unknown device rejected")
 
         # Test 10: Invalid Topic Segments
-        pub.publish("healconnect/malformed_topic", json.dumps(copy.deepcopy(base_payload)), qos=1)
+        pub.publish("caresync/malformed_topic", json.dumps(copy.deepcopy(base_payload)), qos=1)
         await asyncio.sleep(0.2)
         print("PASS [10/17] Malformed topic structure rejected")
 
@@ -133,19 +133,19 @@ def run_ingestion_tests():
         cnt1 = len(db_service._mem_vitals)
         dup_payload = copy.deepcopy(base_payload)
         dup_payload["seq"] = 555
-        pub.publish("healconnect/hosp-001/node-9901/vitals", json.dumps(dup_payload), qos=1)
+        pub.publish("caresync/hosp-001/node-9901/vitals", json.dumps(dup_payload), qos=1)
         await wait_for_count(cnt1, 1)
 
         cnt2 = len(db_service._mem_vitals)
         # Re-publish exact duplicate within 60s window
-        pub.publish("healconnect/hosp-001/node-9901/vitals", json.dumps(dup_payload), qos=1)
+        pub.publish("caresync/hosp-001/node-9901/vitals", json.dumps(dup_payload), qos=1)
         await asyncio.sleep(0.4)
         assert len(db_service._mem_vitals) == cnt2  # Must not increase!
         print("PASS [11/17] Duplicate message detected and dropped safely without duplicate persistence")
 
         # Test 12: Status Online
         status_payload = {"version": "1.0", "device_id": "node-9901", "status": "online", "uptime_seconds": 3600}
-        pub.publish("healconnect/hosp-001/node-9901/status", json.dumps(status_payload), qos=1, retain=True)
+        pub.publish("caresync/hosp-001/node-9901/status", json.dumps(status_payload), qos=1, retain=True)
         await asyncio.sleep(0.3)
         assert "node-9901" in ingestion.device_states
         assert ingestion.device_states["node-9901"]["status"] == "online"
@@ -153,7 +153,7 @@ def run_ingestion_tests():
 
         # Test 13: LWT Offline Status
         lwt_payload = {"version": "1.0", "device_id": "node-9901", "status": "offline", "reason": "unexpected_disconnect"}
-        pub.publish("healconnect/hosp-001/node-9901/status", json.dumps(lwt_payload), qos=1, retain=True)
+        pub.publish("caresync/hosp-001/node-9901/status", json.dumps(lwt_payload), qos=1, retain=True)
         await asyncio.sleep(0.3)
         assert ingestion.device_states["node-9901"]["status"] == "offline"
         print("PASS [13/17] LWT offline status update processed")
@@ -167,7 +167,7 @@ def run_ingestion_tests():
         dev2_payload = copy.deepcopy(base_payload)
         dev2_payload["device_id"] = "node-9902"
         dev2_payload["seq"] = 201
-        pub.publish("healconnect/hosp-001/node-9902/vitals", json.dumps(dev2_payload), qos=1)
+        pub.publish("caresync/hosp-001/node-9902/vitals", json.dumps(dev2_payload), qos=1)
         await wait_for_count(cnt3, 1)
         latest_vitals = db_service._mem_vitals[-1]
         assert latest_vitals["device_id"] == "node-9902"
@@ -178,7 +178,7 @@ def run_ingestion_tests():
         hosp2_payload = copy.deepcopy(base_payload)
         hosp2_payload["device_id"] = "node-9901"
         hosp2_payload["seq"] = 301
-        pub.publish("healconnect/apollo/node-9901/vitals", json.dumps(hosp2_payload), qos=1)
+        pub.publish("caresync/apollo/node-9901/vitals", json.dumps(hosp2_payload), qos=1)
         await wait_for_count(cnt4, 1)
         latest_vitals_hosp = db_service._mem_vitals[-1]
         assert latest_vitals_hosp["hospital_id"] == "apollo"

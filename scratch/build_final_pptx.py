@@ -84,7 +84,7 @@ def create_presentation():
             "subtitle": "End-to-End IoT Edge to Cloud-Native Streaming UI",
             "bullets": [
                 "IoT Edge Subsystem: ESP8266 microcontrollers reading MAX30102 (HR/SpO2) and DHT22 (Temp) sensors.",
-                "MQTT Messaging Core: Eclipse Mosquitto Broker with topic hierarchy healconnect/{hospital}/{device}/vitals.",
+                "MQTT Messaging Core: Eclipse Mosquitto Broker with topic hierarchy caresync/{hospital}/{device}/vitals.",
                 "Ingestion & ML Core: Python paho-mqtt worker storing vitals, executing risk ML, and calculating SHAP scores.",
                 "Client Visual Analytics: FastAPI SSE broadcasting /telemetry/stream to Next.js 16 Recharts UI."
             ]
@@ -94,7 +94,7 @@ def create_presentation():
             "title": "6. High-Level System Architecture",
             "subtitle": "5-Tier Decoupled Platform Blueprint",
             "bullets": [
-                "Tier 1 (IoT Edge): ESP8266 C++ Firmware (HealthConnect_Kit_ESP8266_Code.ino).",
+                "Tier 1 (IoT Edge): ESP8266 C++ Firmware (CareSync_Kit_ESP8266_Code.ino).",
                 "Tier 2 (MQTT Broker): Mosquitto Ports 1883 (TCP) & 8883 (TLS) with ACL authorization.",
                 "Tier 3 (Ingestion & DB): Python paho-mqtt worker + SQLAlchemy ORM (SQLite/Supabase).",
                 "Tier 4 (ML & XAI Engine): risk_model.joblib + backend/app/explain.py (SHAP TreeExplainer).",
@@ -119,10 +119,10 @@ def create_presentation():
             "subtitle": "Eclipse Mosquitto Setup & Quality of Service (QoS)",
             "bullets": [
                 "Broker Configuration: mosquitto/config/mosquitto.conf on Port 1883 / 8883 TLS.",
-                "Topic Taxonomy: healconnect/{hospital_id}/{device_id}/{data_type}",
-                "healconnect/+/+/vitals: Telemetry JSON payload with QoS 1 delivery guarantee.",
-                "healconnect/+/+/ecg: Streaming ECG waveform payload with QoS 0 delivery.",
-                "healconnect/+/+/status: Device connectivity status with Last Will & Testament (LWT QoS 1)."
+                "Topic Taxonomy: caresync/{hospital_id}/{device_id}/{data_type}",
+                "caresync/+/+/vitals: Telemetry JSON payload with QoS 1 delivery guarantee.",
+                "caresync/+/+/ecg: Streaming ECG waveform payload with QoS 0 delivery.",
+                "caresync/+/+/status: Device connectivity status with Last Will & Testament (LWT QoS 1)."
             ]
         },
         {
@@ -130,7 +130,7 @@ def create_presentation():
             "title": "9. Telemetry Ingestion Worker Architecture",
             "subtitle": "Python paho-mqtt Background Processing Service",
             "bullets": [
-                "Subscription Loop: Worker listens to healconnect/+/+/vitals using paho-mqtt.",
+                "Subscription Loop: Worker listens to caresync/+/+/vitals using paho-mqtt.",
                 "Parsing & Validation: Validates numerical parameter bounds (HR: 30–220, SpO2: 50–100%).",
                 "Database Insertion: Saves raw vital sign records using SQLAlchemy ORM.",
                 "ML Triggering: Invokes risk_model.joblib inference and persists calculated risk scores.",

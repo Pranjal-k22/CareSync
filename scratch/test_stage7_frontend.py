@@ -1,5 +1,5 @@
 """
-HealConnect Stage 7 — Frontend Live Stream Migration Test Suite.
+CareSync Stage 7 — Frontend Live Stream Migration Test Suite.
 
 Verifies SSE realtime telemetry streaming endpoint (/telemetry/stream),
 filter isolation (patient, device, hospital), telemetry fields (HR, SpO2, Temp, Humidity,
@@ -24,7 +24,7 @@ from backend.app.services.mqtt_ingestion_service import mqtt_ingestion_service
 
 def main():
     print("=" * 60)
-    print("HEALCONNECT STAGE 7 -- FRONTEND LIVE STREAM MIGRATION TEST SUITE")
+    print("CARESYNC STAGE 7 -- FRONTEND LIVE STREAM MIGRATION TEST SUITE")
     print("=" * 60)
 
     client = TestClient(app)

@@ -1,5 +1,5 @@
 """
-HealConnect Stage 6 — Backend & Risk Prediction Integration Test Suite.
+CareSync Stage 6 — Backend & Risk Prediction Integration Test Suite.
 
 Verifies end-to-end MQTT vitals ingestion, database persistence, multi-hospital isolation,
 patient identity validation, missing model feature defaults, prediction service integration,
@@ -26,7 +26,7 @@ from backend.app.services.prediction_service import predict_deterioration, predi
 
 def main():
     print("=" * 60)
-    print("HEALCONNECT STAGE 6 -- BACKEND & RISK PREDICTION INTEGRATION TEST SUITE")
+    print("CARESYNC STAGE 6 -- BACKEND & RISK PREDICTION INTEGRATION TEST SUITE")
     print("=" * 60)
 
     # Initialize isolated service instance for testing
@@ -140,7 +140,7 @@ def main():
     # ---------------------------------------------------------
     try:
         class DummyMsg:
-            topic = "healconnect/hosp-001/UNAUTHORIZED_DEVICE_X/vitals"
+            topic = "caresync/hosp-001/UNAUTHORIZED_DEVICE_X/vitals"
             payload = b'{"version":"1.0","device_id":"UNAUTHORIZED_DEVICE_X","timestamp":"2026-09-27T15:04:00Z","seq":4004,"vitals":{}}'
             retain = False
 

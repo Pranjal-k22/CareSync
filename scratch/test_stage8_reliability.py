@@ -56,7 +56,7 @@ def get_base_payload(seq=100, patient_id="PAT-1001", device_id="node-9901"):
 
 def test_1_wifi_loss_firmware_inspection():
     """Verify ESP8266 firmware static structure for Wi-Fi loss and reconnect backoff."""
-    firmware_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'HealthConnect_Kit_ESP8266_Code', 'ESP8266_MQTT_Client', 'ESP8266_MQTT_Client.ino'))
+    firmware_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'CareSync_Kit_ESP8266_Code', 'ESP8266_MQTT_Client', 'ESP8266_MQTT_Client.ino'))
     
     assert os.path.exists(firmware_path), "Firmware .ino must exist"
     
@@ -74,7 +74,7 @@ def test_2_database_outage_survival():
     
     with patch.object(db_service, 'save_vitals', side_effect=Exception("Database Connection Timeout/Unavailable")):
         try:
-            send_test_msg(service, "healconnect/hosp-001/node-9901/vitals", payload)
+            send_test_msg(service, "caresync/hosp-001/node-9901/vitals", payload)
             print("PASS: Ingestion survived database outage gracefully without crashing.")
         except Exception as e:
             pytest.fail(f"Ingestion service crashed during database failure: {e}")
@@ -89,7 +89,7 @@ def test_3_prediction_failure_isolation():
     with patch.object(predict_module, 'predict_patient_health_risk', side_effect=Exception("ML Model Weight Failure")):
         with patch.object(db_service, 'save_vitals', return_value={"id": "v-123"}) as mock_save:
             try:
-                send_test_msg(service, "healconnect/hosp-001/node-9901/vitals", payload)
+                send_test_msg(service, "caresync/hosp-001/node-9901/vitals", payload)
                 assert mock_save.called, "Database save vitals should still be called"
                 print("PASS: Ingestion isolated prediction failure; vital persistence succeeded.")
             except Exception as e:
@@ -104,7 +104,7 @@ def test_4_alert_failure_isolation():
     with patch.object(db_service, 'save_alert', side_effect=Exception("Alert Service Queue Full")):
         with patch.object(db_service, 'save_vitals', return_value={"id": "v-124"}) as mock_save:
             try:
-                send_test_msg(service, "healconnect/hosp-001/node-9901/vitals", payload)
+                send_test_msg(service, "caresync/hosp-001/node-9901/vitals", payload)
                 assert mock_save.called
                 print("PASS: Alert processing failure isolated; ingestion survived.")
             except Exception as e:
@@ -123,7 +123,7 @@ def test_5_invalid_payload_security():
     
     for payload in malformed_payloads:
         try:
-            send_test_msg(service, "healconnect/hosp-001/node-9901/vitals", payload)
+            send_test_msg(service, "caresync/hosp-001/node-9901/vitals", payload)
         except Exception as e:
             pytest.fail(f"Payload rejection threw unhandled crash exception: {e}")
             
@@ -135,11 +135,11 @@ def test_6_duplicate_mqtt_deduplication():
     payload = get_base_payload(seq=200)
     
     with patch.object(db_service, 'save_vitals', return_value={"id": "v-200"}) as mock_save:
-        send_test_msg(service, "healconnect/hosp-001/node-9901/vitals", payload)
+        send_test_msg(service, "caresync/hosp-001/node-9901/vitals", payload)
         assert mock_save.call_count == 1, "First packet saved"
         
         # Duplicate publish (same device_id, seq)
-        send_test_msg(service, "healconnect/hosp-001/node-9901/vitals", payload)
+        send_test_msg(service, "caresync/hosp-001/node-9901/vitals", payload)
         assert mock_save.call_count == 1, "Duplicate packet skipped, save count remains 1"
         
     print("PASS: Duplicate sequence deduplication verified.")
@@ -153,12 +153,12 @@ def test_7_reboot_sequence_reset_handling():
     payload_after_reboot = get_base_payload(seq=1)
     
     with patch.object(db_service, 'save_vitals', return_value={"id": "v-reboot"}) as mock_save:
-        send_test_msg(service, "healconnect/hosp-001/node-9901/vitals", payload_before_reboot)
+        send_test_msg(service, "caresync/hosp-001/node-9901/vitals", payload_before_reboot)
         assert mock_save.call_count == 1
         
         service._dedup_cache.clear() # Cache rollover / reboot reset
         
-        send_test_msg(service, "healconnect/hosp-001/node-9901/vitals", payload_after_reboot)
+        send_test_msg(service, "caresync/hosp-001/node-9901/vitals", payload_after_reboot)
         assert mock_save.call_count == 2, "Telemetry after reboot with reset sequence counter must be processed"
         
     print("PASS: Device reboot sequence counter reset handled correctly.")
@@ -201,8 +201,8 @@ def test_9_multi_tenant_isolation():
     payload_hosp2 = get_base_payload(seq=301, patient_id="PAT-2001", device_id="node-9902")
     
     with patch.object(db_service, 'save_vitals', return_value={"id": "v-iso"}) as mock_save:
-        send_test_msg(service, "healconnect/hosp-001/node-9901/vitals", payload_hosp1)
-        send_test_msg(service, "healconnect/hosp-001/node-9902/vitals", payload_hosp2)
+        send_test_msg(service, "caresync/hosp-001/node-9901/vitals", payload_hosp1)
+        send_test_msg(service, "caresync/hosp-001/node-9902/vitals", payload_hosp2)
         
         assert mock_save.call_count == 2
         args_1 = mock_save.call_args_list[0][0][0]

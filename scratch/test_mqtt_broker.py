@@ -4,7 +4,7 @@ import sys
 
 def verify_mosquitto_config():
     print("=" * 60)
-    print("HEALCONNECT STAGE 2 -- MQTT BROKER CONFIGURATION TEST SUITE")
+    print("CARESYNC STAGE 2 -- MQTT BROKER CONFIGURATION TEST SUITE")
     print("=" * 60)
 
     conf_path = "mosquitto/config/mosquitto.conf"
@@ -30,7 +30,7 @@ def verify_mosquitto_config():
     with open(pass_path, "r") as f:
         pass_lines = f.read().splitlines()
     users = [l.split(":")[0] for l in pass_lines if ":" in l and not l.startswith("#")]
-    assert "healconnect_dev" in users
+    assert "caresync_dev" in users
     assert "node_9901_dev" in users
     assert "ingest_service_dev" in users
     print("PASS [3/9] Valid authentication credentials loaded")
@@ -42,13 +42,13 @@ def verify_mosquitto_config():
     assert os.path.exists(acl_path), "acl file missing!"
     with open(acl_path, "r") as f:
         acl_content = f.read()
-    assert "healconnect/hosp-001/node-9901/vitals" in acl_content
-    assert "healconnect/+/+/vitals" in acl_content
+    assert "caresync/hosp-001/node-9901/vitals" in acl_content
+    assert "caresync/+/+/vitals" in acl_content
     print("PASS [5/9] Publish/Subscribe topic hierarchy verified")
     print("PASS [6/9] QoS 1 delivery policy verified")
 
     # Test 7: Retained Message Policy
-    assert "healconnect/hosp-001/node-9901/status" in acl_content
+    assert "caresync/hosp-001/node-9901/status" in acl_content
     print("PASS [7/9] Retained status message configuration verified")
 
     # Test 8: ACL Authorization
