@@ -6,7 +6,7 @@
     "Hospital B - Apollo Telemetry Node",
     "Hospital C - Fortis Cardiac Node"
   ],
-  "training_timestamp": "2026-10-10T16:02:15.054964+00:00",
+  "training_timestamp": "2026-10-10T16:18:45.471721+00:00",
   "total_training_samples": 334291,
   "metrics": {
     "global_accuracy": 94.59,
