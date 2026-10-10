@@ -1,0 +1,74 @@
+{
+  "model_name": "HealConnect Flu & Disease Diagnosis Model",
+  "version": "v1.0",
+  "algorithm": "GradientBoostingClassifier (Tuned)",
+  "hyperparameters": {
+    "learning_rate": 0.05,
+    "max_depth": 5,
+    "n_estimators": 100
+  },
+  "features": [
+    "age",
+    "gender",
+    "temperature_c",
+    "heart_rate",
+    "spo2_pct",
+    "cough_severity",
+    "headache_severity",
+    "fatigue_score",
+    "chills",
+    "body_ache",
+    "sore_throat"
+  ],
+  "numerical_features": [
+    "temperature_c",
+    "heart_rate",
+    "spo2_pct",
+    "cough_severity",
+    "headache_severity",
+    "fatigue_score",
+    "chills",
+    "body_ache",
+    "sore_throat",
+    "age"
+  ],
+  "categorical_features": [
+    "gender"
+  ],
+  "dataset_information": {
+    "dataset_name": "Disease Diagnosis Dataset",
+    "total_samples": 15000,
+    "train_val_samples": 12750,
+    "test_samples": 2250,
+    "classes": {
+      "0": "Normal Baseline",
+      "1": "Flu / Influenza",
+      "2": "Fever-Related Condition"
+    }
+  },
+  "test_size": 2250,
+  "accuracy": 0.9658,
+  "precision": 0.9659,
+  "recall": 0.9658,
+  "f1": 0.9658,
+  "roc_auc": 0.997,
+  "average_precision": 0.9922,
+  "confusion_matrix": [
+    [
+      1012,
+      0,
+      0
+    ],
+    [
+      0,
+      627,
+      44
+    ],
+    [
+      0,
+      33,
+      534
+    ]
+  ],
+  "training_timestamp": "2026-09-30T07:07:38.515358+00:00"
+}
