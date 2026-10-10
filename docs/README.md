@@ -1,33 +1,38 @@
-# 🩺 HealConnect Engineering Knowledge Base
+# CareSync Documentation Index
 
-Welcome to the **HealConnect** documentation index. This directory serves as the single source-of-truth for developers, maintainers, and AI systems working on the HealConnect Multi-Hospital AI Telemetry, Clinical Deterioration Prediction & Federated Learning Platform.
+Welcome to the official technical documentation for **CareSync** — an enterprise-grade clinical AI and IoT telemetry platform.
 
 ---
 
-## 🗺️ Documentation Directory
+## 📚 Technical Documentation Roadmap
 
-### 🚀 Getting Started
-- 📖 [Project Overview](./PROJECT_OVERVIEW.md) — Mission, target audience, in-scope vs out-of-scope capabilities.
-- ⚙️ [Setup & Installation](./SETUP.md) — Prerequisites, environment variables, running backend, frontend & supporting servers.
-- 💻 [Development Guide](./DEVELOPMENT_GUIDE.md) — Engineering workflow, coding standards, and project patterns.
+Below is the complete index of technical documentation for system architecture, API specifications, hardware setup, and deployment:
 
-### 🏛️ Architecture & Structure
-- 🏗️ [System Architecture](./ARCHITECTURE.md) — End-to-end data flow, frontend, backend, ML models, IoT, and database architecture.
-- 📁 [Project Structure](./PROJECT_STRUCTURE.md) — Directory layout, key files, responsibilities, and edit safety boundaries.
-- 🗄️ [Database Schema](./DATABASE.md) — Supabase PostgreSQL schema, tables, indices, RLS rules, and audit trails.
-- 🔌 [API Documentation](./API_DOCUMENTATION.md) — Full REST API endpoint reference, request/response structures, and authentication specs.
+### 1. Core Architecture & System Design
+* [PROJECT_OVERVIEW.md](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/docs/PROJECT_OVERVIEW.md) — High-level product overview, goals, and core capabilities.
+* [ARCHITECTURE.md](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/docs/ARCHITECTURE.md) — In-depth system architecture, multi-layer components, and data flow.
+* [PROJECT_STRUCTURE.md](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/docs/PROJECT_STRUCTURE.md) — Complete repository directory structure and module mapping.
 
-### 🔐 Operations & Security
-- 🔒 [Security & Compliance](./SECURITY.md) — Authentication, RBAC roles, security headers, CORS, and HIPAA audit trails.
-- 🛠️ [Configuration Reference](./CONFIGURATION.md) — System environment variables, default settings, and secret management.
-- 🧪 [Testing & Verification](./TESTING.md) — Pytest test suite, test coverage, commands, and verification workflows.
-- 🚢 [Deployment Guide](./DEPLOYMENT.md) — Production architecture, ASGI application serving, Next.js build, and health checks.
-- 🔍 [Troubleshooting Log](./TROUBLESHOOTING.md) — Documented issues, root causes, exact fixes, and prevention steps.
+### 2. Setup & Installation
+* [SETUP.md](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/docs/SETUP.md) — Step-by-step local setup, prerequisites, and environment variable guide.
+* [CONFIGURATION.md](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/docs/CONFIGURATION.md) — Comprehensive reference for `.env.local` parameters and services.
 
-### 📜 History, Decisions & Roadmap
-- 📡 [IoTConnect MQTT Migration Plan](./iotconnect.md) — Master migration tracker (Stages 0–11) for MQTT broker, SSE stream, and firmware migration.
-- 📝 [Development Log](./DEVELOPMENT_LOG.md) — Chronological history of engineering sessions and changes.
-- 🏛️ [Architectural Decisions (ADRs)](./DECISIONS.md) — Formal records of technical decisions and trade-offs.
-- 📦 [Changelog](./CHANGELOG.md) — Version history and release notes.
-- ⚠️ [Known Issues](./KNOWN_ISSUES.md) — Tracked technical debts, limitations, and workarounds.
-- 🎯 [Project Roadmap](./ROADMAP.md) — Completed milestones, active tasks, and planned enhancements.
+### 3. Backend, API & Database
+* [API_DOCUMENTATION.md](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/docs/API_DOCUMENTATION.md) — FastAPI REST endpoints, request/response schemas, and SSE streams.
+* [DATABASE.md](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/docs/DATABASE.md) — Supabase PostgreSQL schema, tables, indexes, and RLS security policies.
+
+### 4. Machine Learning & Hardware
+* [ML_COMPLETE_ANALYSIS.md](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/docs/ML_COMPLETE_ANALYSIS.md) — Dual ML model training, feature engineering, and SHAP explainability.
+* [iotconnect.md](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/docs/iotconnect.md) — ESP8266 hardware integration, MQTT broker taxonomy, and hardware audit.
+
+### 5. Deployment, Security & Operations
+* [DEPLOYMENT.md](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/docs/DEPLOYMENT.md) — Docker Compose containerization and production deployment steps.
+* [SECURITY.md](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/docs/SECURITY.md) — Security policies, JWT token authentication, and secret rotation rules.
+* [TESTING.md](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/docs/TESTING.md) — Pytest automated test suite and test coverage report.
+* [DEVELOPMENT_GUIDE.md](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/docs/DEVELOPMENT_GUIDE.md) — Developer guidelines and code quality standards.
+* [TROUBLESHOOTING.md](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/docs/TROUBLESHOOTING.md) — Diagnostic guide for common backend, database, or MQTT issues.
+* [ROADMAP.md](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/docs/ROADMAP.md) — Project milestones, status, and future roadmap items.
+
+---
+
+For quick setup instructions, refer back to the main repository [README.md](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/README.md).
