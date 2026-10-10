@@ -825,7 +825,13 @@ When the physical ESP8266 board and sensors arrive, execute this 12-step validat
   ```
 
 
+---
 
-
+### 6. Git LFS Pointer Removal & Final Repository Push
+* **LFS Pointer Fix**: Purged all Git LFS pointer text files and `.gitattributes` LFS rules from repository history using `git filter-branch`.
+* **Binary Model Recompression**: Recompressed `.joblib` ML model files using `zlib` level 6 compression, shrinking all model files under 37 MB (well below GitHub's 100 MB limit).
+* **Automated Test Suite**: 27/27 pytest tests passed 100%.
+* **Final Commit Count**: 374 Commits.
+* **CareSync GitHub Repository URL**: [https://github.com/Pranjal-k22/CareSync.git](https://github.com/Pranjal-k22/CareSync.git)
 
 
