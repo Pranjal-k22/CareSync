@@ -10,7 +10,7 @@ import datetime
 import logging
 from typing import List, Dict, Any, Optional
 
-logger = logging.getLogger("healconnect.database")
+logger = logging.getLogger("caresync.database")
 
 # Check if Supabase client is available & configured
 SUPABASE_URL = os.environ.get("SUPABASE_URL", "")

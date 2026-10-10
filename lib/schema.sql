@@ -8,7 +8,7 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- Default Admin Account Credentials for Supabase Auth:
--- Email: Admin@healconnect.com
+-- Email: Admin@caresync.com
 -- Password: 12345678
 -- Role: admin
 

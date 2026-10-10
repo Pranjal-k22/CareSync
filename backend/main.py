@@ -28,18 +28,18 @@ from backend.app.services.db_service import db_service
 SECRET_KEY = os.environ.get("JWT_SECRET_KEY")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24
-DEMO_ADMIN_EMAIL = "admin@healconnect.com"
+DEMO_ADMIN_EMAIL = "admin@caresync.com"
 DEMO_ADMIN_PASSWORD = "12345678"
 DEMO_DOCTOR_PASSWORD = "doc12345"
 DEMO_DOCTORS = [
-    ("Dr. Sarah Johnson, MD", "sarah.johnson@healconnect.com"),
-    ("Dr. Michael Chen, MD", "michael.chen@healconnect.com"),
-    ("Dr. Emily Rodriguez, MD", "emily.rodriguez@healconnect.com"),
-    ("Dr. James Wilson, MD", "james.wilson@healconnect.com"),
-    ("Dr. Priya Patel, MD", "priya.patel@healconnect.com"),
-    ("Dr. Robert Sterling, MD", "robert.sterling@healconnect.com"),
-    ("Dr. Lisa Ray, MD", "lisa.ray@healconnect.com"),
-    ("Dr. Ananya Roy, MD", "ananya.roy@healconnect.com"),
+    ("Dr. Sarah Johnson, MD", "sarah.johnson@caresync.com"),
+    ("Dr. Michael Chen, MD", "michael.chen@caresync.com"),
+    ("Dr. Emily Rodriguez, MD", "emily.rodriguez@caresync.com"),
+    ("Dr. James Wilson, MD", "james.wilson@caresync.com"),
+    ("Dr. Priya Patel, MD", "priya.patel@caresync.com"),
+    ("Dr. Robert Sterling, MD", "robert.sterling@caresync.com"),
+    ("Dr. Lisa Ray, MD", "lisa.ray@caresync.com"),
+    ("Dr. Ananya Roy, MD", "ananya.roy@caresync.com"),
 ]
 
 if os.environ.get("ENVIRONMENT", "development").lower() == "production" and not SECRET_KEY:
@@ -78,9 +78,9 @@ def ensure_development_accounts() -> None:
         })
 
     # 2. Generic Doctor
-    if not db_service.get_user_by_email("doctor@healconnect.com"):
+    if not db_service.get_user_by_email("doctor@caresync.com"):
         db_service.save_user({
-            "email": "doctor@healconnect.com",
+            "email": "doctor@caresync.com",
             "name": "Dr. Ananya Roy, MD",
             "hashed_password": hash_password("12345678"),
             "role": "doctor",
@@ -90,9 +90,9 @@ def ensure_development_accounts() -> None:
         })
 
     # 3. Generic Patient
-    if not db_service.get_user_by_email("patient@healconnect.com"):
+    if not db_service.get_user_by_email("patient@caresync.com"):
         db_service.save_user({
-            "email": "patient@healconnect.com",
+            "email": "patient@caresync.com",
             "name": "Rahul Sharma",
             "hashed_password": hash_password("12345678"),
             "role": "patient",
@@ -102,10 +102,10 @@ def ensure_development_accounts() -> None:
 
     # 4. Board Certified Doctors Roster with IDs and Default Passwords
     board_doctors = [
-        ("Dr. Sarah Johnson, MD", "sarah.johnson@healconnect.com", "DOC-1001", "Cardiology", "MCI-2016-77312", "Stanford Health Care"),
-        ("Dr. Michael Chen, MD", "michael.chen@healconnect.com", "DOC-1002", "Neurology", "MCI-2017-99241", "Johns Hopkins Hospital"),
-        ("Dr. Emily Rodriguez, MD", "emily.rodriguez@healconnect.com", "DOC-1003", "Pediatrics", "MCI-2019-33812", "Boston Children's Hospital"),
-        ("Dr. James Wilson, MD", "james.wilson@healconnect.com", "DOC-1004", "Orthopedics", "MCI-2015-11928", "Mayo Clinic Network")
+        ("Dr. Sarah Johnson, MD", "sarah.johnson@caresync.com", "DOC-1001", "Cardiology", "MCI-2016-77312", "Stanford Health Care"),
+        ("Dr. Michael Chen, MD", "michael.chen@caresync.com", "DOC-1002", "Neurology", "MCI-2017-99241", "Johns Hopkins Hospital"),
+        ("Dr. Emily Rodriguez, MD", "emily.rodriguez@caresync.com", "DOC-1003", "Pediatrics", "MCI-2019-33812", "Boston Children's Hospital"),
+        ("Dr. James Wilson, MD", "james.wilson@caresync.com", "DOC-1004", "Orthopedics", "MCI-2015-11928", "Mayo Clinic Network")
     ]
     for name, email, doc_id, spec, lic, hosp in board_doctors:
         existing_doc = db_service.get_user_by_email(email)
@@ -129,11 +129,11 @@ def ensure_development_accounts() -> None:
 
     # 5. Patient Roster with IDs and Default Passwords
     board_patients = [
-        ("Rahul Sharma", "rahul.sharma@healconnect.com", "PAT-1001", "O+"),
-        ("Priya Patel", "priya.patel@healconnect.com", "PAT-1002", "A+"),
-        ("Amitav Roy", "amitav.roy@healconnect.com", "PAT-1003", "B+"),
-        ("Sneha Reddy", "sneha.reddy@healconnect.com", "PAT-1004", "AB+"),
-        ("Vikram Mehta", "vikram.mehta@healconnect.com", "PAT-8891", "O+")
+        ("Rahul Sharma", "rahul.sharma@caresync.com", "PAT-1001", "O+"),
+        ("Priya Patel", "priya.patel@caresync.com", "PAT-1002", "A+"),
+        ("Amitav Roy", "amitav.roy@caresync.com", "PAT-1003", "B+"),
+        ("Sneha Reddy", "sneha.reddy@caresync.com", "PAT-1004", "AB+"),
+        ("Vikram Mehta", "vikram.mehta@caresync.com", "PAT-8891", "O+")
     ]
     for name, email, pat_id, bg in board_patients:
         existing_pat = db_service.get_user_by_email(email)
@@ -158,7 +158,7 @@ security = HTTPBearer(auto_error=False)
 
 def get_current_user(credentials: Optional[HTTPAuthorizationCredentials] = Depends(security)):
     if not credentials:
-        return {"sub": "guest@healconnect.com", "role": "admin", "name": "Guest Administrator"}
+        return {"sub": "guest@caresync.com", "role": "admin", "name": "Guest Administrator"}
 
     token = credentials.credentials
     try:
@@ -426,12 +426,12 @@ for i in range(50):
 # PYDANTIC INPUT VALIDATION & SANITIZATION SCHEMAS
 # ---------------------------------------------------------
 class LoginRequest(BaseModel):
-    email: str = Field(..., example="admin@healconnect.com")
+    email: str = Field(..., example="admin@caresync.com")
     password: str = Field(..., min_length=6, max_length=100)
 
 class RegisterRequest(BaseModel):
     name: str = Field(..., min_length=2, max_length=100)
-    email: str = Field(..., example="user@healconnect.com")
+    email: str = Field(..., example="user@caresync.com")
     password: str = Field(..., min_length=6, max_length=100)
     role: Optional[str] = Field(default="patient", pattern="^(admin|doctor|patient|staff)$")
 
@@ -757,7 +757,7 @@ def create_new_doctor(req: dict):
     """Admin endpoint to onboard a new doctor with Doctor ID and password."""
     ensure_development_accounts()
     doc_name = req.get("name", "New Doctor").strip()
-    raw_email = req.get("email", f"doc_{int(time.time())}@healconnect.com").lower().strip()
+    raw_email = req.get("email", f"doc_{int(time.time())}@caresync.com").lower().strip()
     raw_password = req.get("password", "12345678").strip()
     specialty = req.get("specialty", "General Medicine")
     license_no = req.get("license_no", f"MCI-2026-{random.randint(10000, 99999)}")
