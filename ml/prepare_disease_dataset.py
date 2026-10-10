@@ -84,7 +84,7 @@ def generate_disease_dataset(n_samples: int = 15000, random_state: int = 42) -> 
     return df
 
 def main():
-    root = Path("/Users/omraj/Downloads/Heal_connectmain")
+root = Path(__file__).resolve().parent.parent
     datasets_dir = root / "datasets/disease_dataset"
     ml_data_dir = root / "ml/data"
     

@@ -3,7 +3,7 @@ import numpy as np
 import json
 from pathlib import Path
 
-ROOT = Path("/Users/omraj/Downloads/Heal_connectmain")
+ROOT = Path(__file__).resolve().parent.parent
 
 PHYSIOLOGICAL_BOUNDS = {
     "temperature_c": (34.0, 43.0),

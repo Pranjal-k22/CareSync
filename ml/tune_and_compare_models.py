@@ -18,7 +18,7 @@ from sklearn.metrics import (
     accuracy_score, precision_recall_fscore_support, roc_auc_score, average_precision_score, confusion_matrix
 )
 
-ROOT = Path("/Users/omraj/Downloads/Heal_connectmain")
+ROOT = Path(__file__).resolve().parent.parent
 DATA_PATH = ROOT / "ml/data/cleaned_disease_dataset.csv"
 ARTIFACTS_DIR = ROOT / "ml/artifacts"
 BACKEND_DIR = ROOT / "backend/models"

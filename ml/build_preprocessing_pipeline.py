@@ -11,7 +11,7 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, precision_recall_fscore_support, confusion_matrix, roc_auc_score
 
-ROOT = Path("/Users/omraj/Downloads/Heal_connectmain")
+ROOT = Path(__file__).resolve().parent.parent
 
 def build_and_train_disease_pipeline():
     print("==================================================")

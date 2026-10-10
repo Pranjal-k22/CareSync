@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 from sklearn.model_selection import train_test_split, GroupShuffleSplit
 
-ROOT = Path("/Users/omraj/Downloads/Heal_connectmain")
+ROOT = Path(__file__).resolve().parent.parent
 
 def split_disease_dataset():
     print("\n--- 1. SPLITTING DISEASE DIAGNOSIS DATASET ---")

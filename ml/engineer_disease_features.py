@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
 
-ROOT = Path("/Users/omraj/Downloads/Heal_connectmain")
+ROOT = Path(__file__).resolve().parent.parent
 
 def add_derived_features(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
