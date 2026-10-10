@@ -1,0 +1,144 @@
+{
+  "explanation_type": "SHAP Explainer Local Feature Contribution",
+  "patient_id": "DIS-14112",
+  "predicted_class_id": 2,
+  "predicted_condition": "Fever-Related Condition",
+  "prediction_probabilities": {
+    "Normal Baseline": 0.0032,
+    "Flu / Influenza": 0.0146,
+    "Fever-Related Condition": 0.9821
+  },
+  "features_increasing_prediction": [
+    {
+      "feature": "fatigue_score",
+      "transformed_value": 1.118,
+      "shap_value": 0.173,
+      "effect": "increases_risk"
+    },
+    {
+      "feature": "body_ache",
+      "transformed_value": 1.057,
+      "shap_value": 0.023,
+      "effect": "increases_risk"
+    },
+    {
+      "feature": "cough_severity",
+      "transformed_value": 0.102,
+      "shap_value": 0.0133,
+      "effect": "increases_risk"
+    },
+    {
+      "feature": "age",
+      "transformed_value": -1.037,
+      "shap_value": 0.0036,
+      "effect": "increases_risk"
+    }
+  ],
+  "features_decreasing_prediction": [
+    {
+      "feature": "headache_severity",
+      "transformed_value": 1.36,
+      "shap_value": -0.2043,
+      "effect": "reduces_risk"
+    },
+    {
+      "feature": "spo2_pct",
+      "transformed_value": 0.495,
+      "shap_value": -0.1031,
+      "effect": "reduces_risk"
+    },
+    {
+      "feature": "temperature_c",
+      "transformed_value": 1.246,
+      "shap_value": -0.0572,
+      "effect": "reduces_risk"
+    },
+    {
+      "feature": "heart_rate",
+      "transformed_value": 0.863,
+      "shap_value": -0.0167,
+      "effect": "reduces_risk"
+    },
+    {
+      "feature": "sore_throat",
+      "transformed_value": -0.747,
+      "shap_value": -0.0085,
+      "effect": "reduces_risk"
+    }
+  ],
+  "all_shap_factors": [
+    {
+      "feature": "headache_severity",
+      "transformed_value": 1.36,
+      "shap_value": -0.2043,
+      "effect": "reduces_risk"
+    },
+    {
+      "feature": "fatigue_score",
+      "transformed_value": 1.118,
+      "shap_value": 0.173,
+      "effect": "increases_risk"
+    },
+    {
+      "feature": "spo2_pct",
+      "transformed_value": 0.495,
+      "shap_value": -0.1031,
+      "effect": "reduces_risk"
+    },
+    {
+      "feature": "temperature_c",
+      "transformed_value": 1.246,
+      "shap_value": -0.0572,
+      "effect": "reduces_risk"
+    },
+    {
+      "feature": "body_ache",
+      "transformed_value": 1.057,
+      "shap_value": 0.023,
+      "effect": "increases_risk"
+    },
+    {
+      "feature": "heart_rate",
+      "transformed_value": 0.863,
+      "shap_value": -0.0167,
+      "effect": "reduces_risk"
+    },
+    {
+      "feature": "cough_severity",
+      "transformed_value": 0.102,
+      "shap_value": 0.0133,
+      "effect": "increases_risk"
+    },
+    {
+      "feature": "sore_throat",
+      "transformed_value": -0.747,
+      "shap_value": -0.0085,
+      "effect": "reduces_risk"
+    },
+    {
+      "feature": "age",
+      "transformed_value": -1.037,
+      "shap_value": 0.0036,
+      "effect": "increases_risk"
+    },
+    {
+      "feature": "chills",
+      "transformed_value": 1.075,
+      "shap_value": -0.0025,
+      "effect": "reduces_risk"
+    },
+    {
+      "feature": "gender_Male",
+      "transformed_value": 1.0,
+      "shap_value": -0.0004,
+      "effect": "reduces_risk"
+    },
+    {
+      "feature": "gender_Female",
+      "transformed_value": 0.0,
+      "shap_value": -0.0001,
+      "effect": "reduces_risk"
+    }
+  ],
+  "distinction_note": "SHAP feature values represent mathematical model explanations of tree split contributions, NOT biological clinical causation."
+}
