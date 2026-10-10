@@ -21,7 +21,7 @@ This document describes all environment variables and configuration settings use
 | `MQTT_BROKER_PORT` | Mosquitto MQTT Broker TCP port (1883 dev / 8883 TLS) | Optional | `1883` | `backend/app/services/mqtt_ingestion_service.py` |
 | `MQTT_USERNAME` | Backend MQTT Ingestion service username | Optional | `ingest_service_dev` | `backend/app/services/mqtt_ingestion_service.py` |
 | `MQTT_PASSWORD` | Backend MQTT Ingestion service password | Optional | `ingest_password_789!` | `backend/app/services/mqtt_ingestion_service.py` |
-| `MQTT_CLIENT_ID` | Backend MQTT Ingestion service client identifier | Optional | `caresync-backend-ingest` | `backend/app/services/mqtt_ingestion_service.py` |
+| `MQTT_CLIENT_ID` | Backend MQTT Ingestion service client identifier | Optional | `healconnect-backend-ingest` | `backend/app/services/mqtt_ingestion_service.py` |
 | `MODEL_PATH` | Path to active deterioration `.joblib` model pipeline | Optional | `backend/models/risk_model.joblib` | `backend/app/config.py`, `predict.py` |
 | `DETERIORATION_MODEL_PATH` | Path to registry deterioration model pipeline | Optional | `backend/models/registry/deterioration/v1/model.joblib` | `backend/app/config.py` |
 | `DISEASE_MODEL_PATH` | Path to active disease/flu `.joblib` model pipeline | Optional | `backend/models/disease_model.joblib` | `backend/app/config.py`, `predict_disease.py` |

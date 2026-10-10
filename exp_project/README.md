@@ -11,7 +11,7 @@
 * [`COMPLETE_PROJECT_TECHNICAL_ANALYSIS.md`](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/exp_project/COMPLETE_PROJECT_TECHNICAL_ANALYSIS.md) — Full technical analysis and architecture manual.
 * [`ML_COMPLETE_ANALYSIS.md`](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/exp_project/ML_COMPLETE_ANALYSIS.md) — Deep Machine Learning, dataset, and SHAP XAI breakdown.
 * [`VIVA_TECHNICAL_EXPLANATION.md`](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/exp_project/VIVA_TECHNICAL_EXPLANATION.md) — Oral examination and viva preparation guide.
-* [`HealConnect_Comprehensive_Project_Report.pdf`](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/exp_project/HealConnect_Comprehensive_Project_Report.pdf) — Complete B.Tech Academic Project Report PDF (2.00 MB).
+* [`CareSync_Comprehensive_Project_Report.pdf`](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/exp_project/CareSync_Comprehensive_Project_Report.pdf) — Complete B.Tech Academic Project Report PDF (2.00 MB).
 
 ---
 

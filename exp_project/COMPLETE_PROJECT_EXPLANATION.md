@@ -43,7 +43,7 @@ To bridge low-cost IoT hardware with high-performance predictive clinical intell
 ## 2. Complete Project Structure
 
 ```
-HealConnect_main2.0/
+CareSync_main2.0/
 ├── backend/                        # FastAPI & Pytest Backend Core
 │   ├── app/                        # Main application logic
 │   │   ├── api/                    # REST API routes (auth, telemetry, patients, ml, sse)

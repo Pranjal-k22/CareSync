@@ -39,10 +39,4 @@ flowchart TD
 ```
 
 ## Request Lifecycle
-`Client Request` $
-ightarrow$ `FastAPI Router` $
-ightarrow$ `OAuth2 JWT Middleware` $
-ightarrow$ `Route Controller` $
-ightarrow$ `Service Layer` $
-ightarrow$ `SQLAlchemy ORM / ML Model` $
-ightarrow$ `JSON / SSE Response`.
+`Client Request` $ightarrow$ `FastAPI Router` $ightarrow$ `OAuth2 JWT Middleware` $ightarrow$ `Route Controller` $ightarrow$ `Service Layer` $ightarrow$ `SQLAlchemy ORM / ML Model` $ightarrow$ `JSON / SSE Response`.

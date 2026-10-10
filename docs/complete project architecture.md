@@ -276,7 +276,7 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    Root["caresync (Root Namespace)"]
+    Root["healconnect (Root Namespace)"]
     
     Hospital["{hospital_id} (Hospital Node Identifier)"]
     Root --> Hospital

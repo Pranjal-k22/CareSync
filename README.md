@@ -10,7 +10,7 @@ Modern hospital inpatient wards and remote ICU settings struggle with fragmented
 
 **CareSync** solves this challenge by providing:
 * **Continuous Edge Telemetry**: Low-cost ESP8266 hardware nodes stream physiological vital signs over MQTT.
-* **Dual ML Predictive Analytics**: Real-time risk scoring for early patient deterioration (Random Forest / XGBoost) and multi-class disease diagnosis.
+* **Dual ML Predictive Analytics**: Real-time risk scoring for early patient deterioration (RandomForestClassifier) and multi-class disease diagnosis (GradientBoostingClassifier).
 * **Clinical XAI Explainability**: Feature-level SHAP attributions explaining *why* a patient is flagged as high-risk.
 * **Privacy-Preserving Federated Learning**: Multi-hospital collaborative model training (FedAvg) using Flower without sharing raw patient records.
 
@@ -219,4 +219,5 @@ TODO: list team members and any upstream project this was based on
 
 ## 📄 License
 
-TODO: choose a license
+This project is licensed under the [MIT License](License.md) (`Copyright (c) 2025 @`).
+

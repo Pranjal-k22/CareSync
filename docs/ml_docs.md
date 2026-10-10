@@ -144,8 +144,8 @@ The repository includes a complete 26-notebook suite covering data collection, E
 | `19_Flu_Final_Model.ipynb` | Serialization | Model serialization to `flu_model_v1.joblib` |
 | `20_Flu_Prediction.ipynb` | Inference | Clinical inference testing with synthetic patient cases |
 | `21_Flu_SHAP_Explainability.ipynb` | SHAP XAI | SHAP TreeExplainer summary plots and force plots |
-| `HealConnect_AI_Risk_Model_Demo.ipynb` | Interactive Demo | Comprehensive AI risk model demonstration notebook |
-| `HealConnect_Multi_Model_Benchmark.ipynb` | System Benchmark | Full multi-hospital model comparison benchmark |
+| `CareSync_AI_Risk_Model_Demo.ipynb` | Interactive Demo | Comprehensive AI risk model demonstration notebook |
+| `CareSync_Multi_Model_Benchmark.ipynb` | System Benchmark | Full multi-hospital model comparison benchmark |
 
 ---
 

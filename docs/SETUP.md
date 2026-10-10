@@ -21,7 +21,7 @@ Ensure the following software packages are installed on your system:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/Pranjal-k22/CareSync.git
+git clone https://github.com/OmRaj6666/CareSync.git
 cd CareSync
 
 # 2. Install Python backend dependencies

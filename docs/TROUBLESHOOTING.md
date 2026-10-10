@@ -35,7 +35,7 @@ Pytest model deserialization tests (`test_models.py`, `test_api.py`) passed clea
 ## Issue 002 — Hardcoded Machine Absolute Paths (`/Users/omraj/...`)
 
 ### Problem
-Tests failed with `FileNotFoundError: [Errno 2] No such file or directory: '\Users\omraj\Downloads\CareSync\backend\models...'`.
+Tests failed with `FileNotFoundError: [Errno 2] No such file or directory: '\Users\omraj\Downloads\Heal_connectmain\backend\models...'`.
 
 ### Symptoms
 Model registry configuration lookups failed on any developer machine other than the original author's local macOS path.

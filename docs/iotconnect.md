@@ -604,20 +604,20 @@ Primary Telemetry Path:
    - WiFi / PubSubClient: Operates over internal ESP8266 SPI/WiFi radio interface. Zero pin collisions between MAX30102, DHT22, DS18B20, and Wi-Fi stack.
 
 3. **Memory Safety Audit**:
-   - Verified by reading [Network.cpp](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/HealthConnect_Kit_ESP8266_Code/_legacy_blynk_DO_NOT_USE/Network.cpp) (lines 134–156): `publishVitals()` constructs JSON payload using dynamic Arduino `String` concatenation on heap every 2000ms. On long-term multi-day runtimes, dynamic heap string allocation on ESP8266 (~30KB RAM) risks heap fragmentation. Replacing with `snprintf()` stack buffers is recommended for production.
+   - Verified by reading [Network.cpp](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/HealthConnect_Kit_ESP8266_Code/Network.cpp) (lines 134–156): `publishVitals()` constructs JSON payload using dynamic Arduino `String` concatenation on heap every 2000ms. On long-term multi-day runtimes, dynamic heap string allocation on ESP8266 (~30KB RAM) risks heap fragmentation. Replacing with `snprintf()` stack buffers is recommended for production.
 
 4. **WiFi & MQTT Backoff Logic**:
    - `maintainWiFi()` (Network.cpp:38-59): Resets `wifiBackoffInterval = 1000` upon `WL_CONNECTED`. Doubles interval up to 30000ms max on failure.
    - `maintainMQTT()` (Network.cpp:88-124): Resets `mqttBackoffInterval = 1000` upon successful MQTT connection. Doubles interval up to 30000ms max on failure. Cannot get stuck in infinite deadlocks.
 
 5. **LWT Registration Correctness**:
-   - Verified by reading [Network.cpp](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/HealthConnect_Kit_ESP8266_Code/_legacy_blynk_DO_NOT_USE/Network.cpp) line 112: `mqttClient.connect(MQTT_DEVICE_ID, MQTT_USERNAME, MQTT_PASSWORD, statusTopic.c_str(), 1, true, lwtPayload.c_str())`. LWT registered on `connect()` call with `healconnect/{hosp}/{dev}/status`, QoS 1, Retain `true`.
+   - Verified by reading [Network.cpp](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/HealthConnect_Kit_ESP8266_Code/Network.cpp) line 112: `mqttClient.connect(MQTT_DEVICE_ID, MQTT_USERNAME, MQTT_PASSWORD, statusTopic.c_str(), 1, true, lwtPayload.c_str())`. LWT registered on `connect()` call with `healconnect/{hosp}/{dev}/status`, QoS 1, Retain `true`.
 
 6. **Credential Handling**:
-   - `secrets.example.h` correctly uses template placeholders. Note: lines 4–7 in [Network.cpp](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/HealthConnect_Kit_ESP8266_Code/_legacy_blynk_DO_NOT_USE/Network.cpp) contain hardcoded legacy Firebase credentials (`API_KEY`, `USER_EMAIL`).
+   - `secrets.example.h` correctly uses template placeholders. Note: lines 4–7 in [Network.cpp](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/HealthConnect_Kit_ESP8266_Code/Network.cpp) contain hardcoded legacy Firebase credentials (`API_KEY`, `USER_EMAIL`).
 
 7. **Compiler Flag Coexistence**:
-   - Setting `#define LEGACY_BLYNK_ENABLED 0` and `#define LEGACY_FIREBASE_ENABLED 0` in [HealthConnect_Kit_ESP8266_Code.ino](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/HealthConnect_Kit_ESP8266_Code/_legacy_blynk_DO_NOT_USE/HealthConnect_Kit_ESP8266_Code.ino) cleanly bypasses Blynk and Firebase method calls without compilation errors or dangling references.
+   - Setting `#define LEGACY_BLYNK_ENABLED 0` and `#define LEGACY_FIREBASE_ENABLED 0` in [HealthConnect_Kit_Arduino_Code.ino](file:///c:/Users/pc/Desktop/capstone/Heal_connectmain2.0/HealthConnect_Kit_ESP8266_Code/HealthConnect_Kit_Arduino_Code.ino) cleanly bypasses Blynk and Firebase method calls without compilation errors or dangling references.
 
 8. **Sequence Counter & Reboot Survival**:
    - `sequenceNumber` declared in `Network.h:38` as `uint32_t sequenceNumber`. Persists in global `networkManager` object across WiFi/MQTT network reconnects. Resets to 0 only on physical ESP8266 reboot / power cycle.
