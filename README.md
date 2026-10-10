@@ -213,11 +213,11 @@ Explore the detailed technical documentation in the [`docs/`](file:///c:/Users/p
 
 ## 👥 Credits
 
-TODO: list team members and any upstream project this was based on
+CareSync is based on HealConnect by Om Raj ([https://github.com/OmRaj6666/HealConnect](https://github.com/OmRaj6666/HealConnect)). Core platform additions, telemetry ingestion architecture, SSE streaming engine, automated testing suites, and documentation maintained by Pranjal Karan ([https://github.com/Pranjal-k22](https://github.com/Pranjal-k22)).
 
 ---
 
 ## 📄 License
 
-This project is licensed under the [MIT License](License.md) (`Copyright (c) 2025 @`).
+This project is licensed under the [MIT License](License.md) (Copyright (c) 2025 Om Raj, (c) 2026 Pranjal Karan).
 
