@@ -2,7 +2,7 @@
 
 **Project Title**: CareSync: Enterprise Multi-Hospital AI Telemetry, Clinical Deterioration Prediction & Privacy-Preserving Federated Learning Platform  
 **Document Type**: Final Year B.Tech Academic Project Report & Technical Documentation  
-**Repository**: `OmRaj6666/CareSync`  
+**Repository**: `Pranjal-k22/CareSync`  
 **Date**: September 2026  
 **Status**: Software Release Candidate (`84/84 Tests Passing`, `45/45 Frontend Pages Compiled`, `Physical Hardware Verification Deferred`)
 
