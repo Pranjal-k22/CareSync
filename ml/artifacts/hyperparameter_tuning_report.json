@@ -1,0 +1,35 @@
+{
+  "tuning_version": "v1.0-5FOLD-CV",
+  "selected_best_model": "Gradient Boosting (Tuned)",
+  "best_cv_f1_score": 0.9668,
+  "best_hyperparameters": {
+    "classifier__learning_rate": 0.05,
+    "classifier__max_depth": 5,
+    "classifier__n_estimators": 100
+  },
+  "final_untouched_test_metrics": {
+    "accuracy": 0.9649,
+    "precision": 0.9651,
+    "recall": 0.9649,
+    "f1_score": 0.9649,
+    "roc_auc": 0.9969,
+    "pr_auc_average_precision": 0.992
+  },
+  "confusion_matrix": [
+    [
+      1012,
+      0,
+      0
+    ],
+    [
+      0,
+      625,
+      46
+    ],
+    [
+      0,
+      33,
+      534
+    ]
+  ]
+}
