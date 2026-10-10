@@ -1,0 +1,30 @@
+{
+  "source": "datasets/hospital-deterioration/hospital_deterioration_hourly_panel.csv",
+  "output": "ml/data/cleaned_hospital_deterioration.csv",
+  "rows": 417866,
+  "features": [
+    "heart_rate",
+    "respiratory_rate",
+    "spo2_pct",
+    "temperature_c",
+    "systolic_bp",
+    "diastolic_bp",
+    "oxygen_device",
+    "oxygen_flow",
+    "mobility_score",
+    "nurse_alert",
+    "age",
+    "gender",
+    "comorbidity_index",
+    "admission_type"
+  ],
+  "target": "deterioration_next_12h",
+  "class_counts": {
+    "0": 395277,
+    "1": 22589
+  },
+  "class_percentages": {
+    "0": 94.59,
+    "1": 5.41
+  }
+}
