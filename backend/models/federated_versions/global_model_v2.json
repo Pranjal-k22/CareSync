@@ -1,0 +1,17 @@
+{
+  "round_number": 2,
+  "model_version": "global_model_v2",
+  "participating_hospitals": [
+    "Hospital A - Central Edge Node",
+    "Hospital B - Apollo Telemetry Node",
+    "Hospital C - Fortis Cardiac Node"
+  ],
+  "training_timestamp": "2026-10-10T15:45:32.745005+00:00",
+  "total_training_samples": 334291,
+  "metrics": {
+    "global_accuracy": 94.59,
+    "global_loss": 0.2062,
+    "privacy_budget_epsilon": 0.5
+  },
+  "algorithm": "Flower NumPyClient Weighted FedAvg (Federated Averaging)"
+}
