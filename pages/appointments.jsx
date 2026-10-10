@@ -435,7 +435,7 @@ export default function Appointments() {
       name: d.name,
       specialty: d.specialty || d.speciality || 'General Medicine',
       subSpecialty: 'Board-Certified Specialist',
-      hospital: d.hospital || 'HealConnect Medical Center',
+      hospital: d.hospital || 'CareSync Medical Center',
       image: d.avatar_url || d.img || 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&q=80',
       available: d.is_available_today !== undefined ? d.is_available_today : true,
       nextAvailable: d.is_available_today ? `Today (${d.schedule_hours || '09:00 AM - 05:00 PM'})` : 'Off Duty Today',
@@ -443,7 +443,7 @@ export default function Appointments() {
       rating: 4.9,
       reviews: 145,
       fee: d.fee || '₹500',
-      location: 'HealConnect Clinic',
+      location: 'CareSync Clinic',
       consultationTypes: ['In-Clinic', 'Video Call'],
       about: `Dr. ${d.name} is a leading ${d.specialty || d.speciality} specialist providing compassionate, evidence-based care.`
     }));

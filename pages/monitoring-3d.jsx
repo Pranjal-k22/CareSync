@@ -56,7 +56,7 @@ export default function Monitoring3D() {
   return (
     <div style={{ backgroundColor: '#020617', color: '#ffffff' }} className="min-h-screen font-sans relative overflow-x-hidden pb-16">
       <Head>
-        <title>Real-World ESP8266 Hardware Studio — HealConnect</title>
+        <title>Real-World ESP8266 Hardware Studio — CareSync</title>
         <meta name="description" content="Top-Notch Pro Developer Real-World ESP8266 Hardware Prototype Studio." />
         <link rel="icon" type="image/svg+xml" href="/Logo.svg" />
       </Head>
@@ -83,7 +83,7 @@ export default function Monitoring3D() {
               style={{ background: 'linear-gradient(to right, #2563eb, #0d9488)', color: '#ffffff' }}
               className="font-extrabold px-5 py-2.5 rounded-xl text-xs transition-all shadow-lg hover:brightness-110"
             >
-              ← Return to HealConnect Home
+              ← Return to CareSync Home
             </button>
           </div>
         </div>
@@ -249,7 +249,7 @@ export default function Monitoring3D() {
             style={{ background: 'linear-gradient(to right, #2563eb, #0d9488)', color: '#ffffff' }}
             className="font-extrabold py-3.5 px-8 rounded-2xl shadow-xl transition-all hover:brightness-110 border border-white/10"
           >
-            ← Return to HealConnect Home
+            ← Return to CareSync Home
           </button>
           
 

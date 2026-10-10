@@ -203,7 +203,7 @@ export default function ProfessionalSignIn() {
   return (
     <div style={{ backgroundColor: '#0f172a', color: '#f8fafc' }} className="min-h-screen pt-24 pb-16 px-4 flex items-center justify-center font-sans relative overflow-hidden">
       <Head>
-        <title>Healthcare Portal Authentication | HealConnect</title>
+        <title>Healthcare Portal Authentication | CareSync</title>
       </Head>
 
       {/* Ambient Radial Background Glow */}

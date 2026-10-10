@@ -13,7 +13,7 @@ export default function ProfileView() {
       {!update ? (
         <div className="max-w-4xl mx-auto p-6 sm:p-8">
           <header className="text-center mb-8">
-            <h1 className="text-3xl font-extrabold text-white">Your HealConnect Profile</h1>
+            <h1 className="text-3xl font-extrabold text-white">Your CareSync Profile</h1>
             <div className="mx-auto w-24 h-1 my-4 bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full"></div>
           </header>
 

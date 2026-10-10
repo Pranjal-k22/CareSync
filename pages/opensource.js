@@ -8,8 +8,8 @@ export default function OpenSourcePage() {
   return (
     <div className="min-h-screen bg-slate-900 text-slate-100 font-sans">
       <Head>
-        <title>Open Source & Ecosystem | HealConnect Quantum</title>
-        <meta name="description" content="HealConnect Open Source Initiative - Building secure, intelligent, and interoperable healthcare tools in the open." />
+        <title>Open Source & Ecosystem | CareSync Quantum</title>
+        <meta name="description" content="CareSync Open Source Initiative - Building secure, intelligent, and interoperable healthcare tools in the open." />
       </Head>
 
       {/* Hero Header */}
@@ -27,7 +27,7 @@ export default function OpenSourcePage() {
           </h1>
 
           <p className="text-slate-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed mb-8">
-            HealConnect is committed to open source healthcare technology. We build transparent, secure, and privacy-first tools for patients, clinical doctors, and IoT hardware developers worldwide.
+            CareSync is committed to open source healthcare technology. We build transparent, secure, and privacy-first tools for patients, clinical doctors, and IoT hardware developers worldwide.
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">

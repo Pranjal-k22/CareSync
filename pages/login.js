@@ -8,7 +8,7 @@ export default function Login() {
   return (
     <div className="min-h-screen bg-slate-900 flex flex-col justify-between">
       <Head>
-        <title>Login & Authentication | HealConnect Portal</title>
+        <title>Login & Authentication | CareSync Portal</title>
       </Head>
       <SignIn />
       <Footer />

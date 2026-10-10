@@ -122,7 +122,7 @@ export default function UpdateProfile() {
               type="text"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
-              placeholder="e.g. HealConnect Central Tower"
+              placeholder="e.g. CareSync Central Tower"
               style={{ backgroundColor: '#0f172a', color: '#ffffff', borderColor: '#334155' }}
               className="w-full border px-4 py-3 rounded-xl text-sm font-medium focus:outline-none focus:border-emerald-400"
             />

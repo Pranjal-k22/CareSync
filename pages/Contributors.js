@@ -36,20 +36,20 @@ export default function Contributer() {
     {
       name: "Om Raj",
       role: "Lead Engineer",
-      github: "https://github.com/healconnect",
+      github: "https://github.com/Pranjal-k22/CareSync",
       highlight: true
     },
     {
-      name: "HealConnect Dev Team",
+      name: "CareSync Dev Team",
       role: "Core Maintainers",
-      github: "https://github.com/healconnect"
+      github: "https://github.com/Pranjal-k22/CareSync"
     }
   ];
 
   return (
     <>
       <Head>
-        <title>Contributors | HealConnect</title>
+        <title>Contributors | CareSync</title>
       </Head>
 
       <main className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
@@ -68,7 +68,7 @@ export default function Contributer() {
             </span>
 
             <h1 className="text-5xl font-bold mt-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              HealConnect Contributors
+              CareSync Contributors
             </h1>
 
             <p className="mt-4 text-gray-300 max-w-2xl mx-auto text-lg">
@@ -153,11 +153,11 @@ export default function Contributer() {
             </h2>
 
             <p className="text-lg text-gray-300 mb-8 max-w-xl mx-auto">
-              HealConnect is fully open source — you can help improve healthcare tech for everyone.
+              CareSync is fully open source — you can help improve healthcare tech for everyone.
             </p>
 
             <a
-              href="https://github.com/healconnect"
+              href="https://github.com/Pranjal-k22/CareSync"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg font-semibold flex items-center gap-2 w-fit mx-auto"

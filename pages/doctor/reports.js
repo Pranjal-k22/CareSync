@@ -39,7 +39,7 @@ export default function DoctorReportsPage() {
         <body>
           <div class="header">
             <div>
-              <h1 class="title">HEALCONNECT CLINICAL TELEMETRY REPORT</h1>
+              <h1 class="title">CARESYNC CLINICAL TELEMETRY REPORT</h1>
               <p style="margin: 0; color: #64748b; font-size: 13px;">Specialty Department: ${rep.specialty}</p>
             </div>
             <span class="badge">OFFICIAL DOCTOR REPORT</span>
@@ -79,7 +79,7 @@ export default function DoctorReportsPage() {
     <AuthCheck requiredRole="doctor">
       <DoctorSidebar>
         <Head>
-          <title>Doctor Clinical Telemetry Reports | HealConnect</title>
+          <title>Doctor Clinical Telemetry Reports | CareSync</title>
         </Head>
 
         <div className="p-4 sm:p-6 space-y-8 font-sans">

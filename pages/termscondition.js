@@ -18,7 +18,7 @@ export default function TermEndCondition() {
   return (
     <>
       <Head>
-        <title>Terms & Conditions | HealConnect</title>
+        <title>Terms & Conditions | CareSync</title>
       </Head>
 
       <main className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
@@ -34,7 +34,7 @@ export default function TermEndCondition() {
             </span>
 
             <h1 className="mt-4 text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-              HealConnect Terms &amp; Conditions
+              CareSync Terms &amp; Conditions
             </h1>
 
             <p className="mt-3 text-gray-400 text-sm">
@@ -43,7 +43,7 @@ export default function TermEndCondition() {
 
             <p className="mt-6 text-gray-300 text-sm md:text-base">
               These Terms &amp; Conditions (&quot;Terms&quot;) govern your access to and use
-              of HealConnect&apos;s applications, platforms, APIs, and related services
+              of CareSync&apos;s applications, platforms, APIs, and related services
               (collectively, the &quot;Services&quot;). By accessing or using the Services,
               you agree to be bound by these Terms.
             </p>
@@ -85,7 +85,7 @@ export default function TermEndCondition() {
               <section id="clinical-disclaimer">
                 <h2 className="text-2xl font-semibold mb-3">3. Clinical Disclaimer</h2>
                 <p>
-                  HealConnect does not replace professional medical judgment. Any
+                  CareSync does not replace professional medical judgment. Any
                   visualizations, alerts, or insights are decision-support tools and must
                   be interpreted by qualified healthcare professionals. Always consult a
                   licensed clinician for diagnosis or treatment.
@@ -96,7 +96,7 @@ export default function TermEndCondition() {
                 <h2 className="text-2xl font-semibold mb-3">4. Intellectual Property</h2>
                 <p>
                   Unless otherwise indicated, all content, UI elements, logos, and code
-                  associated with the HealConnect platform are owned by HealConnect or its
+                  associated with the CareSync platform are owned by CareSync or its
                   licensors and are protected by intellectual property laws. Open-source
                   components are licensed under their respective licenses.
                 </p>
@@ -133,7 +133,7 @@ export default function TermEndCondition() {
               <section id="limitation-of-liability">
                 <h2 className="text-2xl font-semibold mb-3">8. Limitation of Liability</h2>
                 <p>
-                  To the maximum extent permitted by law, HealConnect and its affiliates
+                  To the maximum extent permitted by law, CareSync and its affiliates
                   are not liable for any indirect, incidental, consequential, or special
                   damages arising out of or related to your use of the Services, including
                   loss of data, loss of profits, or business interruption.
@@ -143,7 +143,7 @@ export default function TermEndCondition() {
               <section id="indemnity">
                 <h2 className="text-2xl font-semibold mb-3">9. Indemnity</h2>
                 <p>
-                  You agree to indemnify and hold harmless HealConnect, its officers,
+                  You agree to indemnify and hold harmless CareSync, its officers,
                   employees, and partners from any claims, damages, or expenses arising
                   from your misuse of the Services or violation of these Terms.
                 </p>
@@ -163,7 +163,7 @@ export default function TermEndCondition() {
                 <h2 className="text-2xl font-semibold mb-3">11. Governing Law</h2>
                 <p>
                   These Terms are governed by and interpreted in accordance with the laws
-                  of the applicable jurisdiction in which HealConnect is operated, without
+                  of the applicable jurisdiction in which CareSync is operated, without
                   regard to conflict-of-law principles.
                 </p>
               </section>

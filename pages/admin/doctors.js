@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export default function DoctorAccountsPage() {
   const [doctorsList, setDoctorsList] = useState([
-    { id: 'DOC-8891', name: 'Dr. Ananya Roy, MD', email: 'doctor@healconnect.com', specialty: 'Cardiology', sub_specialty: 'Interventional Cardiology', qualification: 'MBBS, MD (Cardiology), FACC', experience_years: '14 Years', license_no: 'MCI-2018-884219', phone: '+91 9876543299', attendance_status: 'On Duty', hospital: 'HealConnect Central Tower', address: 'Suite 402, HealConnect Complex, Mumbai', fee: '₹500', default_password: '12345678', avatar_url: '👨‍⚕️' },
+    { id: 'DOC-8891', name: 'Dr. Ananya Roy, MD', email: 'doctor@healconnect.com', specialty: 'Cardiology', sub_specialty: 'Interventional Cardiology', qualification: 'MBBS, MD (Cardiology), FACC', experience_years: '14 Years', license_no: 'MCI-2018-884219', phone: '+91 9876543299', attendance_status: 'On Duty', hospital: 'CareSync Central Tower', address: 'Suite 402, CareSync Complex, Mumbai', fee: '₹500', default_password: '12345678', avatar_url: '👨‍⚕️' },
     { id: 'DOC-1001', name: 'Dr. Sarah Johnson, MD', email: 'sarah.johnson@healconnect.com', specialty: 'Cardiology', sub_specialty: 'Pediatric Cardiology', qualification: 'MBBS, MD', experience_years: '12 Years', license_no: 'MCI-2016-77312', phone: '+91 9876543210', attendance_status: 'On Duty', hospital: 'Stanford Health Care', address: 'Stanford Medical Plaza, Palo Alto', fee: '₹500', default_password: '12345678', avatar_url: '👩‍⚕️' },
     { id: 'DOC-1002', name: 'Dr. Michael Chen, MD', email: 'michael.chen@healconnect.com', specialty: 'Neurology', sub_specialty: 'Neuro-Oncology & Epilepsy', qualification: 'MBBS, DM (Neurology)', experience_years: '15 Years', license_no: 'MCI-2017-99241', phone: '+91 9876543211', attendance_status: 'On Duty', hospital: 'Johns Hopkins Hospital', address: 'Johns Hopkins Pavilion, Baltimore', fee: '₹600', default_password: '12345678', avatar_url: '👨‍⚕️' },
     { id: 'DOC-1003', name: 'Dr. Emily Rodriguez, MD', email: 'emily.rodriguez@healconnect.com', specialty: 'Pediatrics', sub_specialty: 'Neonatal Critical Care', qualification: 'MBBS, DCH, MD', experience_years: '10 Years', license_no: 'MCI-2019-33812', phone: '+91 9876543212', attendance_status: 'Off Duty', hospital: "Boston Children's Hospital", address: 'Boston Children Wings, Boston', fee: '₹450', default_password: '12345678', avatar_url: '👩‍⚕️' },
@@ -30,7 +30,7 @@ export default function DoctorAccountsPage() {
     qualification: 'MBBS, MD',
     experience_years: '10 Years',
     license_no: `MCI-2026-${Math.floor(10000 + Math.random() * 90000)}`,
-    hospital: 'HealConnect Central Hospital',
+    hospital: 'CareSync Central Hospital',
     address: 'Central Medical Tower, City Wing',
     fee: '₹500'
   });
@@ -145,7 +145,7 @@ export default function DoctorAccountsPage() {
         qualification: 'MBBS, MD',
         experience_years: '10 Years',
         license_no: `MCI-2026-${Math.floor(10000 + Math.random() * 90000)}`,
-        hospital: 'HealConnect Central Hospital',
+        hospital: 'CareSync Central Hospital',
         address: 'Central Medical Tower, City Wing',
         fee: '₹500'
       });
@@ -159,7 +159,7 @@ export default function DoctorAccountsPage() {
   return (
     <AuthCheck requiredRole="admin">
       <AdminSidebar>
-        <Head><title>Doctor Accounts & Onboarding Registry | HealConnect Admin</title></Head>
+        <Head><title>Doctor Accounts & Onboarding Registry | CareSync Admin</title></Head>
         <main className="p-6 space-y-8 font-sans">
           
           {/* Header Banner */}
@@ -238,7 +238,7 @@ export default function DoctorAccountsPage() {
                       </div>
                       <div className="flex items-center gap-2 text-slate-300">
                         <FaHospital className="text-purple-400 text-xs" />
-                        <span className="truncate">{doc.hospital || 'HealConnect Center'}</span>
+                        <span className="truncate">{doc.hospital || 'CareSync Center'}</span>
                       </div>
                       <div className="flex items-center gap-2 text-slate-300">
                         <FaMapMarkerAlt className="text-amber-400 text-xs" />

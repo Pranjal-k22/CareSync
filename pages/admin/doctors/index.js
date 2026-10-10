@@ -29,7 +29,7 @@ export default function AdminDoctorsPage() {
     email: '',
     password: '',
     phone: '',
-    hospital: 'HealConnect Central Tower',
+    hospital: 'CareSync Central Tower',
     avatar_url: '',
     schedule_hours: '09:00 AM - 05:00 PM',
     is_available_today: true,
@@ -46,7 +46,7 @@ export default function AdminDoctorsPage() {
       email: '',
       password: '',
       phone: '',
-      hospital: 'HealConnect Central Tower',
+      hospital: 'CareSync Central Tower',
       avatar_url: '',
       schedule_hours: '09:00 AM - 05:00 PM',
       is_available_today: true,
@@ -64,7 +64,7 @@ export default function AdminDoctorsPage() {
       email: doc.email || '',
       password: doc.doctor_password_hint || 'doc12345',
       phone: doc.phone || '',
-      hospital: doc.hospital || 'HealConnect Central',
+      hospital: doc.hospital || 'CareSync Central',
       avatar_url: doc.avatar_url || doc.img || '',
       schedule_hours: doc.schedule_hours || '09:00 AM - 05:00 PM',
       is_available_today: doc.is_available_today !== undefined ? doc.is_available_today : true,
@@ -256,7 +256,7 @@ export default function AdminDoctorsPage() {
     <AuthCheck requiredRole="admin">
       <AdminSidebar>
         <Head>
-          <title>Doctor & Schedule Command Center | HealConnect Admin</title>
+          <title>Doctor & Schedule Command Center | CareSync Admin</title>
         </Head>
 
         <div className="p-4 sm:p-6 space-y-8 font-sans">
@@ -345,7 +345,7 @@ export default function AdminDoctorsPage() {
                           <h3 className="text-lg font-extrabold text-white mt-1">{doc.name}</h3>
                           <p className="text-xs text-slate-400 flex items-center gap-1 mt-0.5">
                             <FaHospital className="text-slate-500" />
-                            <span>{doc.hospital || 'HealConnect Medical Center'}</span>
+                            <span>{doc.hospital || 'CareSync Medical Center'}</span>
                           </p>
                         </div>
                       </div>
@@ -507,7 +507,7 @@ export default function AdminDoctorsPage() {
                         type="text"
                         value={formData.hospital}
                         onChange={(e) => setFormData({ ...formData, hospital: e.target.value })}
-                        placeholder="HealConnect Central Tower"
+                        placeholder="CareSync Central Tower"
                         className="w-full bg-slate-900 border border-slate-700 text-white px-4 py-3 rounded-xl focus:outline-none focus:border-emerald-400 font-medium"
                       />
                     </div>

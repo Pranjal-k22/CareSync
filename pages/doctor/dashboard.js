@@ -131,8 +131,8 @@ export default function DoctorDashboard() {
     qualification: 'MBBS, MD (Cardiology), FACC',
     experience_years: '14 Years',
     license_no: 'MCI-2018-884219',
-    hospital: currentUser?.hospital || 'HealConnect Central Tower',
-    address: 'Suite 402, HealConnect Medical Complex, Bandra West',
+    hospital: currentUser?.hospital || 'CareSync Central Tower',
+    address: 'Suite 402, CareSync Medical Complex, Bandra West',
     city: 'Mumbai',
     phone: currentUser?.phone || '+91 9876543299',
     email: currentUser?.email || 'doctor@healconnect.com',
@@ -394,7 +394,7 @@ export default function DoctorDashboard() {
         <body>
           <div class="header">
             <div>
-              <h1 class="title">HEALCONNECT CLINICAL TELEMETRY REPORT</h1>
+              <h1 class="title">CARESYNC CLINICAL TELEMETRY REPORT</h1>
               <p class="subtitle">HIPAA Encrypted Patient Health Telemetry & Diagnostic Record</p>
             </div>
             <span class="badge">OFFICIAL MEDICAL RECORD</span>
@@ -516,7 +516,7 @@ export default function DoctorDashboard() {
     <AuthCheck requiredRole="doctor">
       <div style={{ minHeight: '100vh', background: '#0f172a', color: '#f8fafc', fontFamily: 'Inter, system-ui, sans-serif' }}>
         <Head>
-          <title>Doctor Portal - Clinical Telemetry & Bed Management | HealConnect</title>
+          <title>Doctor Portal - Clinical Telemetry & Bed Management | CareSync</title>
         </Head>
 
         {/* Doctor Header Banner */}

@@ -189,8 +189,8 @@ export default function ProfessionalDashboard() {
       </div>
 
       <Head>
-        <title>HealConnect | Secure Authentication Portal</title>
-        <meta name="description" content="Secure authentication portal for HealConnect healthcare platform" />
+        <title>CareSync | Secure Authentication Portal</title>
+        <meta name="description" content="Secure authentication portal for CareSync healthcare platform" />
       </Head>
 
       <motion.div 
@@ -226,7 +226,7 @@ export default function ProfessionalDashboard() {
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent"
           }}>
-            HealConnect
+            CareSync
           </h1>
           <p style={{ 
             fontSize: "1rem", 

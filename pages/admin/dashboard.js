@@ -209,7 +209,7 @@ export default function AdminDashboard() {
     <AuthCheck requiredRole="admin">
       <AdminSidebar>
         <Head>
-          <title>Admin Telemetry & Bed Seat Booking Control | HealConnect</title>
+          <title>Admin Telemetry & Bed Seat Booking Control | CareSync</title>
         </Head>
 
         <div className="p-4 sm:p-6 space-y-8 font-sans">

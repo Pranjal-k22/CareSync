@@ -391,7 +391,7 @@ export default function Prescriptions() {
   return (
     <div style={{ backgroundColor: '#f0f4f8', color: '#1a365d' }} className="min-h-screen font-sans relative overflow-x-hidden pb-16">
       <Head>
-        <title>TrueMeds Prescription & Pharmacy Hub — HealConnect</title>
+        <title>TrueMeds Prescription & Pharmacy Hub — CareSync</title>
         <meta name="description" content="AI OCR Prescription scanner, smart dosage reminders, and instant TrueMeds pharmacy ordering." />
         <link rel="icon" type="image/svg+xml" href="/Logo.svg" />
       </Head>

@@ -83,8 +83,8 @@ export default function PatientDashboard() {
 
   // Clinical Lab Reports Dataset
   const [myLabReports, setMyLabReports] = useState([
-    { id: 'LAB-101', test_name: '12-Lead Electrocardiogram (ECG)', date: '2026-08-05', lab_name: 'HealConnect Central Diagnostic Lab', status: 'NORMAL', result_summary: 'Normal Sinus Rhythm. HR: 74 bpm. No acute ST-T segment elevation.', report_pdf: 'ECG_Report_PAT1001.pdf' },
-    { id: 'LAB-102', test_name: 'High-Sensitivity Troponin I (hs-cTnI)', date: '2026-08-05', lab_name: 'HealConnect Central Diagnostic Lab', status: 'NORMAL', result_summary: '< 0.01 ng/mL (Reference < 0.04 ng/mL). Negative for acute myocardial injury.', report_pdf: 'Troponin_Report_PAT1001.pdf' },
+    { id: 'LAB-101', test_name: '12-Lead Electrocardiogram (ECG)', date: '2026-08-05', lab_name: 'CareSync Central Diagnostic Lab', status: 'NORMAL', result_summary: 'Normal Sinus Rhythm. HR: 74 bpm. No acute ST-T segment elevation.', report_pdf: 'ECG_Report_PAT1001.pdf' },
+    { id: 'LAB-102', test_name: 'High-Sensitivity Troponin I (hs-cTnI)', date: '2026-08-05', lab_name: 'CareSync Central Diagnostic Lab', status: 'NORMAL', result_summary: '< 0.01 ng/mL (Reference < 0.04 ng/mL). Negative for acute myocardial injury.', report_pdf: 'Troponin_Report_PAT1001.pdf' },
     { id: 'LAB-103', test_name: 'Comprehensive Lipid Profile Panel', date: '2026-07-15', lab_name: 'Metropolis Health Lab', status: 'ATTENTION', result_summary: 'Total Cholesterol: 210 mg/dL (Borderline High). LDL: 135 mg/dL. HDL: 48 mg/dL.', report_pdf: 'Lipid_Panel_PAT1001.pdf' }
   ]);
 
@@ -160,7 +160,7 @@ export default function PatientDashboard() {
         <body>
           <div class="header">
             <div>
-              <h1 class="title">HEALCONNECT DIAGNOSTIC LAB REPORT</h1>
+              <h1 class="title">CARESYNC DIAGNOSTIC LAB REPORT</h1>
               <p style="margin: 0; color: #64748b; font-size: 13px;">${report.lab_name}</p>
             </div>
             <span class="badge">VERIFIED LAB RESULT</span>
@@ -234,7 +234,7 @@ export default function PatientDashboard() {
     <AuthCheck requiredRole="patient">
       <PatientSidebar>
         <Head>
-          <title>Patient Telehealth & Biometric Portal | HealConnect</title>
+          <title>Patient Telehealth & Biometric Portal | CareSync</title>
         </Head>
 
         <div className="p-4 sm:p-6 space-y-8 font-sans">

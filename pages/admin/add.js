@@ -160,7 +160,7 @@ export default function AddPatientPage() {
     <AuthCheck requiredRole="admin">
       <AdminSidebar>
         <Head>
-          <title>Register Patient Record | HealConnect Admin</title>
+          <title>Register Patient Record | CareSync Admin</title>
         </Head>
 
         <div className="p-4 sm:p-6 space-y-8 font-sans">

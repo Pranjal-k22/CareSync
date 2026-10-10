@@ -89,7 +89,7 @@ export default function DoctorNotificationsPage() {
     <AuthCheck requiredRole="doctor">
       <DoctorSidebar>
         <Head>
-          <title>Clinical Notifications Inbox | HealConnect Doctor</title>
+          <title>Clinical Notifications Inbox | CareSync Doctor</title>
         </Head>
 
         <div className="p-4 sm:p-6 space-y-8 font-sans">

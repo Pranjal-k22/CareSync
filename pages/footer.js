@@ -17,7 +17,7 @@ export default function Footer() {
           <div className="flex items-center gap-3">
             {/* Official Brand Logo Icon */}
             <div className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-700/80 flex items-center justify-center p-1.5 shadow-lg">
-              <img src="/Logo.svg" alt="HealConnect Logo" className="w-full h-full object-contain" />
+              <img src="/Logo.svg" alt="CareSync Logo" className="w-full h-full object-contain" />
             </div>
             <h2 style={{ color: '#ffffff' }} className="text-2xl sm:text-3xl font-extrabold tracking-tight">
               Heal<span style={{ color: '#34d399' }}>Connect</span>
@@ -153,7 +153,7 @@ export default function Footer() {
         {/* Bottom Copyright Bar */}
         <div style={{ color: '#94a3b8' }} className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8 text-xs">
           <div>
-            © {new Date().getFullYear()} <strong style={{ color: '#ffffff' }} className="font-semibold">HealConnect Inc.</strong> All rights reserved. Built with MNC enterprise standards.
+            © {new Date().getFullYear()} <strong style={{ color: '#ffffff' }} className="font-semibold">CareSync Inc.</strong> All rights reserved. Built with MNC enterprise standards.
           </div>
           <div className="flex items-center gap-4">
             <span style={{ color: '#cbd5e1' }} className="bg-slate-900 border border-slate-800 px-3 py-1 rounded-full text-[11px]">

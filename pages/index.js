@@ -44,7 +44,7 @@ export default function Home() {
   return (
     <div className="overflow-x-hidden font-sans selection:bg-teal-500 selection:text-white">
       <Head>
-        <title>HealConnect — Privacy-Preserving AI Healthcare System</title>
+        <title>CareSync — Privacy-Preserving AI Healthcare System</title>
         <meta
           name="description"
           content="Privacy-Preserving AI-Based Healthcare Risk Assessment System Using Explainable AI (SHAP), Federated Learning, and IoT Telemetry."
@@ -101,7 +101,7 @@ export default function Home() {
                   {/* Brand Title with Logo */}
                   <div className={`flex items-center gap-3.5 mb-6 ${isHeroCollapsed ? 'justify-center' : 'justify-center lg:justify-start'}`}>
                     <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-slate-900 border border-slate-700/80 p-2 shadow-2xl flex items-center justify-center flex-shrink-0">
-                      <img src="/Logo.svg" alt="HealConnect Logo" className="w-full h-full object-contain" />
+                      <img src="/Logo.svg" alt="CareSync Logo" className="w-full h-full object-contain" />
                     </div>
                     <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.15]">
                       Heal<span className="text-emerald-400">Connect</span>{" "}
@@ -194,7 +194,7 @@ export default function Home() {
                       {/* Center Brand */}
                       <div className="flex items-center gap-2 flex-shrink-0">
                         <div className="w-6 h-6 rounded-lg bg-slate-950 border border-slate-700 p-0.5 flex items-center justify-center shadow-md">
-                          <img src="/Logo.svg" alt="HealConnect Logo" className="w-full h-full object-contain" />
+                          <img src="/Logo.svg" alt="CareSync Logo" className="w-full h-full object-contain" />
                         </div>
                         <span className="text-sm font-extrabold text-white tracking-tight">
                           Heal<span className="text-emerald-400">Connect</span>
@@ -334,7 +334,7 @@ export default function Home() {
                       }}
                       className="bg-gradient-to-r from-teal-500 via-emerald-500 to-teal-400 hover:from-teal-400 hover:to-emerald-300 text-slate-950 font-extrabold px-6 py-3 rounded-2xl shadow-xl transition-all flex items-center gap-2 border border-white/20"
                     >
-                      <span>Discover the HealConnect Solution</span> ➔
+                      <span>Discover the CareSync Solution</span> ➔
                     </motion.button>
                   </div>
                 </div>
@@ -355,7 +355,7 @@ export default function Home() {
                   4 Core System Pillars
                 </h2>
                 <p className="text-slate-300 text-sm sm:text-base">
-                  Explore how HealConnect unifies bio-sensors, explainable AI risk scoring, and privacy-focused federated learning.
+                  Explore how CareSync unifies bio-sensors, explainable AI risk scoring, and privacy-focused federated learning.
                 </p>
 
                 <div className="mt-4">
@@ -597,7 +597,7 @@ export default function Home() {
 
                   <div className="flex items-center gap-3 mb-2">
                     <span className="text-2xl">📐</span>
-                    <h3 className="text-2xl font-extrabold text-white">HealConnect End-to-End System Architecture</h3>
+                    <h3 className="text-2xl font-extrabold text-white">CareSync End-to-End System Architecture</h3>
                   </div>
                   <p className="text-xs text-slate-400 mb-8">
                     Multi-tier IoT Hardware Ingestion, Edge Gateway Processing, FastAPI Microservices, PyTorch AI (SHAP & FedML), and Next.js Dashboard.
@@ -782,7 +782,7 @@ export default function Home() {
                 </span>
               </h2>
               <p className="text-base sm:text-lg mb-10 max-w-2xl mx-auto text-slate-300 leading-relaxed font-normal">
-                Join healthcare providers leveraging HealConnect for real-time IoT patient monitoring and privacy-preserving AI risk evaluation.
+                Join healthcare providers leveraging CareSync for real-time IoT patient monitoring and privacy-preserving AI risk evaluation.
               </p>
 
               <div className="flex flex-wrap justify-center gap-4">
@@ -800,7 +800,7 @@ export default function Home() {
                   whileTap={{ scale: 0.97 }}
                   onClick={() =>
                     window.location.href =
-                    "mailto:connectheal84@gmail.com?subject=Sales Inquiry&body=Hello HealConnect team, I would like to learn more about your services."
+                    "mailto:connectheal84@gmail.com?subject=Sales Inquiry&body=Hello CareSync team, I would like to learn more about your services."
                   }
                   className="bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 border border-slate-700 font-semibold py-3.5 px-8 rounded-full transition-all backdrop-blur-md shadow-lg"
                 >
@@ -832,7 +832,7 @@ export default function Home() {
                       >
                         &times;
                       </button>
-                      <h3 className="text-lg font-bold text-white mb-4 text-left">HealConnect Demonstration Video</h3>
+                      <h3 className="text-lg font-bold text-white mb-4 text-left">CareSync Demonstration Video</h3>
                       <video width="100%" height="auto" controls autoPlay className="rounded-xl overflow-hidden shadow-inner">
                         <source src="videos/videoplayback.mp4" type="video/mp4" />
                         Your browser does not support the video tag.

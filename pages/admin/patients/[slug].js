@@ -26,7 +26,7 @@ export default function PatientPage() {
     <AuthCheck requiredRole="admin">
       <AdminSidebar>
         <Head>
-          <title>Patient File Inspector ({slug || 'PAT-1001'}) | HealConnect Admin</title>
+          <title>Patient File Inspector ({slug || 'PAT-1001'}) | CareSync Admin</title>
         </Head>
 
         <div className="p-4 sm:p-6 space-y-6 font-sans">

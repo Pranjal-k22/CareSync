@@ -119,7 +119,7 @@ export default function AdminReportsPage() {
     <AuthCheck requiredRole="admin">
       <AdminSidebar>
         <Head>
-          <title>Medical Reports & Telemetry Hardware Hub | HealConnect Admin</title>
+          <title>Medical Reports & Telemetry Hardware Hub | CareSync Admin</title>
           <style>{`
             @media print {
               body { background: white !important; color: black !important; }
@@ -197,7 +197,7 @@ export default function AdminReportsPage() {
                   ⚕️
                 </div>
                 <div>
-                  <h2 className="text-xl font-extrabold text-white">HEALCONNECT HEALTHCARE SYSTEMS</h2>
+                  <h2 className="text-xl font-extrabold text-white">CARESYNC HEALTHCARE SYSTEMS</h2>
                   <p className="text-xs text-emerald-400 font-bold uppercase tracking-wider">Official Diagnostic Laboratory & Telemetry Report</p>
                 </div>
               </div>

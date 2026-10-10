@@ -4,8 +4,8 @@ const MODEL_NAME = "gemini-2.5-flash";
 const API_KEY = process.env.GEMINI_API_KEY || "";
 
 const SYSTEM_CONTEXT = `
-You are the official HealConnect Clinical AI Assistant, an expert medical telemetry and AI system guide.
-HealConnect Key Architecture:
+You are the official CareSync Clinical AI Assistant, an expert medical telemetry and AI system guide.
+CareSync Key Architecture:
 1. IoT Hardware: ESP8266 Microcontroller Edge Gateway with MAX30102 Heart Rate/SpO2 sensor, DS18B20 body temp probe, and Lead II ECG module.
 2. Backend: FastAPI / Django microservices, PostgreSQL (clinical metadata) + MongoDB (sensor streams).
 3. AI Engine: PyTorch Explainable AI (SHAP feature attribution for arrhythmia & risk scoring) and Federated Learning (FedAvg with Differential Privacy ε=0.5).
@@ -28,7 +28,7 @@ function sanitizeText(raw) {
 function getSmartFallback(prompt) {
   const lower = prompt.toLowerCase();
   if (lower.includes("esp8266") || lower.includes("hardware") || lower.includes("sensor") || lower.includes("kit")) {
-    return "HealConnect utilizes an ESP8266 NodeMCU microcontroller connected to MAX30102 (Heart Rate & SpO2), DS18B20 (Waterproof Body Temp), and Lead II ECG sensors. Data is filtered locally with FFT noise reduction before streaming over TLS 1.3 MQTT/REST.";
+    return "CareSync utilizes an ESP8266 NodeMCU microcontroller connected to MAX30102 (Heart Rate & SpO2), DS18B20 (Waterproof Body Temp), and Lead II ECG sensors. Data is filtered locally with FFT noise reduction before streaming over TLS 1.3 MQTT/REST.";
   }
   if (lower.includes("shap") || lower.includes("ai") || lower.includes("explainable")) {
     return "Our PyTorch AI pipeline uses SHAP (SHapley Additive exPlanations) to break down patient risk scores into clear feature attributions—such as ST-segment elevation (+28%), Troponin I (+34%), and Systolic BP (+18%)—giving clinicians full transparency into AI warnings.";
@@ -39,7 +39,7 @@ function getSmartFallback(prompt) {
   if (lower.includes("appointment") || lower.includes("doctor") || lower.includes("book")) {
     return "You can book appointments via our 2-step Telehealth Wizard under '/appointments'. Select from 20+ specialized physicians, choose an available time slot, and receive instant confirmation!";
   }
-  return "HealConnect is a Next-Gen Remote Patient Telemetry platform featuring ESP8266 IoT sensors, Explainable AI (SHAP), Federated Privacy (ε=0.5), and 3D Realtime Health Monitoring. How can I help you further?";
+  return "CareSync is a Next-Gen Remote Patient Telemetry platform featuring ESP8266 IoT sensors, Explainable AI (SHAP), Federated Privacy (ε=0.5), and 3D Realtime Health Monitoring. How can I help you further?";
 }
 
 async function runChat(prompt) {

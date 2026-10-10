@@ -27,7 +27,7 @@ export default function AdminStaffPage() {
       email: 'anjali.d@healconnect.com',
       staff_password_hint: 'stf12345',
       phone: '+91 9876500001',
-      hospital: 'HealConnect Central Tower',
+      hospital: 'CareSync Central Tower',
       avatar_url: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80',
       shift_hours: 'Day Shift (08:00 AM - 04:00 PM)',
       is_on_duty: true,
@@ -41,7 +41,7 @@ export default function AdminStaffPage() {
       email: 'suresh.k@healconnect.com',
       staff_password_hint: 'stf12345',
       phone: '+91 9876500002',
-      hospital: 'HealConnect Central Tower',
+      hospital: 'CareSync Central Tower',
       avatar_url: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80',
       shift_hours: 'Night Shift (08:00 PM - 04:00 AM)',
       is_on_duty: true,
@@ -55,7 +55,7 @@ export default function AdminStaffPage() {
       email: 'meenakshi.s@healconnect.com',
       staff_password_hint: 'stf12345',
       phone: '+91 9876500003',
-      hospital: 'HealConnect Central Tower',
+      hospital: 'CareSync Central Tower',
       avatar_url: 'https://images.unsplash.com/photo-1581056771107-24ca5f033842?auto=format&fit=crop&w=600&q=80',
       shift_hours: 'General Shift (09:00 AM - 05:00 PM)',
       is_on_duty: true,
@@ -69,7 +69,7 @@ export default function AdminStaffPage() {
       email: 'robert.paul@healconnect.com',
       staff_password_hint: 'stf12345',
       phone: '+91 9876500004',
-      hospital: 'HealConnect Trauma Pavilion',
+      hospital: 'CareSync Trauma Pavilion',
       avatar_url: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=600&q=80',
       shift_hours: 'Evening Shift (04:00 PM - 12:00 AM)',
       is_on_duty: false,
@@ -84,7 +84,7 @@ export default function AdminStaffPage() {
     email: '',
     password: '',
     phone: '',
-    hospital: 'HealConnect Central Tower',
+    hospital: 'CareSync Central Tower',
     avatar_url: '',
     shift_hours: 'Day Shift (08:00 AM - 04:00 PM)',
     is_on_duty: true
@@ -145,7 +145,7 @@ export default function AdminStaffPage() {
       email: '',
       password: '',
       phone: '',
-      hospital: 'HealConnect Central Tower',
+      hospital: 'CareSync Central Tower',
       avatar_url: '',
       shift_hours: 'Day Shift (08:00 AM - 04:00 PM)',
       is_on_duty: true
@@ -161,7 +161,7 @@ export default function AdminStaffPage() {
       email: stf.email || '',
       password: stf.staff_password_hint || 'stf12345',
       phone: stf.phone || '',
-      hospital: stf.hospital || 'HealConnect Central Tower',
+      hospital: stf.hospital || 'CareSync Central Tower',
       avatar_url: stf.avatar_url || '',
       shift_hours: stf.shift_hours || 'Day Shift (08:00 AM - 04:00 PM)',
       is_on_duty: stf.is_on_duty !== undefined ? stf.is_on_duty : true
@@ -327,7 +327,7 @@ export default function AdminStaffPage() {
     <AuthCheck requiredRole="admin">
       <AdminSidebar>
         <Head>
-          <title>Hospital Staff Onboarding & Directory | HealConnect Admin</title>
+          <title>Hospital Staff Onboarding & Directory | CareSync Admin</title>
         </Head>
 
         <div className="p-4 sm:p-6 space-y-8 font-sans">
@@ -415,7 +415,7 @@ export default function AdminStaffPage() {
                           <h3 className="text-lg font-extrabold text-white mt-1">{stf.name}</h3>
                           <p className="text-xs text-slate-400 flex items-center gap-1 mt-0.5">
                             <FaHospital className="text-slate-500" />
-                            <span>{stf.hospital || 'HealConnect Central Tower'}</span>
+                            <span>{stf.hospital || 'CareSync Central Tower'}</span>
                           </p>
                         </div>
                       </div>
@@ -569,7 +569,7 @@ export default function AdminStaffPage() {
                         type="text"
                         value={formData.hospital}
                         onChange={(e) => setFormData({ ...formData, hospital: e.target.value })}
-                        placeholder="HealConnect Central Tower"
+                        placeholder="CareSync Central Tower"
                         className="w-full bg-slate-900 border border-slate-700 text-white px-4 py-3 rounded-xl focus:outline-none focus:border-blue-400 font-medium"
                       />
                     </div>

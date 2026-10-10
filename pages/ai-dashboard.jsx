@@ -61,8 +61,8 @@ function AIDashboardContent() {
       ]
     },
     models: {
-      deterioration: "HealConnect Risk Engine v1.0",
-      influenza: "HealConnect Flu Diagnosis v1.0"
+      deterioration: "CareSync Risk Engine v1.0",
+      influenza: "CareSync Flu Diagnosis v1.0"
     },
     timestamp: new Date().toISOString()
   });
@@ -157,7 +157,7 @@ function AIDashboardContent() {
   return (
     <div style={{ minHeight: '100vh', background: '#0f172a', color: '#f8fafc', fontFamily: 'Inter, system-ui, sans-serif' }}>
       <Head>
-        <title>Unified AI Health Prediction Dashboard | HealConnect</title>
+        <title>Unified AI Health Prediction Dashboard | CareSync</title>
       </Head>
 
       {/* Top Navbar */}
@@ -166,7 +166,7 @@ function AIDashboardContent() {
           <div style={{ width: '38px', height: '38px', borderRadius: '10px', background: 'linear-gradient(135deg, #3b82f6, #06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', fontWeight: 'bold' }}>⚡</div>
           <div>
             <h1 style={{ fontSize: '1.25rem', fontWeight: '700', margin: 0, background: 'linear-gradient(to right, #60a5fa, #38bdf8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-              HealConnect AI Clinical Dashboard
+              CareSync AI Clinical Dashboard
             </h1>
             <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Dual-Model Real-Time Health Telemetry & SHAP Explainability Engine</span>
           </div>
@@ -370,11 +370,11 @@ function AIDashboardContent() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1rem', fontSize: '0.85rem' }}>
             <div style={{ background: '#0f172a', padding: '1rem', borderRadius: '10px', border: '1px solid #334155' }}>
               <div style={{ color: '#94a3b8' }}>Deterioration Model</div>
-              <div style={{ color: '#f8fafc', fontWeight: '600', marginTop: '0.25rem' }}>HealConnect Patient Deterioration Risk Engine (v1.0)</div>
+              <div style={{ color: '#f8fafc', fontWeight: '600', marginTop: '0.25rem' }}>CareSync Patient Deterioration Risk Engine (v1.0)</div>
             </div>
             <div style={{ background: '#0f172a', padding: '1rem', borderRadius: '10px', border: '1px solid #334155' }}>
               <div style={{ color: '#94a3b8' }}>Disease Model</div>
-              <div style={{ color: '#f8fafc', fontWeight: '600', marginTop: '0.25rem' }}>HealConnect Flu & Disease Diagnosis Model (v1.0)</div>
+              <div style={{ color: '#f8fafc', fontWeight: '600', marginTop: '0.25rem' }}>CareSync Flu & Disease Diagnosis Model (v1.0)</div>
             </div>
             <div style={{ background: '#0f172a', padding: '1rem', borderRadius: '10px', border: '1px solid #334155' }}>
               <div style={{ color: '#94a3b8' }}>Prediction Timestamp</div>

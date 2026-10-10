@@ -19,7 +19,7 @@ export default function About() {
   return (
     <>
       <Head>
-        <title>About | HealConnect</title>
+        <title>About | CareSync</title>
       </Head>
 
       <main
@@ -47,7 +47,7 @@ export default function About() {
           >
             <h1 className="text-4xl font-bold tracking-tight mb-2 drop-shadow-lg text-gray-900 dark:text-white">
               <Typewriter
-                words={["About HealConnect"]}
+                words={["About CareSync"]}
                 loop={1}
                 cursor
                 cursorStyle="|"
@@ -67,11 +67,11 @@ export default function About() {
             {[
               {
                 title: "Our Mission",
-                content: `HealConnect is Pune’s growing health monitoring site to help hospitals manage their patients' health parameters anytime, anywhere. Our goal is to make patients’ health data accessible to doctors worldwide for quicker diagnosis and treatment.`
+                content: `CareSync is Pune’s growing health monitoring site to help hospitals manage their patients' health parameters anytime, anywhere. Our goal is to make patients’ health data accessible to doctors worldwide for quicker diagnosis and treatment.`
               },
               {
                 title: "What's in it for you",
-                content: `The HealConnect system's kit allows doctors or nurses to measure the patient’s body temperature and heart rate. This real-time data is automatically updated on the WeCare platform, which doctors and hospitals can access remotely.`
+                content: `The CareSync system's kit allows doctors or nurses to measure the patient’s body temperature and heart rate. This real-time data is automatically updated on the WeCare platform, which doctors and hospitals can access remotely.`
               },
               {
                 title: "What We Do",
@@ -83,7 +83,7 @@ export default function About() {
               },
               {
                 title: "Content Copyright Policy",
-                content: `The site design, logo, and video content are subject to copyright © 2025–present | HealConnect LLC`
+                content: `The site design, logo, and video content are subject to copyright © 2025–present | CareSync LLC`
               }
             ].map((section, index) => (
               <motion.section

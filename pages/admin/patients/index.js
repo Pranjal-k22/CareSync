@@ -45,7 +45,7 @@ export default function PatientsPage() {
     <AuthCheck requiredRole="admin">
       <AdminSidebar>
         <Head>
-          <title>Patients Command Directory & Credentials | HealConnect Admin</title>
+          <title>Patients Command Directory & Credentials | CareSync Admin</title>
         </Head>
 
         <div className="p-4 sm:p-6 space-y-8 font-sans">

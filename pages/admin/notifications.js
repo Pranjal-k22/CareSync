@@ -192,7 +192,7 @@ export default function AdminNotificationsPage() {
     <AuthCheck requiredRole="admin">
       <AdminSidebar>
         <Head>
-          <title>System Notification Broadcast Center | HealConnect Admin</title>
+          <title>System Notification Broadcast Center | CareSync Admin</title>
         </Head>
 
         <div className="p-4 sm:p-6 space-y-8 font-sans">

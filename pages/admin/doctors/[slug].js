@@ -28,7 +28,7 @@ function EditDoctorContent() {
 
     const fetchDoctor = async () => {
       if (!isSupabaseConfigured) {
-        setProfile({ name: `Dr. ${slug}`, specialty: 'Cardiology', hospital: 'HealConnect Hospital' });
+        setProfile({ name: `Dr. ${slug}`, specialty: 'Cardiology', hospital: 'CareSync Hospital' });
         return;
       }
 
@@ -42,10 +42,10 @@ function EditDoctorContent() {
         if (data && isSubscribed) {
           setProfile(data);
         } else if (isSubscribed) {
-          setProfile({ name: `Doctor (${slug})`, specialty: 'General Physician', hospital: 'HealConnect Central' });
+          setProfile({ name: `Doctor (${slug})`, specialty: 'General Physician', hospital: 'CareSync Central' });
         }
       } catch (e) {
-        setProfile({ name: `Doctor (${slug})`, specialty: 'General Physician', hospital: 'HealConnect Central' });
+        setProfile({ name: `Doctor (${slug})`, specialty: 'General Physician', hospital: 'CareSync Central' });
       }
     };
 
@@ -67,7 +67,7 @@ function EditDoctorContent() {
         <div className="bg-slate-800 border border-slate-700 p-8 rounded-3xl shadow-xl space-y-4 max-w-2xl">
           <h2 className="text-2xl font-extrabold text-white">{profile.name}</h2>
           <p className="text-sm text-slate-300">Specialty: <strong className="text-emerald-400">{profile.specialty || profile.speciality || 'General Medicine'}</strong></p>
-          <p className="text-sm text-slate-300">Location: {profile.hospital || profile.address || 'HealConnect Main Tower'}</p>
+          <p className="text-sm text-slate-300">Location: {profile.hospital || profile.address || 'CareSync Main Tower'}</p>
         </div>
       )}
     </div>

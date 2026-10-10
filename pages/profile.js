@@ -18,7 +18,7 @@ export default function ProfilePage() {
     city: currentUser?.city || 'Mumbai',
     blood_group: currentUser?.blood_group || 'O+',
     specialty: currentUser?.specialty || 'General Medicine',
-    hospital: currentUser?.hospital || 'HealConnect Medical Center'
+    hospital: currentUser?.hospital || 'CareSync Medical Center'
   });
 
   // Password Reset Form State
@@ -126,7 +126,7 @@ export default function ProfilePage() {
     <AuthCheck>
       <div style={{ minHeight: '100vh', background: '#0f172a', color: '#f8fafc', fontFamily: 'Inter, system-ui, sans-serif' }}>
         <Head>
-          <title>Account & Security Settings | HealConnect</title>
+          <title>Account & Security Settings | CareSync</title>
         </Head>
 
         <main style={{ maxWidth: '1000px', margin: '0 auto', padding: '3rem 1.5rem' }}>

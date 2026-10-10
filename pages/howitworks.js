@@ -18,7 +18,7 @@ export default function HowItWorks() {
     {
       icon: FaHeartbeat,
       title: "1. Data Collection",
-      desc: "Health sensors, wearables, and clinical devices continuously stream biometric data to HealConnect's secure gateway."
+      desc: "Health sensors, wearables, and clinical devices continuously stream biometric data to CareSync's secure gateway."
     },
     {
       icon: FaServer,
@@ -33,7 +33,7 @@ export default function HowItWorks() {
     {
       icon: FaCloud,
       title: "4. Cloud Sync",
-      desc: "Encrypted data is uploaded to the HealConnect cloud layer for persistence, auditing, and multi-device accessibility."
+      desc: "Encrypted data is uploaded to the CareSync cloud layer for persistence, auditing, and multi-device accessibility."
     },
     {
       icon: FaChartLine,
@@ -50,7 +50,7 @@ export default function HowItWorks() {
   return (
     <>
       <Head>
-        <title>How It Works | HealConnect</title>
+        <title>How It Works | CareSync</title>
       </Head>
 
       <main className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
@@ -64,7 +64,7 @@ export default function HowItWorks() {
             className="text-center mb-16"
           >
             <span className="px-6 py-2 bg-blue-600/20 border border-blue-500/40 rounded-full text-blue-300 text-sm tracking-wide">
-              HOW HEALCONNECT WORKS
+              HOW CARESYNC WORKS
             </span>
             <h1 className="text-5xl font-bold mt-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
               Simple. Secure. Smart.
@@ -104,7 +104,7 @@ export default function HowItWorks() {
           >
             <h2 className="text-4xl font-bold mb-4">Built for reliability</h2>
             <p className="text-lg text-gray-300 mb-8 max-w-xl mx-auto">
-              Every component of HealConnect is designed to improve patient outcomes while keeping data safe.
+              Every component of CareSync is designed to improve patient outcomes while keeping data safe.
             </p>
             <a
               href="/opensource"

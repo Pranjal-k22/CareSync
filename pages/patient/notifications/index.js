@@ -24,7 +24,7 @@ export default function PatientNotificationsPage() {
     {
       id: 'pat-notif-2',
       title: '💊 Prescription & Pharmacy Dispensing Update',
-      message: 'Your electronic prescription (Atorvastatin 10mg, Dolo 650mg) has been dispensed by HealConnect Pharmacy.',
+      message: 'Your electronic prescription (Atorvastatin 10mg, Dolo 650mg) has been dispensed by CareSync Pharmacy.',
       type: 'prescription',
       target_role: 'patient',
       created_at: new Date(Date.now() - 3600000).toISOString()
@@ -32,7 +32,7 @@ export default function PatientNotificationsPage() {
     {
       id: 'pat-notif-3',
       title: '📢 Hospital Health Advisory',
-      message: 'HealConnect Telehealth Portal upgrade live. Patients can now schedule instant 24/7 video consultations.',
+      message: 'CareSync Telehealth Portal upgrade live. Patients can now schedule instant 24/7 video consultations.',
       type: 'announcement',
       target_role: 'all',
       created_at: new Date(Date.now() - 86400000).toISOString()
@@ -89,7 +89,7 @@ export default function PatientNotificationsPage() {
     <AuthCheck requiredRole="patient">
       <PatientSidebar>
         <Head>
-          <title>My Health Notifications | HealConnect Patient</title>
+          <title>My Health Notifications | CareSync Patient</title>
         </Head>
 
         <div className="p-4 sm:p-6 space-y-8 font-sans">
@@ -185,7 +185,7 @@ export default function PatientNotificationsPage() {
                     </div>
 
                     <div className="flex items-center justify-between text-[11px] text-slate-400 pt-2 border-t border-slate-800">
-                      <span>Sender: HealConnect Administration</span>
+                      <span>Sender: CareSync Administration</span>
                       <span>{new Date(notif.created_at).toLocaleString()}</span>
                     </div>
                   </div>

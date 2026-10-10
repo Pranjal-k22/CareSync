@@ -28,7 +28,7 @@ const ChatBot = () => {
         
         if (newState && messages.length === 0) {
             setMessages([{
-                text: "Hello! I am your HealConnect Clinical AI Assistant powered by Gemini 2.5 Flash. I can help answer questions about our ESP8266 IoT sensors, Lead II ECG telemetry, SHAP AI risk analysis, and appointment booking. How can I assist you today?",
+                text: "Hello! I am your CareSync Clinical AI Assistant powered by Gemini 2.5 Flash. I can help answer questions about our ESP8266 IoT sensors, Lead II ECG telemetry, SHAP AI risk analysis, and appointment booking. How can I assist you today?",
                 sender: "bot",
                 timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
             }]);
@@ -72,7 +72,7 @@ const ChatBot = () => {
         } catch (error) {
             console.error("Error calling chat API:", error);
             const errorMessage = {
-                text: "HealConnect AI is momentarily offline. Please check your network connection and try again.",
+                text: "CareSync AI is momentarily offline. Please check your network connection and try again.",
                 sender: "bot",
                 timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
             };
@@ -91,7 +91,7 @@ const ChatBot = () => {
 
     const clearChat = () => {
         setMessages([{
-            text: "Chat cleared. I'm ready for your questions about HealConnect AI & Telemetry!",
+            text: "Chat cleared. I'm ready for your questions about CareSync AI & Telemetry!",
             sender: "bot",
             timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         }]);
@@ -110,10 +110,10 @@ const ChatBot = () => {
                         whileTap={{ scale: 0.95 }}
                         onClick={toggleChat}
                         className="relative bg-gradient-to-r from-blue-600 via-indigo-600 to-teal-500 hover:from-blue-500 hover:to-teal-400 text-white w-16 h-16 rounded-2xl flex items-center justify-center shadow-2xl border border-white/20 backdrop-blur-xl group"
-                        aria-label="Open HealConnect AI Assistant"
+                        aria-label="Open CareSync AI Assistant"
                     >
                         <div className="w-8 h-8 rounded-lg bg-slate-950/80 p-1 flex items-center justify-center border border-white/20 shadow-md">
-                            <img src="/Logo.svg" alt="HealConnect AI Logo" className="w-full h-full object-contain" />
+                            <img src="/Logo.svg" alt="CareSync AI Logo" className="w-full h-full object-contain" />
                         </div>
                         <span className="absolute -top-1 -right-1 bg-emerald-400 w-4 h-4 rounded-full border-2 border-slate-950 animate-pulse shadow-[0_0_10px_#34d399]"></span>
                     </motion.button>
@@ -128,7 +128,7 @@ const ChatBot = () => {
                         <div className="bg-slate-950 p-3.5 flex justify-between items-center border-b border-slate-800">
                             <div className="flex items-center gap-2">
                                 <span className="w-2.5 h-2.5 bg-emerald-400 rounded-full animate-pulse shadow-[0_0_8px_#34d399]"></span>
-                                <span className="font-bold text-xs text-white">HealConnect AI</span>
+                                <span className="font-bold text-xs text-white">CareSync AI</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <button onClick={() => setIsMinimized(false)} className="text-slate-400 hover:text-white text-xs">🗖</button>
@@ -149,11 +149,11 @@ const ChatBot = () => {
                         <div className="bg-slate-900/90 border-b border-slate-800 p-4 flex justify-between items-center">
                             <div className="flex items-center gap-2.5">
                                 <div className="w-8 h-8 rounded-xl bg-slate-950 border border-slate-700 p-1 flex items-center justify-center shadow-md">
-                                    <img src="/Logo.svg" alt="HealConnect Logo" className="w-full h-full object-contain" />
+                                    <img src="/Logo.svg" alt="CareSync Logo" className="w-full h-full object-contain" />
                                 </div>
                                 <div>
                                     <div className="flex items-center gap-2">
-                                        <h3 className="font-extrabold text-sm text-white tracking-tight leading-none">HealConnect AI</h3>
+                                        <h3 className="font-extrabold text-sm text-white tracking-tight leading-none">CareSync AI</h3>
                                         <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse shadow-[0_0_8px_#34d399]"></span>
                                     </div>
                                 </div>
@@ -250,7 +250,7 @@ const ChatBot = () => {
                                     value={inputMessage}
                                     onChange={(e) => setInputMessage(e.target.value)}
                                     onKeyPress={handleKeyPress}
-                                    placeholder="Ask HealConnect AI..."
+                                    placeholder="Ask CareSync AI..."
                                     style={{ color: '#ffffff', backgroundColor: '#0f172a' }}
                                     className="flex-1 text-sm text-white placeholder-slate-400 px-3.5 py-2 focus:outline-none rounded-xl border-none font-medium"
                                     disabled={isLoading}

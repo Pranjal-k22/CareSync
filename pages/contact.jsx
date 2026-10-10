@@ -76,7 +76,7 @@ export default function Contact() {
 
   const faqs = [
     {
-      q: "How fast will I receive a response from HealConnect?",
+      q: "How fast will I receive a response from CareSync?",
       a: "Our clinical and technical teams respond to all patient and doctor inquiries within 15 minutes during peak hours and guaranteed within 1 hour 24/7."
     },
     {
@@ -96,8 +96,8 @@ export default function Contact() {
   return (
     <div style={{ backgroundColor: '#f0f4f8', color: '#1a365d' }} className="min-h-screen font-sans relative overflow-x-hidden pb-16">
       <Head>
-        <title>Contact & Help Center — HealConnect</title>
-        <meta name="description" content="Get 24/7 patient support, hardware telemetry help, and doctor inquiry assistance from HealConnect." />
+        <title>Contact & Help Center — CareSync</title>
+        <meta name="description" content="Get 24/7 patient support, hardware telemetry help, and doctor inquiry assistance from CareSync." />
         <link rel="icon" type="image/svg+xml" href="/Logo.svg" />
       </Head>
 
@@ -429,7 +429,7 @@ export default function Contact() {
         <div className="max-w-4xl mx-auto mt-16">
           <div className="text-center mb-8">
             <h2 style={{ color: '#1a365d' }} className="text-2xl sm:text-3xl font-extrabold">Frequently Asked Questions</h2>
-            <p style={{ color: '#718096' }} className="text-xs sm:text-sm font-medium mt-1">Quick answers to common questions about HealConnect healthcare services.</p>
+            <p style={{ color: '#718096' }} className="text-xs sm:text-sm font-medium mt-1">Quick answers to common questions about CareSync healthcare services.</p>
           </div>
 
           <div className="space-y-4">

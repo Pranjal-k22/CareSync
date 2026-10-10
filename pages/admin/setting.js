@@ -20,10 +20,10 @@ export default function SystemSettingsPage() {
   const [adminAvatar, setAdminAvatar] = useState("/hacker.png");
 
   // Company Branding State
-  const [companyName, setCompanyName] = useState("HealConnect Healthcare Systems Ltd.");
+  const [companyName, setCompanyName] = useState("CareSync Healthcare Systems Ltd.");
   const [companyLogo, setCompanyLogo] = useState("/Logo.svg");
   const [contactPhone, setContactPhone] = useState("+91 1800-432-526");
-  const [corporateAddress, setCorporateAddress] = useState("HealConnect Global Health Tower, Cyber City, Bangalore, KA 560100");
+  const [corporateAddress, setCorporateAddress] = useState("CareSync Global Health Tower, Cyber City, Bangalore, KA 560100");
   const [hipaaLicense, setHipaaLicense] = useState("HIPAA-CERT-2026-HC99");
 
   // Security Credentials State
@@ -81,7 +81,7 @@ export default function SystemSettingsPage() {
     <AuthCheck requiredRole="admin">
       <AdminSidebar>
         <Head>
-          <title>System & Organization Settings | HealConnect Admin</title>
+          <title>System & Organization Settings | CareSync Admin</title>
         </Head>
 
         <div className="p-4 sm:p-6 space-y-8 font-sans">

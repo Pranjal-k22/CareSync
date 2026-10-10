@@ -23,7 +23,7 @@ export default function Navbar() {
       zIndex: 50
     }}>
       <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginRight: '2rem', textDecoration: 'none' }}>
-        <img src="/Logo.svg" alt="HealConnect Logo" style={{ width: '32px', height: '32px', objectFit: 'contain' }} />
+        <img src="/Logo.svg" alt="CareSync Logo" style={{ width: '32px', height: '32px', objectFit: 'contain' }} />
         <span style={{ fontSize: '1.4rem', fontWeight: '800', letterSpacing: '-0.02em', color: '#ffffff' }}>
           Heal<span style={{ color: '#34d399' }}>Connect</span>
         </span>

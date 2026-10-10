@@ -383,7 +383,7 @@ function MonitoringStationContent() {
   return (
     <div className="min-h-screen bg-slate-900 text-slate-100 font-sans">
       <Head>
-        <title>ESP8266 Telemetry & AI Risk Engine | HealConnect</title>
+        <title>ESP8266 Telemetry & AI Risk Engine | CareSync</title>
       </Head>
 
       <div className="p-4 md:p-8">
@@ -434,7 +434,7 @@ function MonitoringStationContent() {
             <span>ESP8266 NodeMCU Telemetry Monitor & AI Engine</span>
           </div>
           <h1 className="text-2xl font-extrabold text-white tracking-tight">
-            HealConnect <span className="text-emerald-400">Live Hardware & AI Risk Monitor</span>
+            CareSync <span className="text-emerald-400">Live Hardware & AI Risk Monitor</span>
           </h1>
           <p className="text-slate-400 text-xs mt-0.5">Patient ID: <strong className="text-emerald-300 font-mono">{patient.id}</strong> · NodeMCU Wi-Fi 192.168.1.105</p>
         </div>

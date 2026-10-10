@@ -16,7 +16,7 @@ export default function PrivacyAndPolicy() {
   return (
     <>
       <Head>
-        <title>Privacy Policy | HealConnect</title>
+        <title>Privacy Policy | CareSync</title>
       </Head>
 
       <main className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
@@ -32,7 +32,7 @@ export default function PrivacyAndPolicy() {
               PRIVACY & DATA PROTECTION
             </span>
             <h1 className="mt-6 text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              HealConnect Privacy Policy
+              CareSync Privacy Policy
             </h1>
             <p className="mt-4 text-gray-300">
               Last updated: {new Date().getFullYear()}
@@ -49,7 +49,7 @@ export default function PrivacyAndPolicy() {
             <section>
               <h2 className="text-xl font-semibold mb-2">1. Introduction</h2>
               <p>
-                HealConnect (&quot;we&quot;, &quot;our&quot;, &quot;us&quot;) provides
+                CareSync (&quot;we&quot;, &quot;our&quot;, &quot;us&quot;) provides
                 digital tools for healthcare monitoring and analytics. This
                 Privacy Policy explains how we collect, use, store and protect
                 your personal and health-related information when you use our
@@ -81,7 +81,7 @@ export default function PrivacyAndPolicy() {
               <h2 className="text-xl font-semibold mb-2">3. How We Use Your Data</h2>
               <p className="mb-2">We process data in order to:</p>
               <ul className="list-disc pl-5 space-y-1">
-                <li>Provide and maintain the HealConnect platform.</li>
+                <li>Provide and maintain the CareSync platform.</li>
                 <li>Monitor performance, reliability and security of the Services.</li>
                 <li>Generate analytics and insights for authorised users.</li>
                 <li>
@@ -97,7 +97,7 @@ export default function PrivacyAndPolicy() {
                 Where required by applicable law, we process personal and health
                 data based on your explicit consent, performance of a contract,
                 legitimate interests in operating a secure platform, or to meet
-                legal obligations. Organisations integrating HealConnect are
+                legal obligations. Organisations integrating CareSync are
                 responsible for ensuring they have the appropriate legal basis
                 for sharing patient data with us.
               </p>
@@ -152,7 +152,7 @@ export default function PrivacyAndPolicy() {
               </ul>
               <p className="mt-2">
                 Requests related to patient records are usually handled via your
-                healthcare provider that uses HealConnect.
+                healthcare provider that uses CareSync.
               </p>
             </section>
 
@@ -179,8 +179,8 @@ export default function PrivacyAndPolicy() {
             <section>
               <h2 className="text-xl font-semibold mb-2">11. Contact</h2>
               <p>
-                For questions or privacy-related requests, contact the HealConnect
-                support team or your organisation&apos;s HealConnect administrator.
+                For questions or privacy-related requests, contact the CareSync
+                support team or your organisation&apos;s CareSync administrator.
               </p>
             </section>
           </motion.div>
