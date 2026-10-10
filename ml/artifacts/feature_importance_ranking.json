@@ -1,0 +1,67 @@
+{
+  "model_algorithm": "GradientBoostingClassifier",
+  "total_features_evaluated": 12,
+  "ranking": [
+    {
+      "feature": "fatigue_score",
+      "importance": 0.4188164798889159,
+      "importance_pct": 41.881647988891594
+    },
+    {
+      "feature": "cough_severity",
+      "importance": 0.27692773246425506,
+      "importance_pct": 27.692773246425507
+    },
+    {
+      "feature": "temperature_c",
+      "importance": 0.1807939032021469,
+      "importance_pct": 18.07939032021469
+    },
+    {
+      "feature": "spo2_pct",
+      "importance": 0.047565965687501606,
+      "importance_pct": 4.756596568750161
+    },
+    {
+      "feature": "headache_severity",
+      "importance": 0.04147226789687391,
+      "importance_pct": 4.147226789687391
+    },
+    {
+      "feature": "heart_rate",
+      "importance": 0.023679292181235916,
+      "importance_pct": 2.367929218123592
+    },
+    {
+      "feature": "sore_throat",
+      "importance": 0.0067938361788216755,
+      "importance_pct": 0.6793836178821675
+    },
+    {
+      "feature": "body_ache",
+      "importance": 0.0021974977318535397,
+      "importance_pct": 0.21974977318535396
+    },
+    {
+      "feature": "age",
+      "importance": 0.0012655240617264827,
+      "importance_pct": 0.12655240617264826
+    },
+    {
+      "feature": "chills",
+      "importance": 0.0004664369160722526,
+      "importance_pct": 0.04664369160722526
+    },
+    {
+      "feature": "gender_Male",
+      "importance": 1.2799670022879234e-05,
+      "importance_pct": 0.0012799670022879235
+    },
+    {
+      "feature": "gender_Female",
+      "importance": 8.264120574004054e-06,
+      "importance_pct": 0.0008264120574004054
+    }
+  ],
+  "causality_disclaimer": "Feature importance reflects statistical association and predictive contribution within the decision tree ensemble, NOT direct biological causality."
+}
