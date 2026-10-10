@@ -1,0 +1,59 @@
+{
+  "model_version": "v1.0",
+  "patient_id": 8868,
+  "hour_from_admission": 24,
+  "risk_score": 98.34,
+  "risk_level": "high",
+  "actual_deterioration_next_12h": 1,
+  "top_factors": [
+    {
+      "feature": "spo2_pct",
+      "value": 87.28,
+      "shap_value": 0.146885,
+      "effect": "increases_risk"
+    },
+    {
+      "feature": "mobility_score",
+      "value": 1.0,
+      "shap_value": 0.135934,
+      "effect": "increases_risk"
+    },
+    {
+      "feature": "respiratory_rate",
+      "value": 24.17,
+      "shap_value": 0.120909,
+      "effect": "increases_risk"
+    },
+    {
+      "feature": "heart_rate",
+      "value": 106.86,
+      "shap_value": 0.066221,
+      "effect": "increases_risk"
+    },
+    {
+      "feature": "oxygen_flow",
+      "value": 51.83,
+      "shap_value": -0.051289,
+      "effect": "reduces_risk"
+    },
+    {
+      "feature": "systolic_bp",
+      "value": 111.89,
+      "shap_value": 0.034463,
+      "effect": "increases_risk"
+    },
+    {
+      "feature": "nurse_alert",
+      "value": 1.0,
+      "shap_value": 0.016424,
+      "effect": "increases_risk"
+    },
+    {
+      "feature": "temperature_c",
+      "value": 36.99,
+      "shap_value": 0.009585,
+      "effect": "increases_risk"
+    }
+  ],
+  "note": "SHAP values explain this model output only; they are not clinical advice."
+}
