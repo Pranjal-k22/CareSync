@@ -20,7 +20,7 @@ export default function Footer() {
               <img src="/Logo.svg" alt="CareSync Logo" className="w-full h-full object-contain" />
             </div>
             <h2 style={{ color: '#ffffff' }} className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-              Heal<span style={{ color: '#34d399' }}>Connect</span>
+              Care<span style={{ color: '#34d399' }}>Sync</span>
             </h2>
           </div>
 
@@ -88,7 +88,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="mailto:omraj6666@gmail.com" style={{ color: '#cbd5e1' }} className="hover:text-emerald-400 transition-colors">
+                <a href="mailto:pranjalkaran2004@gmail.com" style={{ color: '#cbd5e1' }} className="hover:text-emerald-400 transition-colors">
                   Contact Support
                 </a>
               </li>
@@ -125,7 +125,7 @@ export default function Footer() {
                 <FaTwitter size={20} />
               </a>
               <a
-                href="mailto:omraj6666@gmail.com"
+                href="mailto:pranjalkaran2004@gmail.com"
                 style={{ color: '#cbd5e1' }}
                 className="bg-slate-900 border border-slate-800 hover:border-indigo-500/50 p-2.5 rounded-xl hover:text-indigo-400 transition-all shadow-md"
                 aria-label="Email"

@@ -34,15 +34,15 @@ export default function Contributer() {
 
   const contributors = [
     {
-      name: "Om Raj",
-      role: "Lead Engineer",
-      github: "https://github.com/Pranjal-k22/CareSync",
+      name: "Pranjal Karan",
+      role: "Platform Lead & Maintainer",
+      github: "https://github.com/Pranjal-k22",
       highlight: true
     },
     {
-      name: "CareSync Dev Team",
-      role: "Core Maintainers",
-      github: "https://github.com/Pranjal-k22/CareSync"
+      name: "Om Raj",
+      role: "Original Author of HealConnect",
+      github: "https://github.com/OmRaj6666"
     }
   ];
 
