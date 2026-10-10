@@ -1,0 +1,92 @@
+{
+  "model_name": "HealConnect Flu & Disease Diagnosis Model",
+  "version": "v1.0",
+  "target_column": "disease_label",
+  "target_classes": {
+    "0": "Normal Baseline",
+    "1": "Flu / Influenza",
+    "2": "Fever-Related Condition"
+  },
+  "features": [
+    {
+      "name": "temperature_c",
+      "type": "numerical",
+      "unit": "Celsius",
+      "normal_range": [36.0, 37.5],
+      "valid_range": [34.0, 43.0],
+      "description": "Body temperature in degrees Celsius"
+    },
+    {
+      "name": "heart_rate",
+      "type": "numerical",
+      "unit": "BPM",
+      "normal_range": [60, 100],
+      "valid_range": [30, 230],
+      "description": "Heart rate in beats per minute"
+    },
+    {
+      "name": "spo2_pct",
+      "type": "numerical",
+      "unit": "Percentage",
+      "normal_range": [95.0, 100.0],
+      "valid_range": [50.0, 100.0],
+      "description": "Peripheral capillary oxygen saturation percentage"
+    },
+    {
+      "name": "cough_severity",
+      "type": "numerical_ordinal",
+      "unit": "Score (0-3)",
+      "valid_range": [0, 3],
+      "description": "Cough severity (0: None, 1: Mild, 2: Moderate, 3: Severe)"
+    },
+    {
+      "name": "headache_severity",
+      "type": "numerical_ordinal",
+      "unit": "Score (0-3)",
+      "valid_range": [0, 3],
+      "description": "Headache severity (0: None, 1: Mild, 2: Moderate, 3: Severe)"
+    },
+    {
+      "name": "fatigue_score",
+      "type": "numerical_ordinal",
+      "unit": "Score (0-3)",
+      "valid_range": [0, 3],
+      "description": "Systemic fatigue score (0: None, 1: Mild, 2: Moderate, 3: Severe)"
+    },
+    {
+      "name": "chills",
+      "type": "binary",
+      "unit": "Flag (0/1)",
+      "valid_range": [0, 1],
+      "description": "Presence of shivering or chills (0: Absent, 1: Present)"
+    },
+    {
+      "name": "body_ache",
+      "type": "binary",
+      "unit": "Flag (0/1)",
+      "valid_range": [0, 1],
+      "description": "Presence of myalgia / body ache (0: Absent, 1: Present)"
+    },
+    {
+      "name": "sore_throat",
+      "type": "binary",
+      "unit": "Flag (0/1)",
+      "valid_range": [0, 1],
+      "description": "Presence of pharyngeal sore throat (0: Absent, 1: Present)"
+    },
+    {
+      "name": "age",
+      "type": "numerical",
+      "unit": "Years",
+      "valid_range": [0, 120],
+      "description": "Patient age in years"
+    },
+    {
+      "name": "gender",
+      "type": "categorical",
+      "options": ["Male", "Female"],
+      "encoding": "OneHotEncoder",
+      "description": "Patient biological sex"
+    }
+  ]
+}
