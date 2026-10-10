@@ -1,4 +1,4 @@
-# HealConnect AI Healthcare Backend API
+# CareSync AI Healthcare Backend API
 
 Privacy-Preserving AI-Based Healthcare Risk Assessment System Using Explainable AI (SHAP), Federated Learning, and IoT Telemetry.
 
