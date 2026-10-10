@@ -1,0 +1,32 @@
+{
+  "model_version": "v1.0",
+  "algorithm": "RandomForestClassifier",
+  "n_estimators": 100,
+  "max_depth": 12,
+  "features": [
+    "heart_rate",
+    "spo2",
+    "temperature",
+    "systolic_bp",
+    "diastolic_bp",
+    "respiratory_rate",
+    "age",
+    "gender"
+  ],
+  "accuracy": 94.92,
+  "precision": 92.79,
+  "recall": 6.55,
+  "f1_score": 12.24,
+  "confusion_matrix": [
+    [
+      79033,
+      23
+    ],
+    [
+      4222,
+      296
+    ]
+  ],
+  "trained_samples": 334292,
+  "test_samples": 83574
+}

@@ -1,0 +1,110 @@
+{
+  "model_key": "deterioration",
+  "model_name": "HealConnect Patient Deterioration Risk Engine",
+  "version": "v1.0",
+  "algorithm": "RandomForestClassifier",
+  "artifact_path": "backend/models/registry/deterioration/v1/model.joblib",
+  "target": "deterioration_next_12h",
+  "feature_list": [
+    "heartRate",
+    "spo2",
+    "temperature",
+    "systolicBp",
+    "diastolicBp",
+    "respiratoryRate",
+    "age",
+    "gender"
+  ],
+  "training_metadata": {
+    "dataset_name": "Hospital Deterioration Dataset",
+    "total_records": 417866,
+    "training_split": "70% Train, 15% Val, 15% Test",
+    "strategy": "Patient-Level GroupShuffleSplit by patient_id"
+  },
+  "evaluation_metrics": {
+    "model_version": "v1.0",
+    "algorithm": "RandomForestClassifier",
+    "trained_at": "2026-08-08T13:05:27.179005+00:00",
+    "dataset": "ml/data/cleaned_hospital_deterioration.csv",
+    "features": [
+      "heart_rate",
+      "respiratory_rate",
+      "spo2_pct",
+      "temperature_c",
+      "systolic_bp",
+      "diastolic_bp",
+      "oxygen_flow",
+      "mobility_score",
+      "nurse_alert",
+      "age",
+      "comorbidity_index",
+      "oxygen_device",
+      "gender",
+      "admission_type"
+    ],
+    "target": "deterioration_next_12h",
+    "train_rows": 335065,
+    "test_rows": 82801,
+    "test_patient_count": 2000,
+    "class_balance_train": {
+      "0": 317024,
+      "1": 18041
+    },
+    "metrics": {
+      "accuracy": 0.932,
+      "precision": 0.4054,
+      "recall": 0.509,
+      "f1_score": 0.4513,
+      "roc_auc": 0.8831,
+      "average_precision": 0.4416
+    },
+    "confusion_matrix": {
+      "true_negative": 74857,
+      "false_positive": 3396,
+      "false_negative": 2233,
+      "true_positive": 2315
+    },
+    "top_feature_importances": [
+      {
+        "feature": "numeric__spo2_pct",
+        "importance": 0.224245
+      },
+      {
+        "feature": "numeric__mobility_score",
+        "importance": 0.124634
+      },
+      {
+        "feature": "numeric__systolic_bp",
+        "importance": 0.122893
+      },
+      {
+        "feature": "numeric__respiratory_rate",
+        "importance": 0.121198
+      },
+      {
+        "feature": "numeric__heart_rate",
+        "importance": 0.104763
+      },
+      {
+        "feature": "numeric__diastolic_bp",
+        "importance": 0.063632
+      },
+      {
+        "feature": "numeric__temperature_c",
+        "importance": 0.059866
+      },
+      {
+        "feature": "numeric__age",
+        "importance": 0.053509
+      },
+      {
+        "feature": "numeric__comorbidity_index",
+        "importance": 0.032691
+      },
+      {
+        "feature": "numeric__oxygen_flow",
+        "importance": 0.027552
+      }
+    ]
+  }
+}
