@@ -15,7 +15,7 @@ export default function SystemSettingsPage() {
   // Admin Profile State
   const [adminName, setAdminName] = useState(currentUser?.name || "Dr. Ananya Roy (Super Admin)");
   const [adminId, setAdminId] = useState("HC-ROOT-9901");
-  const [adminEmail, setAdminEmail] = useState(user?.email || "Admin@healconnect.com");
+  const [adminEmail, setAdminEmail] = useState(user?.email || "Admin@caresync.com");
   const [adminPhone, setAdminPhone] = useState("+91 9876543210");
   const [adminAvatar, setAdminAvatar] = useState("/hacker.png");
 

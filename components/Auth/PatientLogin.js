@@ -76,7 +76,7 @@ export default function PatientLoginPage() {
         // Demo Mode login fallback
         const mockUser = {
           id: `patient-${phoneNumber}`,
-          email: `patient_${phoneNumber}@healconnect.io`,
+          email: `patient_${phoneNumber}@caresync.io`,
           user_metadata: { name: `Patient (+91 ${phoneNumber})`, role: 'patient' }
         };
         setUser(mockUser);

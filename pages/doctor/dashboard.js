@@ -135,7 +135,7 @@ export default function DoctorDashboard() {
     address: 'Suite 402, CareSync Medical Complex, Bandra West',
     city: 'Mumbai',
     phone: currentUser?.phone || '+91 9876543299',
-    email: currentUser?.email || 'doctor@healconnect.com',
+    email: currentUser?.email || 'doctor@caresync.com',
     attendance_status: 'On Duty',
     schedule_hours: '09:00 AM - 05:00 PM',
     slot_duration: '30 mins',

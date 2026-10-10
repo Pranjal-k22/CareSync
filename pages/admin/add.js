@@ -68,7 +68,7 @@ export default function AddPatientPage() {
       middleName: 'K.',
       lastName: last.trim() || 'Patient',
       name: fullName,
-      email: `${number.trim()}@patient.healconnect.io`,
+      email: `${number.trim()}@patient.caresync.io`,
       phone: `+91 ${number.trim()}`,
       number: `+91 ${number.trim()}`,
       city: address.trim() || 'Mumbai',
@@ -120,7 +120,7 @@ export default function AddPatientPage() {
         await supabase.from('profiles').upsert({
           id: newPatId,
           name: fullName,
-          email: `${number.trim()}@patient.healconnect.io`,
+          email: `${number.trim()}@patient.caresync.io`,
           role: 'patient',
           phone: `+91 ${number.trim()}`,
           hospital: address.trim() || 'Mumbai',

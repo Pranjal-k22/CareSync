@@ -37,7 +37,7 @@ export default async function handler(req, res) {
           message: emergencyMessage,
           type: 'emergency',
           target_role: 'doctor',
-          target_email: email || 'doctor@healconnect.com',
+          target_email: email || 'doctor@caresync.com',
           sender_role: 'system'
         });
 
@@ -57,7 +57,7 @@ export default async function handler(req, res) {
         alert_level: 'CRITICAL_HIGH_RISK',
         email_status: 'DISPATCHED_VIA_SMTP_GATEWAY',
         sms_status: 'DISPATCHED_VIA_TWILIO_SMS_GATEWAY',
-        recipient: email || 'doctor@healconnect.com',
+        recipient: email || 'doctor@caresync.com',
         phone: phone || '+91 9876543210',
         message: emergencyMessage,
         data: alertDetails

@@ -61,7 +61,7 @@ export default function ProfessionalSignIn() {
 
         const apiUser = data.user;
         const roleToUse = (apiUser && apiUser.role && apiUser.role !== 'patient') ? apiUser.role : selectedRole;
-        window.localStorage.setItem('healconnect_api_token', data.access_token);
+        window.localStorage.setItem('caresync_api_token', data.access_token);
         setUser({ id: apiUser.email, email: apiUser.email, user_metadata: { name: apiUser.name, role: roleToUse } });
         setUserRole(roleToUse);
         setCurrentUser({ id: apiUser.email, email: apiUser.email, name: apiUser.name, role: roleToUse });
@@ -148,7 +148,7 @@ export default function ProfessionalSignIn() {
       } else {
         const mockUser = {
           id: `phone-${Date.now()}`,
-          email: `${phone}@healconnect.io`,
+          email: `${phone}@caresync.io`,
           user_metadata: { name: `User (${phone})`, role: selectedRole }
         };
         setUser(mockUser);
@@ -288,13 +288,13 @@ export default function ProfessionalSignIn() {
                     onClick={() => {
                       setSelectedRole(role.id);
                       if (role.id === 'doctor') {
-                        setEmail('doctor@healconnect.com');
+                        setEmail('doctor@caresync.com');
                         setPassword('12345678');
                       } else if (role.id === 'admin') {
-                        setEmail('Admin@healconnect.com');
+                        setEmail('Admin@caresync.com');
                         setPassword('12345678');
                       } else {
-                        setEmail('patient@healconnect.com');
+                        setEmail('patient@caresync.com');
                         setPassword('12345678');
                       }
                     }}
@@ -314,12 +314,12 @@ export default function ProfessionalSignIn() {
                 <div className="mt-2.5 bg-slate-900/90 border border-emerald-500/30 p-2.5 rounded-xl flex items-center justify-between text-xs text-slate-300">
                   <div className="flex items-center gap-2">
                     <span className="text-emerald-400 font-bold">⚡ Default Admin Credentials:</span>
-                    <span className="font-mono text-white text-[11px]">Admin@healconnect.com / 12345678</span>
+                    <span className="font-mono text-white text-[11px]">Admin@caresync.com / 12345678</span>
                   </div>
                   <button
                     type="button"
                     onClick={() => {
-                      setEmail('Admin@healconnect.com');
+                      setEmail('Admin@caresync.com');
                       setPassword('12345678');
                     }}
                     className="bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 text-[10px] font-extrabold px-2.5 py-1 rounded-lg border border-emerald-500/40"
@@ -429,7 +429,7 @@ export default function ProfessionalSignIn() {
                   </label>
                   <input
                     type={selectedRole === 'doctor' || selectedRole === 'patient' ? 'text' : 'email'}
-                    placeholder={selectedRole === 'doctor' ? 'e.g. DOC-8891 or doctor@healconnect.com' : selectedRole === 'patient' ? 'e.g. PAT-1001 or patient@healconnect.com' : 'name@healconnect.com'}
+                    placeholder={selectedRole === 'doctor' ? 'e.g. DOC-8891 or doctor@caresync.com' : selectedRole === 'patient' ? 'e.g. PAT-1001 or patient@caresync.com' : 'name@caresync.com'}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required

@@ -20,7 +20,7 @@ export default function PatientDashboard() {
   const [patientProfile, setPatientProfile] = useState({
     patient_id: currentUser?.patient_id || 'PAT-1001',
     name: currentUser?.name || 'Rahul Sharma',
-    email: currentUser?.email || 'rahul.sharma@healconnect.com',
+    email: currentUser?.email || 'rahul.sharma@caresync.com',
     phone: currentUser?.phone || '+91 9876543210',
     city: currentUser?.city || 'Mumbai',
     address: 'Suite 12, Sunrise Residency, Bandra West, Mumbai',

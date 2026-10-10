@@ -37,7 +37,7 @@ export default function Contact() {
       {
         from_name: form.name,
         from_email: form.email,
-        to_name: 'Heal_Connect',
+        to_name: 'CareSync',
         to_email: form.email,
         message: fullMessage,
         user_email: form.email,
@@ -50,7 +50,7 @@ export default function Contact() {
       {
         from_name: form.name,
         from_email: form.email,
-        to_name: 'Heal_Connect Admin',
+        to_name: 'CareSync Admin',
         to_email: 'connectheal84@gmail.com',
         message: fullMessage,
         user_email: form.email,

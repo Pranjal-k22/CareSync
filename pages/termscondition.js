@@ -174,7 +174,7 @@ export default function TermEndCondition() {
                   For questions regarding these Terms, you may contact us at:
                 </p>
                 <p className="mt-2 text-gray-300">
-                  <span className="font-medium">Email:</span> legal@healconnect.example
+                  <span className="font-medium">Email:</span> legal@caresync.example
                   <br />
                   <span className="font-medium">Subject:</span> &quot;Terms &amp; Conditions&quot;
                 </p>

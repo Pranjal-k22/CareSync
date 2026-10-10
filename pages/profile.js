@@ -36,7 +36,7 @@ export default function ProfilePage() {
       setProfileForm((prev) => ({
         ...prev,
         name: currentUser?.name || prev.name || 'Rahul Sharma',
-        email: user?.email || prev.email || 'user@healconnect.com',
+        email: user?.email || prev.email || 'user@caresync.com',
         phone: currentUser?.phone || prev.phone,
         city: currentUser?.city || prev.city,
         blood_group: currentUser?.blood_group || prev.blood_group
@@ -142,7 +142,7 @@ export default function ProfilePage() {
                   {profileForm.name || 'User Profile'}
                 </h1>
                 <p style={{ margin: '0.25rem 0 0 0', fontSize: '0.875rem', color: '#94a3b8' }}>
-                  {user?.email || 'user@healconnect.com'}
+                  {user?.email || 'user@caresync.com'}
                 </p>
               </div>
             </div>

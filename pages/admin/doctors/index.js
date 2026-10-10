@@ -472,7 +472,7 @@ export default function AdminDoctorsPage() {
                         type="email"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="doctor@healconnect.com"
+                        placeholder="doctor@caresync.com"
                         className="w-full bg-slate-900 border border-slate-700 text-white px-4 py-3 rounded-xl focus:outline-none focus:border-emerald-400 font-medium"
                         required
                       />

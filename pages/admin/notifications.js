@@ -100,7 +100,7 @@ export default function AdminNotificationsPage() {
           temperature: 102.1,
           risk_score: 82.5,
           phone: targetPatient.phone || targetPatient.number || '+91 9876543210',
-          email: targetPatient.email || 'doctor@healconnect.com'
+          email: targetPatient.email || 'doctor@caresync.com'
         })
       });
 
@@ -300,7 +300,7 @@ export default function AdminNotificationsPage() {
                   type="email"
                   value={formData.target_email}
                   onChange={(e) => setFormData({ ...formData, target_email: e.target.value })}
-                  placeholder="user@healconnect.com (Leave blank for broadcast)"
+                  placeholder="user@caresync.com (Leave blank for broadcast)"
                   className="w-full bg-slate-900 border border-slate-700 text-white px-4 py-3 rounded-xl text-xs sm:text-sm font-medium focus:outline-none focus:border-emerald-400"
                 />
               </div>

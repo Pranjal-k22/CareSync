@@ -92,11 +92,11 @@ export default function PatientsPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
-                { id: 'PAT-1001', name: 'Rahul Sharma', email: 'rahul.sharma@healconnect.com', bg: 'O+', status: 'Outpatient' },
-                { id: 'PAT-1002', name: 'Priya Patel', email: 'priya.patel@healconnect.com', bg: 'A+', status: 'Outpatient' },
-                { id: 'PAT-1003', name: 'Amitav Roy', email: 'amitav.roy@healconnect.com', bg: 'B+', status: 'Admitted' },
-                { id: 'PAT-1004', name: 'Sneha Reddy', email: 'sneha.reddy@healconnect.com', bg: 'AB+', status: 'Scheduled' },
-                { id: 'PAT-8891', name: 'Vikram Mehta', email: 'vikram.mehta@healconnect.com', bg: 'O+', status: 'Admitted' }
+                { id: 'PAT-1001', name: 'Rahul Sharma', email: 'rahul.sharma@caresync.com', bg: 'O+', status: 'Outpatient' },
+                { id: 'PAT-1002', name: 'Priya Patel', email: 'priya.patel@caresync.com', bg: 'A+', status: 'Outpatient' },
+                { id: 'PAT-1003', name: 'Amitav Roy', email: 'amitav.roy@caresync.com', bg: 'B+', status: 'Admitted' },
+                { id: 'PAT-1004', name: 'Sneha Reddy', email: 'sneha.reddy@caresync.com', bg: 'AB+', status: 'Scheduled' },
+                { id: 'PAT-8891', name: 'Vikram Mehta', email: 'vikram.mehta@caresync.com', bg: 'O+', status: 'Admitted' }
               ].map((pat) => (
                 <div key={pat.id} className="bg-slate-900 border border-slate-700/80 rounded-2xl p-4 space-y-2 shadow-lg">
                   <div className="flex justify-between items-center">
@@ -222,7 +222,7 @@ export default function PatientsPage() {
                               </span>
                               <div>
                                 <span className="font-extrabold text-white block text-sm">{fullName}</span>
-                                <span className="text-[11px] text-slate-400 font-mono">{pat.email || `${fullName.toLowerCase().replace(/\s+/g, '.')}@healconnect.com`}</span>
+                                <span className="text-[11px] text-slate-400 font-mono">{pat.email || `${fullName.toLowerCase().replace(/\s+/g, '.')}@caresync.com`}</span>
                               </div>
                             </div>
                           </td>

@@ -24,7 +24,7 @@ export default function AdminStaffPage() {
       uid: 'stf-1',
       name: 'Nurse Anjali Deshmukh',
       department: 'ICU Nursing',
-      email: 'anjali.d@healconnect.com',
+      email: 'anjali.d@caresync.com',
       staff_password_hint: 'stf12345',
       phone: '+91 9876500001',
       hospital: 'CareSync Central Tower',
@@ -38,7 +38,7 @@ export default function AdminStaffPage() {
       uid: 'stf-2',
       name: 'Tech Suresh Kumar',
       department: 'Radiology & Imaging',
-      email: 'suresh.k@healconnect.com',
+      email: 'suresh.k@caresync.com',
       staff_password_hint: 'stf12345',
       phone: '+91 9876500002',
       hospital: 'CareSync Central Tower',
@@ -52,7 +52,7 @@ export default function AdminStaffPage() {
       uid: 'stf-3',
       name: 'Pharm. Meenakshi Sundaram',
       department: 'Pharmacy & Dispensing',
-      email: 'meenakshi.s@healconnect.com',
+      email: 'meenakshi.s@caresync.com',
       staff_password_hint: 'stf12345',
       phone: '+91 9876500003',
       hospital: 'CareSync Central Tower',
@@ -66,7 +66,7 @@ export default function AdminStaffPage() {
       uid: 'stf-4',
       name: 'Nurse Robert Paul',
       department: 'Emergency Care Unit',
-      email: 'robert.paul@healconnect.com',
+      email: 'robert.paul@caresync.com',
       staff_password_hint: 'stf12345',
       phone: '+91 9876500004',
       hospital: 'CareSync Trauma Pavilion',
@@ -534,7 +534,7 @@ export default function AdminStaffPage() {
                         type="email"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="staff@healconnect.com"
+                        placeholder="staff@caresync.com"
                         className="w-full bg-slate-900 border border-slate-700 text-white px-4 py-3 rounded-xl focus:outline-none focus:border-blue-400 font-medium"
                         required
                       />
