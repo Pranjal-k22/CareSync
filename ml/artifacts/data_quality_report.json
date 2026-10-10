@@ -1,0 +1,217 @@
+{
+  "audit_version": "v1.0-COMPREHENSIVE",
+  "timestamp": "2026-08-09T12:20:34.795975",
+  "datasets_audited": [
+    {
+      "dataset_name": "Disease Diagnosis Dataset",
+      "file_name": "cleaned_disease_dataset.csv",
+      "total_records": 15000,
+      "total_columns": 14,
+      "decisions": [
+        {
+          "check": "Missing Values",
+          "finding": "Total missing: 0",
+          "decision": "No missing values found. Zero imputation required."
+        },
+        {
+          "check": "Duplicate Records",
+          "finding": "Duplicates: 0",
+          "decision": "No duplicate rows found."
+        },
+        {
+          "check": "Duplicate Patient IDs",
+          "finding": "Duplicate IDs in patient_id: 0",
+          "decision": "Unique patient identifiers verified per sample row."
+        },
+        {
+          "check": "Physiological Plausibility",
+          "finding": "Evaluated 4 clinical features against physiological bounds.",
+          "decision": "All numerical vitals fall within biologically valid human ranges. No clipping or truncation needed."
+        },
+        {
+          "check": "Feature Variance",
+          "finding": "Constant cols: [], Near-zero variance: []",
+          "decision": "All features display strong discriminative variance across patient cohorts."
+        },
+        {
+          "check": "Categorical Cardinality",
+          "finding": "High cardinality non-ID categoricals: []",
+          "decision": "ID columns excluded from feature matrix. Low-cardinality categoricals encoded safely."
+        },
+        {
+          "check": "Target & Timestamp Leakage",
+          "finding": "Identified target columns: ['disease_label', 'disease_condition']. Leakage cols found: []",
+          "decision": "Target columns strictly isolated from input feature matrix X during model training."
+        }
+      ],
+      "missing_values": {
+        "total_missing": 0,
+        "by_column": {
+          "patient_id": 0,
+          "age": 0,
+          "gender": 0,
+          "temperature_c": 0,
+          "heart_rate": 0,
+          "spo2_pct": 0,
+          "cough_severity": 0,
+          "headache_severity": 0,
+          "fatigue_score": 0,
+          "chills": 0,
+          "body_ache": 0,
+          "sore_throat": 0,
+          "disease_label": 0,
+          "disease_condition": 0
+        }
+      },
+      "duplicate_records": 0,
+      "physiological_bounds_audit": {
+        "temperature_c": {
+          "allowed_range": "[34.0, 43.0]",
+          "out_of_bounds_count": 0,
+          "out_of_bounds_pct": 0.0
+        },
+        "heart_rate": {
+          "allowed_range": "[30, 230]",
+          "out_of_bounds_count": 0,
+          "out_of_bounds_pct": 0.0
+        },
+        "spo2_pct": {
+          "allowed_range": "[50.0, 100.0]",
+          "out_of_bounds_count": 0,
+          "out_of_bounds_pct": 0.0
+        },
+        "age": {
+          "allowed_range": "[0, 120]",
+          "out_of_bounds_count": 0,
+          "out_of_bounds_pct": 0.0
+        }
+      },
+      "variance_audit": {
+        "constant_columns": [],
+        "near_zero_variance_columns": []
+      },
+      "high_cardinality_categoricals": [],
+      "leakage_audit": {
+        "potential_leakage_columns": [],
+        "target_columns": [
+          "disease_label",
+          "disease_condition"
+        ]
+      }
+    },
+    {
+      "dataset_name": "Hospital Deterioration Dataset",
+      "file_name": "cleaned_hospital_deterioration.csv",
+      "total_records": 417866,
+      "total_columns": 17,
+      "decisions": [
+        {
+          "check": "Missing Values",
+          "finding": "Total missing: 0",
+          "decision": "No missing values found. Zero imputation required."
+        },
+        {
+          "check": "Duplicate Records",
+          "finding": "Duplicates: 0",
+          "decision": "No duplicate rows found."
+        },
+        {
+          "check": "Duplicate Patient IDs",
+          "finding": "Duplicate IDs in patient_id: 407866",
+          "decision": "Identified 407866 repeat patient panel records. Retained time-indexed history."
+        },
+        {
+          "check": "Physiological Plausibility",
+          "finding": "Evaluated 7 clinical features against physiological bounds.",
+          "decision": "All numerical vitals fall within biologically valid human ranges. No clipping or truncation needed."
+        },
+        {
+          "check": "Feature Variance",
+          "finding": "Constant cols: [], Near-zero variance: []",
+          "decision": "All features display strong discriminative variance across patient cohorts."
+        },
+        {
+          "check": "Categorical Cardinality",
+          "finding": "High cardinality non-ID categoricals: []",
+          "decision": "ID columns excluded from feature matrix. Low-cardinality categoricals encoded safely."
+        },
+        {
+          "check": "Target & Timestamp Leakage",
+          "finding": "Identified target columns: ['deterioration_next_12h']. Leakage cols found: []",
+          "decision": "Target columns strictly isolated from input feature matrix X during model training."
+        }
+      ],
+      "missing_values": {
+        "total_missing": 0,
+        "by_column": {
+          "patient_id": 0,
+          "hour_from_admission": 0,
+          "heart_rate": 0,
+          "respiratory_rate": 0,
+          "spo2_pct": 0,
+          "temperature_c": 0,
+          "systolic_bp": 0,
+          "diastolic_bp": 0,
+          "oxygen_device": 0,
+          "oxygen_flow": 0,
+          "mobility_score": 0,
+          "nurse_alert": 0,
+          "age": 0,
+          "gender": 0,
+          "comorbidity_index": 0,
+          "admission_type": 0,
+          "deterioration_next_12h": 0
+        }
+      },
+      "duplicate_records": 0,
+      "physiological_bounds_audit": {
+        "temperature_c": {
+          "allowed_range": "[34.0, 43.0]",
+          "out_of_bounds_count": 0,
+          "out_of_bounds_pct": 0.0
+        },
+        "heart_rate": {
+          "allowed_range": "[30, 230]",
+          "out_of_bounds_count": 0,
+          "out_of_bounds_pct": 0.0
+        },
+        "spo2_pct": {
+          "allowed_range": "[50.0, 100.0]",
+          "out_of_bounds_count": 0,
+          "out_of_bounds_pct": 0.0
+        },
+        "systolic_bp": {
+          "allowed_range": "[60, 240]",
+          "out_of_bounds_count": 0,
+          "out_of_bounds_pct": 0.0
+        },
+        "diastolic_bp": {
+          "allowed_range": "[40, 160]",
+          "out_of_bounds_count": 0,
+          "out_of_bounds_pct": 0.0
+        },
+        "respiratory_rate": {
+          "allowed_range": "[8, 60]",
+          "out_of_bounds_count": 0,
+          "out_of_bounds_pct": 0.0
+        },
+        "age": {
+          "allowed_range": "[0, 120]",
+          "out_of_bounds_count": 0,
+          "out_of_bounds_pct": 0.0
+        }
+      },
+      "variance_audit": {
+        "constant_columns": [],
+        "near_zero_variance_columns": []
+      },
+      "high_cardinality_categoricals": [],
+      "leakage_audit": {
+        "potential_leakage_columns": [],
+        "target_columns": [
+          "deterioration_next_12h"
+        ]
+      }
+    }
+  ]
+}
