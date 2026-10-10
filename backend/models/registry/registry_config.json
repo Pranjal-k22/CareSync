@@ -1,0 +1,13 @@
+{
+  "registry_version": "v1.0-PRODUCTION",
+  "registered_models": {
+    "deterioration": {
+      "active_version": "v1",
+      "metadata_file": "backend/models/registry/deterioration/v1/metadata.json"
+    },
+    "disease": {
+      "active_version": "flu_v1",
+      "metadata_file": "backend/models/registry/disease/flu_v1/metadata.json"
+    }
+  }
+}
