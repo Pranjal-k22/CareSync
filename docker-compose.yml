@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  mqtt-broker:
+    image: eclipse-mosquitto:2.0
+    container_name: healconnect-mqtt-broker
+    restart: always
+    ports:
+      - "1883:1883"   # MQTT TCP
+      - "9001:9001"   # MQTT WebSockets
+    volumes:
+      - ./mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./mosquitto/config/password_file:/mosquitto/config/password_file:ro
+      - ./mosquitto/config/acl:/mosquitto/config/acl:ro
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+    environment:
+      - TZ=UTC
