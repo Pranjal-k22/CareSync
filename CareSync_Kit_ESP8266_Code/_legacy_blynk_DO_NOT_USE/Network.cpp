@@ -107,7 +107,7 @@ void Network::maintainMQTT() {
   lastMQTTRetry = now;
   Serial.printf("[MQTT] Connecting broker %s:%d...\n", MQTT_BROKER_HOST, MQTT_BROKER_PORT);
 
-  String statusTopic = String("healconnect/") + MQTT_HOSPITAL_ID + "/" + MQTT_DEVICE_ID + "/status";
+  String statusTopic = String("caresync/") + MQTT_HOSPITAL_ID + "/" + MQTT_DEVICE_ID + "/status";
 
   String lwtPayload = "{";
   lwtPayload += "\"version\":\"1.0\",";
@@ -138,7 +138,7 @@ bool Network::publishVitals(float bpm, float spo2, float bodyTemp, float roomTem
   uint32_t seq = getNextSequence();
 
   char topic[128];
-  snprintf(topic, sizeof(topic), "healconnect/%s/%s/vitals", MQTT_HOSPITAL_ID, MQTT_DEVICE_ID);
+  snprintf(topic, sizeof(topic), "caresync/%s/%s/vitals", MQTT_HOSPITAL_ID, MQTT_DEVICE_ID);
 
   char payload[512];
   int len = snprintf(payload, sizeof(payload),
@@ -193,7 +193,7 @@ bool Network::publishVitals(float bpm, float spo2, float bodyTemp, float roomTem
 bool Network::publishStatus(const char* statusStr, const char* reason) {
   if (!mqttClient.connected()) return false;
 
-  String topic = String("healconnect/") + MQTT_HOSPITAL_ID + "/" + MQTT_DEVICE_ID + "/status";
+  String topic = String("caresync/") + MQTT_HOSPITAL_ID + "/" + MQTT_DEVICE_ID + "/status";
 
   String payload = "{";
   payload += "\"version\":\"1.0\",";
@@ -215,7 +215,7 @@ bool Network::publishStatus(const char* statusStr, const char* reason) {
 bool Network::publishAlert(const char* alertType, const char* severity, const char* param, float triggerVal, float thresholdVal, const char* msg) {
   if (!mqttClient.connected()) return false;
 
-  String topic = String("healconnect/") + MQTT_HOSPITAL_ID + "/" + MQTT_DEVICE_ID + "/alerts";
+  String topic = String("caresync/") + MQTT_HOSPITAL_ID + "/" + MQTT_DEVICE_ID + "/alerts";
 
   String payload = "{";
   payload += "\"version\":\"1.0\",";

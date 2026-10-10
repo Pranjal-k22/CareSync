@@ -109,7 +109,7 @@ void maintainMQTT() {
   lastMQTTRetry = now;
   Serial.printf("[MQTT] Connecting to broker %s:%d...\n", MQTT_BROKER_HOST, MQTT_BROKER_PORT);
 
-  String statusTopic = String("healconnect/") + MQTT_HOSPITAL_ID + "/" + MQTT_DEVICE_ID + "/status";
+  String statusTopic = String("caresync/") + MQTT_HOSPITAL_ID + "/" + MQTT_DEVICE_ID + "/status";
 
   String lwtPayload = "{";
   lwtPayload += "\"version\":\"1.0\",";
@@ -144,7 +144,7 @@ bool publishVitals(float bpm, float spo2_val, float bTemp, float rTemp, float hu
   uint32_t seq = sequenceNumber++;
 
   char topic[128];
-  snprintf(topic, sizeof(topic), "healconnect/%s/%s/vitals", MQTT_HOSPITAL_ID, MQTT_DEVICE_ID);
+  snprintf(topic, sizeof(topic), "caresync/%s/%s/vitals", MQTT_HOSPITAL_ID, MQTT_DEVICE_ID);
 
   char payload[512];
   int len = snprintf(payload, sizeof(payload),

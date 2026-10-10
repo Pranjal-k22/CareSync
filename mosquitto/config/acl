@@ -1,28 +1,28 @@
 # HealConnect Mosquitto Access Control List (ACL) Rules
 
 # Rule 1: Developer / Admin User (Full Access)
-user healconnect_dev
+user caresync_dev
 topic readwrite #
 topic readwrite $SYS/#
 
 # Rule 2: Hardware Device (ESP8266 node-9901 / PAT-1001)
 user node_9901_dev
-topic write healconnect/hosp-001/node-9901/vitals
-topic write healconnect/hosp-001/node-9901/status
-topic write healconnect/hosp-001/node-9901/alerts
-topic write healconnect/hosp-001/node-9901/ecg
-topic read healconnect/hosp-001/node-9901/commands
+topic write caresync/hosp-001/node-9901/vitals
+topic write caresync/hosp-001/node-9901/status
+topic write caresync/hosp-001/node-9901/alerts
+topic write caresync/hosp-001/node-9901/ecg
+topic read caresync/hosp-001/node-9901/commands
 
 # Rule 3: Test Device (Isolated for Broker Verification)
 user test_device_dev
-topic write healconnect/test/device/vitals
-topic write healconnect/test/device/status
-topic read healconnect/test/device/vitals
-topic read healconnect/test/device/status
+topic write caresync/test/device/vitals
+topic write caresync/test/device/status
+topic read caresync/test/device/vitals
+topic read caresync/test/device/status
 
 # Rule 4: Ingestion Service (Backend Application Worker)
 user ingest_service_dev
-topic read healconnect/+/+/vitals
-topic read healconnect/+/+/status
-topic read healconnect/+/+/alerts
-topic write healconnect/+/+/commands
+topic read caresync/+/+/vitals
+topic read caresync/+/+/status
+topic read caresync/+/+/alerts
+topic write caresync/+/+/commands

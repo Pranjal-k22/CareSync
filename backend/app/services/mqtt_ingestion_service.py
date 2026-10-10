@@ -17,7 +17,7 @@ import paho.mqtt.client as mqtt
 
 from backend.app.services.db_service import db_service
 
-logger = logging.getLogger("healconnect.mqtt_ingestion")
+logger = logging.getLogger("caresync.mqtt_ingestion")
 logger.setLevel(logging.INFO)
 
 # Configuration Defaults (overridable via Environment Variables)
@@ -87,9 +87,9 @@ class MQTTIngestionService:
             self.metrics["connected"] = True
             
             # Subscriptions
-            client.subscribe("healconnect/+/+/vitals", qos=1)
-            client.subscribe("healconnect/+/+/status", qos=1)
-            client.subscribe("healconnect/+/+/alerts", qos=1)
+            client.subscribe("caresync/+/+/vitals", qos=1)
+            client.subscribe("caresync/+/+/status", qos=1)
+            client.subscribe("caresync/+/+/alerts", qos=1)
             logger.info("📡 Subscribed to vitals, status, and alerts topics.")
         else:
             logger.error("❌ MQTT Connection failed with return code: %s", rc)
@@ -110,7 +110,7 @@ class MQTTIngestionService:
 
         # 1. Topic Parsing & Segmentation
         segments = topic.split("/")
-        if len(segments) != 4 or segments[0] != "healconnect":
+        if len(segments) != 4 or segments[0] != "caresync":
             logger.warning("Rejected malformed topic structure: %s", topic)
             self.metrics["invalid_messages"] += 1
             return
