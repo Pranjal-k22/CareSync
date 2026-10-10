@@ -1,0 +1,24 @@
+{
+  "n_classes": 3,
+  "class_names": [
+    "Normal Baseline",
+    "Flu / Influenza",
+    "Fever-Related Condition"
+  ],
+  "class_counts": {
+    "Normal Baseline": 6744,
+    "Flu / Influenza": 4474,
+    "Fever-Related Condition": 3782
+  },
+  "class_percentages": {
+    "Normal Baseline": 44.96,
+    "Flu / Influenza": 29.83,
+    "Fever-Related Condition": 25.21
+  },
+  "minority_class_percentage": 25.21,
+  "charts_generated": [
+    "/Users/omraj/Downloads/Heal_connectmain/ml/artifacts/target_count_bar_chart.png",
+    "/Users/omraj/Downloads/Heal_connectmain/ml/artifacts/target_percentage_chart.png"
+  ],
+  "imbalance_strategy": "Stratified K-Fold / Train-Test Split with class_weight='balanced'. Oversampling performed ONLY after split on train partition."
+}
